@@ -1,1 +1,1 @@
-web: gunicorn mysite.wsgi
+web: gunicorn swim_registry.wsgi
