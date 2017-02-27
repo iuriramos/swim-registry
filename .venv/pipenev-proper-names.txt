@@ -1,5 +1,0 @@
-django
-dj-database-url
-gunicorn
-whitenoise
-requirements
