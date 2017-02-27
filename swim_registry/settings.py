@@ -25,7 +25,7 @@ SECRET_KEY = 'e&jnl6!(r+6b2q-6)(k6tj@d60=@5hhq60h$xjbyul!371qm@%'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [".herokuapp.com"]
 
 try:
     from .local_settings import *
