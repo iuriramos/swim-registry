@@ -28,14 +28,17 @@ class RegisterAccountForm(forms.Form):
         errors.append(message)
 
 class RegistrationRequestForm(forms.ModelForm):
-    approved = forms.BooleanField()
+    approved = forms.BooleanField(required=False)
 
     def save(self, commit=True):
+        registration_request = super(RegistrationRequestForm, self).save(commit=commit)
         approved = self.cleaned_data.get('approved', None)
+
         if approved:
-            print ("approved")
-            print (self)
-        return super(RegistrationRequestForm, self).save(commit=commit)
+            registration_request.register()
+            return registration_request
+
+        return registration_request
 
     class Meta:
         model = RegistrationRequest
