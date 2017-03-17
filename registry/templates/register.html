@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+    <div class="container">
+      <form class="form-signin" action="{% url 'register' %}" method="post">
+        {% csrf_token %}
+
+        <h2 class="form-signin-heading">Register</h2>
+
+        <input type="text" id="id_first_name" name="first_name" class="form-control" placeholder="First name* " required autofocus>
+
+        <input type="text" id="id_last_name" name="last_name" class="form-control" placeholder="Last name* " required>
+
+        <input type="text" id="id_email" name="email" class="form-control" placeholder="Email *" required>
+
+        <!--<input type="password" id="id_password" name="password" class="form-control" placeholder="Password *" required>-->
+
+        <input type="text" id="id_organization" name="organization" class="form-control" placeholder="Organization">
+
+        <input type="text" id="id_role" name="role" class="form-control" placeholder="Organization Role">
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit" value="Login">Register</button>
+
+        {% if form.errors %}
+            <div class="alert alert-danger">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        {{form.non_field_errors}}
+            </div>
+        {% endif %}
+
+      </form>
+    </div>
+
+{% endblock %}
