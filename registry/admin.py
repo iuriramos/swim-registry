@@ -3,7 +3,9 @@ from registry.models import RegistrationRequest, UserAccount
 
 from registry.forms import RegistrationRequestForm
 
-# Register your models here.
+# change admin site header
+admin.site.site_header = 'SWIM administration'
+
 # admin.site.register(RegistrationRequest)
 admin.site.register(UserAccount)
 
