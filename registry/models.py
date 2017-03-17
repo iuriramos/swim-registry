@@ -1,5 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.mail import send_mail
+
+from swim_registry.settings import DEFAULT_FROM_EMAIL
 
 # Create your models here.
 
@@ -26,8 +29,14 @@ class RegistrationRequest(models.Model):
                             role=self.role
                         )
         # TODO: delete registration request
-        account.save()
         #RegistrationRequest.objects.get(pk=self.pk).delete()
+
+        account.save()
+        self.send_confirmartion_mail(password)
+
+    def send_confirmartion_mail(self, password):
+        message = 'Hello,\n\nCongratulations! Your request to be part of the SWIM Registry Brazil community was accepted. \n\nAccess your account using:\n\tEmail address: {0}\n\tPassword: {1}\n\nWelcome to the SWIM Community!'.format(self.email, password)
+        send_mail('SWIM Registry Brazil - Confirmation request', message, DEFAULT_FROM_EMAIL, (self.email, ), fail_silently=False)
 
     def __str__(self):
         return '{0.first_name} {0.last_name}, {0.role}, {0.organization}'.format(self)
