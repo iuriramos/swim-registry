@@ -27,6 +27,12 @@ DEBUG = True
 
 ALLOWED_HOSTS = [".herokuapp.com"]
 
+# Database settings and Aditional settings
+import dj_database_url
+
+DATABASES = {}
+DATABASES['default'] = dj_database_url.config()
+
 try:
     from .local_settings import *
 except ImportError:
