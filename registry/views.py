@@ -33,4 +33,4 @@ class RegisterAccountView(View):
 
 @login_required
 def registry_index(request):
-    return HttpResponse('<p>Hello World!</p>')
+    return render(request, 'my_registry.html', {}) # stub method
