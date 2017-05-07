@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
 
-from swim_registry.settings import DEFAULT_FROM_EMAIL
+from swim_registry.settings.base import DEFAULT_FROM_EMAIL
 
 # Create your models here.
 
