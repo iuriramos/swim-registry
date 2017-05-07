@@ -1,7 +1,7 @@
 from django.contrib import admin
-from registry.models import RegistrationRequest, UserAccount
+from .models import RegistrationRequest, UserAccount
 
-from registry.forms import RegistrationRequestForm
+from .forms import RegistrationRequestForm
 
 # change admin site header
 admin.site.site_header = 'SWIM administration'

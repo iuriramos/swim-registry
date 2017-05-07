@@ -2,8 +2,8 @@ from django.shortcuts import render, redirect
 from django.views.generic.base import View
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
-from registry.forms import RegisterAccountForm
-from registry.models import RegistrationRequest
+from .forms import RegisterAccountForm
+from .models import RegistrationRequest
 
 # Create your views here.
 
