@@ -9,34 +9,29 @@ https://docs.djangoproject.com/en/1.10/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.10/ref/settings/
 """
-
 import os
+from unipath import Path
+
+# Normally you should not import ANYTHING from Django directly
+# into your settings, but ImproperlyConfigured is an exception.
+from django.core.exceptions import ImproperlyConfigured
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
+BASE_DIR = Path(__file__).ancestor(3)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'e&jnl6!(r+6b2q-6)(k6tj@d60=@5hhq60h$xjbyul!371qm@%'
+def get_env_variable(var_name):
+    """Get the environment variable or return exception."""
+    try:
+        return os.environ[var_name]
+    except KeyError:
+        error_msg = 'Set the {} environment variable'.format(var_name)
+        raise ImproperlyConfigured(error_msg)
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
-ALLOWED_HOSTS = [".herokuapp.com"]
-
-# Database settings and Aditional settings
-import dj_database_url
-
-DATABASES = {}
-DATABASES['default'] = dj_database_url.config()
-
-try:
-    from .local_settings import *
-except ImportError:
-    pass
+SECRET_KEY = get_env_variable('SECRET_KEY')
 
 # Application definition
 
@@ -114,6 +109,28 @@ USE_L10N = True
 
 USE_TZ = True
 
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/1.9/howto/static-files/
+
+STATIC_URL = '/static/'
+
+
+# Mail settings
+
+EMAIL_HOST = 'smtp.gmail.com'
+
+EMAIL_HOST_PASSWORD =get_env_variable('EMAIL_HOST_PASSWORD')
+
+EMAIL_HOST_USER = get_env_variable('EMAIL_HOST_USER')
+
+EMAIL_PORT = 587
+
+EMAIL_USE_TLS = True
+
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+
 # AuthenticationMiddleware CONSTANTS
 
 LOGIN_URL="/login/"
@@ -121,25 +138,3 @@ LOGIN_URL="/login/"
 LOGOUT_URL="/logout/"
 
 LOGIN_REDIRECT_URL="/my-registry"
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.9/howto/static-files/
-
-PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
-STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
-STATIC_URL = '/static/'
-
-# Extra places for collectstatic to find static files.
-STATICFILES_DIRS = (
-    os.path.join(PROJECT_ROOT, 'static'),
-    os.path.join(PROJECT_ROOT, 'website/static'),
-    os.path.join(PROJECT_ROOT, 'registry/static'),
-)
-
-# Mail settings
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_PASSWORD = 'SWIM@*registry'
-EMAIL_HOST_USER = 'swim.registry.brazil@gmail.com'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
