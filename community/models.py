@@ -35,6 +35,15 @@ class RegistrationRequest(TimeStampedModel):
         return '{self.last_name}, {self.first_name}'.format(self=self)
 
 
+class Participant(TimeStampedModel):
+    name = models.CharField(max_length=255, null=False)
+    email =  models.EmailField()
+    description = models.TextField()
+
+    def __str__(self):
+        return self.name
+
+
 class Profile(TimeStampedModel):
     NEVER = 'NEVER'
     IMMEDIATE = 'IMMEDIATE'
@@ -49,6 +58,8 @@ class Profile(TimeStampedModel):
     )
 
     user = models.OneToOneField(User, related_name='profile')
+    organization = models.ForeignKey(Participant, related_name='profiles', null=True)
+    following_organizations = models.ManyToManyField(Participant, related_name='followers')
     notification_frequency = models.CharField(max_length=10, choices=FREQ_CHOICES, default=NEVER)
     subscriptions_content_type = models.ManyToManyField(SubscriptionContentType, related_name='profiles')
     subscriptions_region = models.ManyToManyField(RegionCategory, related_name='profiles')
@@ -74,3 +85,4 @@ class Profile(TimeStampedModel):
 
     def __str__(self):
         return '{self.user.last_name}, {self.user.first_name}'.format(self=self)
+
