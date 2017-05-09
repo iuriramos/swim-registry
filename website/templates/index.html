@@ -1,8 +1,8 @@
-{% load i18n %}
 {% load staticfiles %}
+{% load i18n %}
 
 <!DOCTYPE html>
-<html lang="pt-br">
+<html>
 
 <head>
 
@@ -12,7 +12,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>{% trans "SWIM Registry Brazil" %}</title>
+    <title>SWIM Registry Brazil</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
@@ -65,7 +65,7 @@
                         <a class="page-scroll" href="#contact">Contact</a>
                     </li>
                     <li>
-                        <a href="{% url 'login' %}">Login</a>
+                        <a href="{% url 'registry:login' %}">Login</a>
                     </li>
                 </ul>
             </div>
@@ -81,9 +81,7 @@
                 <hr>
                 <!--<p>An initiative of TransLab in partnership with Boeing.</p>-->
                 <p>
-                    {% blocktrans %}
                         An initiative of Translab in University of Brasília.
-                    {% endblocktrans %}
                 </p>
                 <a href="#about" class="btn btn-primary btn-xl page-scroll">Find Out More</a>
             </div>
@@ -182,7 +180,7 @@
         <div class="container text-center">
             <div class="call-to-action">
                 <h2>Register to have access to the available services</h2>
-                <a href="{% url 'register' %}" class="btn btn-default btn-xl sr-button">Register</a>
+                <a href="{% url 'community:register' %}" class="btn btn-default btn-xl sr-button">Register</a>
             </div>
         </div>
     </aside>

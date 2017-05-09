@@ -1,63 +1,162 @@
+
 from django.db import models
-from django.contrib.auth.models import User
-from django.core.mail import send_mail
 
-from swim_registry.settings.base import DEFAULT_FROM_EMAIL
 
-# Create your models here.
+class SubscriptionContentType(models.Model):
+    AIRM_MODEL = 'AIRM MODEL'
+    COMPLIANCE_REFERENCE_DOCUMENT = 'COMPLIANCE REFERENCE DOCUMENT'
+    CONTACT_POINT = 'CONTACT POINT'
+    ORGANISATION_DOCUMENT = 'ORGANISATION DOCUMENT'
+    GENERAL_DOCUMENT = 'GENERAL DOCUMENT'
+    INFORMATION_REFERENCE_DOCUMENT = 'INFORMATION REFERENCE DOCUMENT'
+    INFRASTRUCTURE_PROFILE = 'INFRASTRUCTURE PROFILE'
+    REFERENCE_DOCUMENT = 'REFERENCE DOCUMENT'
+    INFRASTRUCTURE_STANDARD = 'INFRASTRUCTURE STANDARD'
+    INTERFACE = 'INTERFACE'
+    ORGANISATION = 'ORGANISATION'
+    PROPRIETARY_DATA_EXCHANGE_FORMAT = 'PROPRIETARY DATA EXCHANGE FORMAT'
+    SERVICE_IMPLEMENTATION = 'SERVICE IMPLEMENTATION'
+    SERVICE_COMPLIANCE_CLAIM = 'SERVICE COMPLIANCE CLAIM'
+    SERVICE_DEFINITION = 'SERVICE DEFINITION'
+    SERVICE_DEFINITION_PROGRESS = 'SERVICE DEFINITION PROGRESS'
+    SERVICE_DOCUMENT = 'SERVICE DOCUMENT'
+    SERVICE_END_POINT = 'SERVICE END POINT'
+    SERVICE_LOGICAL_MODEL = 'SERVICE LOGICAL MODEL'
+    SERVICE_REFERENCE_DOCUMENT = 'SERVICE REFERENCE DOCUMENT'
+    DATA_STANDARD = 'DATA STANDARD'
 
-class RegistrationRequest(models.Model):
+    CHOICES = (
+        (AIRM_MODEL,  'AIRM Model'),
+        (COMPLIANCE_REFERENCE_DOCUMENT,  'Compliance Reference Document'),
+        (CONTACT_POINT,  'Contact Point'),
+        (ORGANISATION_DOCUMENT,  'Organisation Document'),
+        (GENERAL_DOCUMENT,  'General Document'),
+        (INFORMATION_REFERENCE_DOCUMENT,  'Information Reference Document'),
+        (INFRASTRUCTURE_PROFILE,  'Infrastructure Profile'),
+        (REFERENCE_DOCUMENT,  'Reference Document'),
+        (INFRASTRUCTURE_STANDARD,  'Infrastructure Standard'),
+        (INTERFACE,  'Interface'),
+        (ORGANISATION,  'Organisation'),
+        (PROPRIETARY_DATA_EXCHANGE_FORMAT,  'Proprietary Data Exchange Format'),
+        (SERVICE_IMPLEMENTATION,  'Service Implementation'),
+        (SERVICE_COMPLIANCE_CLAIM, 'Service Compliance Claim'),
+        (SERVICE_DEFINITION, 'Service Definition'),
+        (SERVICE_DEFINITION_PROGRESS, 'Service Definition Progress'),
+        (SERVICE_DOCUMENT, 'Service Document'),
+        (SERVICE_END_POINT, 'Service End Point'),
+        (SERVICE_LOGICAL_MODEL, 'Service Logical Model'),
+        (SERVICE_REFERENCE_DOCUMENT, 'Service Reference Document'),
+        (DATA_STANDARD, 'Data Standard'),
+    )
 
-    first_name = models.CharField(max_length=255, null=False)
-    last_name = models.CharField(max_length=255, null=False)
-    email = models.EmailField(null=False)
-    organization = models.CharField(max_length=255)
-    role = models.CharField(max_length=255)
-
-    def register(self):
-        password = User.objects.make_random_password()
-        user = User.objects.create_user(
-                        username=self.email,
-                        email=self.email,
-                        password=password,
-                        first_name=self.first_name,
-                        last_name=self.last_name
-                    )
-        account = UserAccount(
-                            user=user,
-                            organization=self.organization,
-                            role=self.role
-                        )
-        # TODO: delete registration request
-        #RegistrationRequest.objects.get(pk=self.pk).delete()
-
-        account.save()
-        self.send_confirmartion_mail(password)
-
-    def send_confirmartion_mail(self, password):
-        message = 'Hello,\n\nCongratulations! Your request to be part of the SWIM Registry Brazil community was accepted. \n\nAccess your account using:\n\tEmail address: {0}\n\tPassword: {1}\n\nWelcome to the SWIM Community!'.format(self.email, password)
-        send_mail('SWIM Registry Brazil - Confirmation request', message, DEFAULT_FROM_EMAIL, (self.email, ), fail_silently=False)
-
-    def __str__(self):
-        return '{0.first_name} {0.last_name}, {0.role}, {0.organization}'.format(self)
-
-class UserAccount(models.Model):
-    user = models.OneToOneField(User, related_name='user_account')
-    organization = models.CharField(max_length=255)
-    role = models.CharField(max_length=255)
-
-    @property
-    def first_name(self):
-        return self.user.first_name
-
-    def delete(self, *args, **kwargs):
-        self.user.delete()
-        return super(self.__class__, self).delete(*args, **kwargs)
-
-    def set_password(self, password):
-        self.user.set_password(password)
-        self.user.save()
+    name = models.CharField(max_length=50, choices=CHOICES, unique=True)
 
     def __str__(self):
-        return '{0.user.username}, {0.role}, {0.organization}'.format(self)
+        return self.name
 
+
+class FlightCategory(models.Model):
+    AERONAUTICAL_INFORMATION = 'AERONAUTICAL INFORMATION'
+    METEOROLOGY = 'METEOROLOGY'
+    ENVIRONMENT = 'ENVIRONMENT'
+    CAPACITY_DEMAND_AND_FLOW = 'CAPACITY DEMAND AND FLOW'
+    SURVEILLANCE  = 'SURVEILLANCE'
+    OTHER  = 'OTHER'
+
+    CHOICES = (
+        (AERONAUTICAL_INFORMATION, 'Aeronautical Information'),
+        (METEOROLOGY, 'Meteorology'),
+        (ENVIRONMENT, 'Environment'),
+        (CAPACITY_DEMAND_AND_FLOW, 'Capacity Demand and Flow'),
+        (SURVEILLANCE, 'Surveillance'),
+        (OTHER, 'Other'),
+    )
+
+    name = models.CharField(max_length=50, choices=CHOICES, unique=True)
+
+    class Meta:
+        verbose_name = 'flight category'
+        verbose_name_plural = 'flight categories'
+
+    def __str__(self):
+        return self.name
+
+
+class FlightPhaseCategory(models.Model):
+    AIRPORT_RAMP = 'AIRPORT RAMP'
+    TAKE_OFF = 'TAKE OFF'
+    DEPARTURE = 'DEPARTURE'
+    EN_ROUTE = 'EN-ROUTE'
+    OCEANIC  = 'OCEANIC'
+    ARRIVAL  = 'ARRIVAL'
+
+    CHOICES = (
+        (AIRPORT_RAMP, 'Airport (ramp)'),
+        (TAKE_OFF, 'Take Off'),
+        (DEPARTURE, 'Departure'),
+        (EN_ROUTE, 'En-route'),
+        (OCEANIC, 'Oceanic'),
+        (ARRIVAL, 'Arrival'),
+    )
+
+    name = models.CharField(max_length=50, choices=CHOICES, unique=True)
+
+
+    class Meta:
+        verbose_name = 'flight phase category'
+        verbose_name_plural = 'flight phases categories'
+
+    def __str__(self):
+        return self.name
+
+
+class StakeholderCategory(models.Model):
+    AIRPORT_OPERATOR = 'AIRPORT OPERATOR'
+    AIRSPACE_USER = 'AIRSPACE USER'
+    ANSP = 'ANSP'
+    NETWORK_MANAGER  = 'NETWORK MANAGER'
+
+    CHOICES = (
+        (AIRPORT_OPERATOR, 'Airport Operator'),
+        (AIRSPACE_USER, 'Airspace User'),
+        (ANSP, 'ANSP'),
+        (NETWORK_MANAGER, 'Network Manager'),
+    )
+
+    name = models.CharField(max_length=50, choices=CHOICES, unique=True)
+
+    class Meta:
+        verbose_name = 'stakeholder category'
+        verbose_name_plural = 'stakeholder categories'
+
+    def __str__(self):
+        return self.name
+
+
+class RegionCategory(models.Model):
+    AFRICA = 'AFRICA'
+    ASIA = 'ASIA'
+    EUROPE = 'EUROPE'
+    GLOBAL  = 'GLOBAL'
+    NORTH_AMERICA = 'NORTH AMERICA'
+    OCEANIA = 'OCEANIA'
+    SOUTH_AMERICA = 'SOUTH AMERICA'
+
+    CHOICES = (
+        (AFRICA, 'Africa'),
+        (ASIA, 'Asia'),
+        (EUROPE, 'Europe'),
+        (GLOBAL , 'Global'),
+        (NORTH_AMERICA, 'North America'),
+        (OCEANIA, 'Oceania'),
+        (SOUTH_AMERICA, 'South America'),
+    )
+
+    name = models.CharField(max_length=50, choices=CHOICES, unique=True)
+
+    class Meta:
+        verbose_name = 'region category'
+        verbose_name_plural = 'region categories'
+
+    def __str__(self):
+        return self.name

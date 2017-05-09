@@ -3,11 +3,12 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-08 04:08+0000\n"
+"POT-Creation-Date: 2017-05-08 19:26+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,25 +17,13 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: swim_registry/settings/base.py:115
+#: swim_registry/settings/base.py:117
 msgid "English"
 msgstr "Inglês"
 
-#: swim_registry/settings/base.py:116
+#: swim_registry/settings/base.py:118
 msgid "Portuguese"
 msgstr "Português"
 
-#: website/templates/index.html:15
-msgid "SWIM Registry Brazil"
-msgstr "BR SWIM Registry"
-
-#: website/templates/index.html:84
-msgid ""
-"\n"
-"                        An initiative of Translab in University of "
-"Brasília.\n"
-"                    "
-msgstr ""
-"\n"
-"Uma iniciativa do Translab da Universidade de Brasília.\n"
-"                    "
+#~ msgid "Mensagem de teste"
+#~ msgstr "Message"
