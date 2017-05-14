@@ -1,17 +1,17 @@
 
-{% extends "registry/base.html" %}
+{% extends "registry/base_login.html" %}
 
 {% block body %}
 
     <div class="container">
-        <form class="form-signin" role="form" action="{% url 'login' %}" method="post">
+        <form class="form-signin" role="form" action="{% url 'registry:login' %}" method="post">
             {% csrf_token %}
 
             <h2 class="form-signin-heading">Please sign in</h2>
 
             <input type="hidden" name="next" value="{{ next }}" />
 
-            <input type="text" id="id_username" name="username" class="form-control" placeholder="Email address" required autofocus>
+            <input type="text" id="id_username" name="username" class="form-control" placeholder="Email" required autofocus>
 
             <input type="password" id="id_password" name="password" class="form-control" placeholder="Password" required>
 
@@ -24,7 +24,7 @@
               </div>
             {% endif %}
 
-            <a href="{% url 'register' %}">Register</a>
+            <a href="{% url 'community:register' %}">Register</a>
 
         </form>
 

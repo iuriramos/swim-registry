@@ -1,2 +1,46 @@
+{% extends "registry/base.html" %}
 {% load staticfiles %}
-<img src="{% static 'img/under_construction.jpg' %}" alt="Website under construction" width=90% height=90%>
+
+{% block container %}
+    <div class="container">
+      <div class="row">
+          <div class="col-md-10 col-md-offset-1">
+              <div class="row">
+                  <div class="col-md-12">
+                      <h1>Welcome to SWIM Registry Brazil</h1>
+                      <blockquote class="text-justify">
+                          <p>The Registry is the inventory of reference for service related resources in SWIM. The SWIM concept aims at enabling direct ATM business benefits by assuring that the right information will be available with the right quality to the right person at the right time. Given its transversal nature, it covers all ATM information including aeronautical, flight, aerodrome, meteorological, air traffic flow, and surveillance. SWIM is an important driver for new and updated standards, infrastructure and governance, hence enabling the management of ATM information and its exchange between qualified parties via interoperable services.</p>
+                      </blockquote>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="class-md-12">
+                      <p></p>
+                      {# <img src="https://eur-registry.swim.aero/sites/all/themes/goodnex_sub/images/temp/image001.jpg" alt="SWIM Registry Architecture">#}
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-md-6">
+                      <h2>The SWIM Registry provides access to documents and descriptions related to:</h2>
+                      <ul>
+                          <li>Service instances</li>
+                          <li>SWIM standards</li>
+                          <li>Reference material</li>
+                          <li>Organizations (e.g. service providers)</li>
+                      </ul>
+                  </div>
+                  <div class="col-md-6">
+                      <h2>What kinds of information needs to be shared?</h2>
+                      <ul  class="text-justify">
+                          <li>Aeronautical - Information resulting from the assembly, analysis and formatting of aeronautical data.</li>
+                          <li>Flight trajectory – the detailed route of the aircraft defined in four dimensions (4D), so that the position of the aircraft is also defined with respect to the time component.</li>
+                          <li>Aerodrome operations – the status of different aspects of the airport, including approaches, runways, taxiways, gate and aircraft turn-around information.</li>
+                          <li>Meteorological – information on the past, current and future state of earth's atmosphere relevant for air traffic.</li>
+                      </ul>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+
+{% endblock %}

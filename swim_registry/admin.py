@@ -1,4 +1,4 @@
 from django.contrib import admin
 
 # change admin site header
-admin.site.site_header = 'SWIM administration'
+admin.AdminSite.site_header = 'SWIM Registry Administration'

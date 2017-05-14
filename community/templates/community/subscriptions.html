@@ -1,0 +1,133 @@
+{% extends 'registry/base.html' %}
+
+{% block container %}
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+
+           <h1>Subscriptions settings</h1>
+
+          <form method="POST" class="post-form">
+            {% csrf_token %}
+
+              <div class="row">
+                  <div class="col-md-6">
+                      <div class="form-group">
+                        <h2>Regions</h2>
+                        <ul class="list-unstyled">
+                          {% for region, subscribed in regions %}
+                              {% if subscribed %}
+                                  <li>
+                                    <label><input type="checkbox" name="{{ region.name }}" value="1" checked="checked"> {{region.name}}</label>
+                                  </li>
+                              {% else %}
+                                  <li>
+                                    <label><input type="checkbox" name="{{ region.name }}" value="0"> {{region.name}}</label>
+                                  </li>
+                              {% endif %}
+                          {% endfor %}
+                        </ul>
+                     </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="form-group">
+                        <h2>ATM Data</h2>
+                        <ul class="list-unstyled">
+                          {% for item, subscribed in data %}
+                              {% if subscribed %}
+                                  <li>
+                                    <label><input type="checkbox" name="{{ item.name }}" value="1" checked="checked"> {{item.name}}</label>
+                                  </li>
+                              {% else %}
+                                  <li>
+                                    <label><input type="checkbox" name="{{ item.name }}" value="0"> {{item.name}}</label>
+                                  </li>
+                              {% endif %}
+                          {% endfor %}
+                        </ul>
+                     </div>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-md-6">
+                      <div class="form-group">
+                        <h2>Flight Phases</h2>
+                        <ul class="list-unstyled">
+                          {% for item, subscribed in flight_phases %}
+                              {% if subscribed %}
+                                  <li>
+                                    <label><input type="checkbox" name="{{ item.name }}" value="1" checked="checked"> {{item.name}}</label>
+                                  </li>
+                              {% else %}
+                                  <li>
+                                    <label><input type="checkbox" name="{{ item.name }}" value="0"> {{item.name}}</label>
+                                  </li>
+                              {% endif %}
+                          {% endfor %}
+                        </ul>
+                     </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="form-group">
+                        <h2>Stakeholders</h2>
+                        <ul class="list-unstyled">
+                          {% for item, subscribed in stakeholders %}
+                              {% if subscribed %}
+                                  <li>
+                                    <label><input type="checkbox" name="{{ item.name }}" value="1" checked="checked"> {{item.name}}</label>
+                                  </li>
+                              {% else %}
+                                  <li>
+                                    <label><input type="checkbox" name="{{ item.name }}" value="0"> {{item.name}}</label>
+                                  </li>
+                              {% endif %}
+                          {% endfor %}
+                        </ul>
+                     </div>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-md-6">
+                      <div class="form-group">
+                        <h2>Content Types</h2>
+                        <ul class="list-unstyled">
+                          {% for item, subscribed in content_types %}
+                              {% if subscribed %}
+                                  <li>
+                                    <label><input type="checkbox" name="{{ item.name }}" value="1" checked="checked"> {{item.name}}</label>
+                                  </li>
+                              {% else %}
+                                  <li>
+                                    <label><input type="checkbox" name="{{ item.name }}" value="0"> {{item.name}}</label>
+                                  </li>
+                              {% endif %}
+                          {% endfor %}
+                        </ul>
+                     </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="form-group">
+                        <h2>ATM Activities</h2>
+                        <ul class="list-unstyled">
+                          {% for item, subscribed in activities %}
+                              {% if subscribed %}
+                                  <li>
+                                    <label><input type="checkbox" name="{{ item.name }}" value="1" checked="checked"> {{ item.name }}</label>
+                                  </li>
+                              {% else %}
+                                  <li>
+                                    <label><input type="checkbox" name="{{ item.name }}" value="0"> {{ item.name }}</label>
+                                  </li>
+                              {% endif %}
+                          {% endfor %}
+                        </ul>
+                     </div>
+                  </div>
+              </div>
+            <button class="btn btn-default pull-right" name="submit" type="submit">Save</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+{% endblock %}

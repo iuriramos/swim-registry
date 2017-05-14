@@ -3,7 +3,7 @@ from django.forms import widgets
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 
-from .models import RegistrationRequest
+from .models import RegistrationRequest, Profile, Participant
 
 
 class RegistrationRequestForm(forms.ModelForm):
@@ -23,10 +23,11 @@ class RegistrationRequestForm(forms.ModelForm):
          }
 
     def save(self, commit=True):
+        request = super().save(commit=commit)
         approved = self.cleaned_data.get('approved', None)
         if approved:
             request.register()
-        return super().save(commit=commit)
+        return request
 
     def is_valid(self):
         if not super().is_valid():
@@ -36,4 +37,31 @@ class RegistrationRequestForm(forms.ModelForm):
             self.add_error('email', ValidationError('email already registered', code='invalid_email'))
             return False
         return True
+
+
+class ProfileForm(forms.ModelForm):
+    first_name = forms.CharField(max_length=255, required=True)
+    last_name = forms.CharField(max_length=255, required=True)
+    email = forms.EmailField(max_length=255, required=True)
+
+    class Meta:
+        model = Profile
+        fields = ['first_name', 'last_name', 'notification_frequency']
+        widgets = {
+            'notification_frequency': widgets.Select(attrs={'id': 'notification_frequency_id', 'class': 'form-control'}),
+        }
+
+
+# class OrganizationForm(forms.ModelForm):
+
+#     class Meta:
+#         model = Participant
+#         fields = ['name', 'email', 'description']
+#         widgets = {
+#             'name': widgets.TextInput(attrs={'id': 'name_id', 'class': 'form-control', 'autofocus': True, 'placeholder': 'Organization name', 'readonly': 'readonly'}),
+#             'email': widgets.TextInput(attrs={'id': 'email_id', 'class': 'form-control', 'placeholder': 'E-mail'}),
+#             'description': widgets.Textarea(attrs={'id': 'description_id', 'class': 'form-control', 'placeholder': 'Description'}),
+#          }
+
+
 
