@@ -11,7 +11,6 @@ STATICFILES_STORAGE ='whitenoise.django.GzipManifestStaticFilesStorage'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
-MEDIA_ROOT = BASE_DIR.child('media')
 STATIC_ROOT = BASE_DIR.child('staticfiles')
 STATICFILES_DIRS = (
     BASE_DIR.child('website').child('static'),

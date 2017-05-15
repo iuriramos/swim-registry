@@ -94,8 +94,14 @@ def subscriptions(request):
 
 @login_required
 def organizations_all(request):
-    organizations = Organization.objects.all()
+    organizations = Participant.objects.all()
     return render(request, 'community/organizations.html', {'organizations': organizations})
+
+
+@login_required
+def organization(request, pk):
+    organization = get_object_or_404(Participant, pk=pk)
+    return render(request, 'community/organization.html', {'organization': organization})
 
 
 # @login_required

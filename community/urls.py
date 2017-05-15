@@ -9,6 +9,7 @@ urlpatterns = [
     url(r'^profile/$', views.profile_edit, name='profile'),
     url(r'^subscriptions/$', views.subscriptions, name='subscriptions'),
     url(r'^organizations/$', views.organizations_all, name='organizations'),
+    url(r'^organizations/(?P<pk>\d+)/$', views.organization, name='organization'),
     #url(r'^organization/$', views.organization_edit, name='organization'),
     #url(r'^organization/new$', views.organization_new, name='organization_new'),
     #url(r'^organizations/$', views.organizations_list, name='organizations'),

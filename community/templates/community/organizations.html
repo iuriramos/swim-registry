@@ -1,0 +1,28 @@
+{% extends 'registry/base.html' %}
+
+{% block container %}
+    <div class="container">
+      <div class="row">
+
+        <div class="col-lg-12">
+            <h1 class="page-header">Organizations</h1>
+        </div>
+
+        {% for organization in organizations %}
+          <div class="col-sm-6 col-md-4">
+            <div class="thumbnail">
+              <a  href="{% url 'community:organization' organization.pk %}">
+                <img class="img-responsive" src="{{organization.picture.url}}" width="300" height="400" alt="">
+              </a>
+              <div class="caption">
+                <h3>{{organization.name}}</h3>
+                <p>{{organization.description|truncatechars:144}}</p>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+
+      </div>
+    </div>
+
+{% endblock %}

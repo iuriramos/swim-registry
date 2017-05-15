@@ -56,8 +56,8 @@ class Participant(TimeStampedModel):
 
     name = models.CharField(max_length=255, null=False)
     description = models.TextField()
-    category = models.CharField(max_length=255, choices=PARTICIPANT_CHOICES, null=False)
-    picture = models.ImageField(upload_to = 'participants/', default = 'participants/None/default.jpg')
+    category = models.CharField(max_length=255, choices=PARTICIPANT_CHOICES, null=False, default=OTHER)
+    picture = models.ImageField(upload_to = 'participants/', default = 'participants/none/default.jpg')
     # services = models.ManyToManyField(Service, related_name='participants')
     # applications = models.ManyToManyField(Application, related_name='participants')
     # documentations = models.ManyToManyField(ParticipantDocumentation, related_name='participants')
