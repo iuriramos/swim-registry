@@ -1,5 +1,10 @@
 from django.contrib import admin
-from .models import RegionCategory, StakeholderCategory, DataCategory, FlightPhaseCategory, SubscriptionContentType, ActivityCategory
+from .models.subscription_content_type import SubscriptionContentType
+from .models.region_category import RegionCategory
+from .models.data_category import DataCategory
+from .models.activity_category import ActivityCategory
+from .models.flight_phase_category import FlightPhaseCategory
+from .models.stakeholder_category import StakeholderCategory
 
 admin.site.register(RegionCategory)
 admin.site.register(StakeholderCategory)

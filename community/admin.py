@@ -1,6 +1,8 @@
 from django.contrib import admin
 
-from .models import RegistrationRequest, Profile, Participant
+from .models.profile import Profile
+from .models.participant import Participant
+from .models.registration_request import RegistrationRequest
 from .forms import RegistrationRequestForm
 
 

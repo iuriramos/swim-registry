@@ -3,11 +3,17 @@ from django.contrib import messages
 from django.views.generic.base import View
 from django.contrib.auth.decorators import login_required
 
-from registry.models import DataCategory, ActivityCategory, FlightPhaseCategory, StakeholderCategory, RegionCategory, SubscriptionContentType
+from registry.models.subscription_content_type import SubscriptionContentType
+from registry.models.region_category import RegionCategory
+from registry.models.data_category import DataCategory
+from registry.models.activity_category import ActivityCategory
+from registry.models.flight_phase_category import FlightPhaseCategory
+from registry.models.stakeholder_category import StakeholderCategory
 
+from .models.profile import Profile
+from .models.participant import Participant
 from .forms import ProfileForm, RegistrationRequestForm
-from .models import Profile, Participant
-from .templates.community.success import REGISTRATION_SUCCESSFUL
+from .templates.community.successful_registration import TEMPLATE_SUCCESSFUL_REGISTRATION_MSG
 
 
 class RegisterAccountView(View):
@@ -22,7 +28,7 @@ class RegisterAccountView(View):
         form = RegistrationRequestForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.add_message(request, messages.INFO, REGISTRATION_SUCCESSFUL)
+            messages.add_message(request, messages.INFO, TEMPLATE_SUCCESSFUL_REGISTRATION_MSG)
             return redirect('community:register')
         return render(request, self.template_name, {'form': form})
 

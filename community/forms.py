@@ -2,8 +2,9 @@ from django import forms
 from django.forms import widgets
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
-
-from .models import RegistrationRequest, Profile, Participant
+from .models.profile import Profile
+from .models.participant import Participant
+from .models.registration_request import RegistrationRequest
 
 
 class RegistrationRequestForm(forms.ModelForm):
