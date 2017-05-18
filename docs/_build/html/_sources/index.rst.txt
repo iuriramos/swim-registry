@@ -10,6 +10,9 @@ SWIM Registry's documentation
    :maxdepth: 2
    :caption: Contents:
 
+   modules/registry.models
+   .. automodule:: community
+
 
 Indices and tables
 ==================

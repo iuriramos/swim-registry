@@ -22,7 +22,9 @@ import os
 import sys
 from django.conf import settings
 
-sys.path.insert(0, os.path.abspath('../'))
+curr_path = os.path.dirname(os.path.realpath(__file__))
+base_dir = os.path.abspath(os.path.join(curr_path, '..'))
+sys.path.insert(0, os.path.abspath(base_dir))
 settings.configure()
 
 

@@ -7,6 +7,7 @@ Subpackages
 .. toctree::
 
     registry.migrations
+    registry.models
 
 Submodules
 ----------
@@ -23,22 +24,6 @@ registry\.apps module
 ---------------------
 
 .. automodule:: registry.apps
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-registry\.forms module
-----------------------
-
-.. automodule:: registry.forms
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-registry\.models module
------------------------
-
-.. automodule:: registry.models
     :members:
     :undoc-members:
     :show-inheritance:

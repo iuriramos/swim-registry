@@ -54,7 +54,7 @@
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
 <dl class="attribute">
 <dt id="registry.migrations.0001_initial.Migration.dependencies">
-<code class="descname">dependencies</code><em class="property"> = [('auth', '__first__')]</em><a class="headerlink" href="#registry.migrations.0001_initial.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<code class="descname">dependencies</code><em class="property"> = []</em><a class="headerlink" href="#registry.migrations.0001_initial.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -64,7 +64,7 @@
 
 <dl class="attribute">
 <dt id="registry.migrations.0001_initial.Migration.operations">
-<code class="descname">operations</code><em class="property"> = [&lt;CreateModel  name='RegistrationRequest', fields=[('id', &lt;django.db.models.fields.AutoField&gt;), ('first_name', &lt;django.db.models.fields.CharField&gt;), ('last_name', &lt;django.db.models.fields.CharField&gt;), ('email', &lt;django.db.models.fields.EmailField&gt;), ('organization', &lt;django.db.models.fields.CharField&gt;), ('role', &lt;django.db.models.fields.CharField&gt;)]&gt;, &lt;CreateModel  name='UserAccount', fields=[('id', &lt;django.db.models.fields.AutoField&gt;), ('organization', &lt;django.db.models.fields.CharField&gt;), ('role', &lt;django.db.models.fields.CharField&gt;), ('user', &lt;django.db.models.fields.related.OneToOneField&gt;)]&gt;]</em><a class="headerlink" href="#registry.migrations.0001_initial.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<code class="descname">operations</code><em class="property"> = [&lt;CreateModel  fields=[('id', &lt;django.db.models.fields.AutoField&gt;), ('name', &lt;django.db.models.fields.CharField&gt;)], options={'verbose_name_plural': 'ATM activity categories', 'verbose_name': 'ATM activity category'}, name='ActivityCategory'&gt;, &lt;CreateModel  fields=[('id', &lt;django.db.models.fields.AutoField&gt;), ('name', &lt;django.db.models.fields.CharField&gt;)], options={'verbose_name_plural': 'ATM data categories', 'verbose_name': 'ATM data category'}, name='DataCategory'&gt;, &lt;CreateModel  fields=[('id', &lt;django.db.models.fields.AutoField&gt;), ('name', &lt;django.db.models.fields.CharField&gt;)], options={'verbose_name_plural': 'flight phases categories', 'verbose_name': 'flight phase category'}, name='FlightPhaseCategory'&gt;, &lt;CreateModel  fields=[('id', &lt;django.db.models.fields.AutoField&gt;), ('name', &lt;django.db.models.fields.CharField&gt;)], options={'verbose_name_plural': 'region categories', 'verbose_name': 'region category'}, name='RegionCategory'&gt;, &lt;CreateModel  fields=[('id', &lt;django.db.models.fields.AutoField&gt;), ('name', &lt;django.db.models.fields.CharField&gt;)], options={'verbose_name_plural': 'stakeholder categories', 'verbose_name': 'stakeholder category'}, name='StakeholderCategory'&gt;, &lt;CreateModel  fields=[('id', &lt;django.db.models.fields.AutoField&gt;), ('name', &lt;django.db.models.fields.CharField&gt;)], name='SubscriptionContentType'&gt;]</em><a class="headerlink" href="#registry.migrations.0001_initial.Migration.operations" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
