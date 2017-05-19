@@ -7,11 +7,10 @@ class RegistrationStatusCategory(models.Model):
     REGISTERED = 'REGISTERED'
 
     CHOICES = (
-        DRAFT, 'Draft',
-        VALIDATION, 'Validation',
-        REGISTERED, 'Registered',
+        (DRAFT, 'Draft'),
+        (VALIDATION, 'Validation'),
+        (REGISTERED, 'Registered'),
     )
-
 
     name = models.CharField(max_length=50, choices=CHOICES, unique=True)
 

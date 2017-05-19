@@ -8,10 +8,10 @@ class VersionCategory(models.Model):
     UPCOMING_NOT_SUPPORTED = 'UPCOMING NOT SUPPORTED'
 
     CHOICES = (
-        CURRENT_AND_SUPPORTED, 'Current and Supported',
-        NON_SUPPORTED, 'Non Supported',
-        OBSOLETE_BUT_SUPPORTED, 'Obsolete but Supported',
-        UPCOMING_NOT_SUPPORTED, 'Upcoming not Supported',
+        (CURRENT_AND_SUPPORTED, 'Current and Supported'),
+        (NON_SUPPORTED, 'Non Supported'),
+        (OBSOLETE_BUT_SUPPORTED, 'Obsolete but Supported'),
+        (UPCOMING_NOT_SUPPORTED, 'Upcoming not Supported'),
     )
 
     name = models.CharField(max_length=50, choices=CHOICES, unique=True)

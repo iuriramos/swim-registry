@@ -1,35 +1,18 @@
 from django.db import models
 from swim_registry.models import TimeStampedModel
-# from .service import Service
+from registry.models.document import ParticipantDocument
+from registry.models.contact_point import ContactPoint
+from .participant_category import ParticipantCategory
 
 
 class Participant(TimeStampedModel):
-    AIRSPACE_COMPANY = 'AIRSPACE COMPANY'
-    RESEARCH_ORGANIZATION = 'RESEARCH ORGANIZATION'
-    AIRPORT = 'AIRPORT'
-    AERODROME = 'AERODROME'
-    RESEARCH_INSTITUTION = 'RESEARCH INSTITUTION'
-    PUBLIC_AGENCY = 'PUBLIC AGENCY'
-    OTHER = 'OTHER'
-
-    PARTICIPANT_CHOICES = (
-        (AIRSPACE_COMPANY, 'Airspace company'),
-        (RESEARCH_ORGANIZATION, 'Research Organization'),
-        (AIRPORT, 'Airport'),
-        (AERODROME, 'Aerodrome'),
-        (RESEARCH_INSTITUTION,  'Research Institution'),
-        (PUBLIC_AGENCY,  'Public Agency'),
-        (OTHER,  'Other'),
-    )
-
     name = models.CharField(max_length=255, null=False)
-    description = models.TextField()
-    category = models.CharField(max_length=255, choices=PARTICIPANT_CHOICES, null=False, default=OTHER)
-    picture = models.ImageField(upload_to = 'participants/', default = 'participants/none/default.jpg')
-    #services = models.ManyToManyField(Service, related_name='participants')
-    # applications = models.ManyToManyField(Application, related_name='participants')
-    # documentations = models.ManyToManyField(ParticipantDocumentation, related_name='participants')
-    # contact_points = models.ManyToManyField(ContactPoint, related_name='participants')
+    description = models.TextField(null=True)
+    category = models.ForeignKey(ParticipantCategory, related_name='participants')
+    image = models.ImageField(upload_to = 'participants/profiles/images/', default = 'participants/profiles/images/none/default.jpg')
+
+    documentations = models.ManyToManyField(ParticipantDocument, related_name='participants')
+    contact_points = models.ManyToManyField(ContactPoint, related_name='participants')
 
     def __str__(self):
         return self.name
