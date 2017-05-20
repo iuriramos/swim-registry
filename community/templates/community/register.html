@@ -32,7 +32,11 @@
         {% if form.errors %}
             <div class="alert alert-danger">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                {{form.non_field_errors}}
+                {% for field in form %}
+                    {% if field.errors %}
+                    <li>{{ field.label }}: {{ field.errors|striptags }}</li>
+                    {% endif %}
+                {% endfor %}
             </div>
         {% endif %}
 

@@ -7,6 +7,6 @@ app_name='registry'
 urlpatterns = [
     url(r'^login/$', login, {'template_name':'registry/login.html'}, name='login'),
     url(r'^logout/$', logout_then_login, {'login_url':'/login/'}, name='logout'),
-    url(r'^my-registry/$', views.index, name='index'),
-    url(r'^about/$', views.about, name='about'),
+    url(r'^registry/$', views.index, name='index'),
+    # url(r'^about/$', views.about, name='about'),
 ]

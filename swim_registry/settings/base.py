@@ -146,8 +146,8 @@ DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 # AuthenticationMiddleware CONSTANTS
 
-LOGIN_URL="/login/"
+LOGIN_URL='/login/'
 
-LOGOUT_URL="/logout/"
+LOGOUT_URL='/logout/'
 
-LOGIN_REDIRECT_URL="/my-registry"
+LOGIN_REDIRECT_URL='/registry'

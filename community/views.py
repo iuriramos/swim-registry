@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.views.generic.base import View
 from django.contrib.auth.decorators import login_required
 
+from community.forms import OrganizationForm
 from registry.models.subscription_content_type import SubscriptionContentType
 from registry.models.region_category import RegionCategory
 from registry.models.data_category import DataCategory
@@ -100,42 +101,44 @@ def subscriptions(request):
 
 @login_required
 def organizations_all(request):
-    organizations = Participant.objects.all()
+    organizations = Participant.objects.filter(displayable=True)
     return render(request, 'community/organizations.html', {'organizations': organizations})
 
 
 @login_required
-def organization(request, pk):
+def organization_show(request, pk):
     organization = get_object_or_404(Participant, pk=pk)
     return render(request, 'community/organization.html', {'organization': organization})
 
 
-# @login_required
-# def organization_list(request):
-#     profile = get_profile(request)
-#     organizations = profile.organizations
-#     return render(request, 'community/organizations_list.html', {'organizations': organizations})
+@login_required
+def organization_new(request):
+    if request.method == 'POST':
+        form = OrganizationForm(request.POST)
+        if form.is_valid():
+            profile = get_profile(request)
+            profile.organization = form.save()
+            profile.save()
+            messages.add_message(request, messages.INFO, 'Organization created successfully')
+            return redirect('community:profile')
+    else:
+        form = OrganizationForm()
+    return render(request, 'community/organization_edit.html', {'form': form})
 
 
-# @login_required
-# def organization_new(request):
-#     profile = get_profile(request)
-
-
-# # TODO: Support permissions and groups
-# @login_required
-# def organization_edit(request, pk):
-#     user = request.user
-#     profile = get_profile(request)
-#     organization = get_object_or_404(Organization, pk=pk)
-#     if request.method == 'POST':
-#         form = OrganizationForm(request.POST, instance=organization)
-#         if form.is_valid():
-#             organization = form.save()
-#             messages.add_message(request, messages.INFO, 'Organization settings updated successfully')
-#             return redirect('community:organization')
-#     else:
-#         form = OrganizationForm(instance=organization)
-#     return render(request, 'community/organization_edit.html', {'form': form})
+@login_required
+def organization_edit(request):
+    user = request.user
+    profile = get_profile(request)
+    organization = profile.organization
+    if request.method == 'POST':
+        form = OrganizationForm(request.POST, instance=organization)
+        if form.is_valid():
+            organization = form.save()
+            messages.add_message(request, messages.INFO, 'Organization settings updated successfully')
+            return redirect('community:organization')
+    else:
+        form = OrganizationForm(instance=organization)
+    return render(request, 'community/organization_edit.html', {'form': form})
 
 

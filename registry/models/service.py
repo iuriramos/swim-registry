@@ -13,6 +13,7 @@ from .implementation import ImplementationMaturityCategory
 from .document import ServiceDocument
 from .technical_interface import TechnicalInterface
 from .contact_point import ContactPoint
+from .workflow import Workflow
 
 
 class Service(TimeStampedModel):
@@ -21,10 +22,10 @@ class Service(TimeStampedModel):
     version = models.CharField(max_length=50, null=False)
     image = models.ImageField(upload_to = 'services/images/profiles/', default = 'services/images/profiles/none/default.jpg')
 
-    version_category = models.ManyToManyField(VersionCategory, related_name='services')
-    implementation_status = models.ManyToManyField(ImplementationStatusCategory, related_name='services')
-    implementation_maturity = models.ManyToManyField(ImplementationMaturityCategory, related_name='services')
-    registration_status = models.ManyToManyField(RegistrationStatusCategory, related_name='services')
+    version_category = models.ForeignKey(VersionCategory, related_name='services')
+    implementation_status = models.ForeignKey(ImplementationStatusCategory, related_name='services')
+    implementation_maturity = models.ForeignKey(ImplementationMaturityCategory, related_name='services')
+    registration_status = models.ForeignKey(RegistrationStatusCategory, related_name='services')
 
     data_categories = models.ManyToManyField(DataCategory, related_name='services')
     activity_categories = models.ManyToManyField(ActivityCategory, related_name='services')
@@ -33,10 +34,13 @@ class Service(TimeStampedModel):
     flight_phases = models.ManyToManyField(FlightPhaseCategory, related_name='services')
 
     documents = models.ManyToManyField(ServiceDocument, related_name='services')
-    technical_interface = models.OneToOneField(TechnicalInterface, related_name='services')
+    technical_interface = models.OneToOneField(TechnicalInterface, related_name='service')
     contact_points = models.ManyToManyField(ContactPoint, related_name='services')
     # events = models.ManyToManyField(Event, related_name='services')
     #  quality_service_conditions = models.OneToOneField(TechnicalInterface, related_name='services')
+
+    reviewed = models.BooleanField(default=False)
+    workflow = models.OneToOneField(Workflow, related_name='service')
 
     @property
     def organization_name(self):

@@ -53,16 +53,15 @@ class ProfileForm(forms.ModelForm):
         }
 
 
-# class OrganizationForm(forms.ModelForm):
+class OrganizationForm(forms.ModelForm):
 
-#     class Meta:
-#         model = Participant
-#         fields = ['name', 'email', 'description']
-#         widgets = {
-#             'name': widgets.TextInput(attrs={'id': 'name_id', 'class': 'form-control', 'autofocus': True, 'placeholder': 'Organization name', 'readonly': 'readonly'}),
-#             'email': widgets.TextInput(attrs={'id': 'email_id', 'class': 'form-control', 'placeholder': 'E-mail'}),
-#             'description': widgets.Textarea(attrs={'id': 'description_id', 'class': 'form-control', 'placeholder': 'Description'}),
-#          }
-
-
+    class Meta:
+        model = Participant
+        # exclude = ['displayable']
+        exclude = ['displayable', 'contact_points', 'documents']
+        widgets = {
+            'name': widgets.TextInput(attrs={'id': 'name_id', 'class': 'form-control', 'placeholder': 'Name'}),
+            'description': widgets.Textarea(attrs={'id': 'description_id', 'class': 'form-control', 'placeholder': 'Description'}),
+            'category': widgets.Select(attrs={'id': 'category_id', 'class': 'form-control'}),
+        }
 

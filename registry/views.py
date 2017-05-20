@@ -11,6 +11,3 @@ def index(request):
     profile = get_profile(request)
     return render(request, 'registry/index.html', {'profile': profile})
 
-@login_required
-def about(request):
-    pass

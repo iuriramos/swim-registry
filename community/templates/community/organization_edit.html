@@ -37,27 +37,36 @@
             <div class="page-header">
             </div>
             <div class="row">
-              <div class="col-md-12">
+              <div class="col-md-3">
+                <div class="form-group">
+                  {{ form.image }}
+                </div>
+              </div>
+              <div class="col-md-9">
                 <div class="form-group">
                   <label for="name_id">{{ form.name.label }}</label>
                   {{ form.name }}
                 </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label for="email_id">{{ form.email.label }}</label>
-                  {{ form.email }}
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-12">
                 <div class="form-group">
                   <label for="description_id">{{ form.description.label }}</label>
                   {{ form.description }}
                 </div>
+                <div class="form-group">
+                  <label for="category_id">{{ form.category.label }}</label>
+                  {{ form.category }}
+                </div>
+                {% comment %}
+
+                <div class="form-group">
+                  <label for="documents_id">{{ form.documents.label }}</label>
+                  {{ form.documents }}
+                </div>
+                <div class="form-group">
+                  <label for="contact_points_id">{{ form.contact_points.label }}</label>
+                  {{ form.contact_points }}
+                </div>
+
+                {% endcomment %}
               </div>
             </div>
             <button class="btn btn-default pull-right" name="submit" type="submit">Save</button>

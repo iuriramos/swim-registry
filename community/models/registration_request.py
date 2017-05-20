@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 from swim_registry.models import TimeStampedModel
+from .profile import Profile
+from community.utils import send_confirmartion_mail
 
 
 class RegistrationRequest(TimeStampedModel):
@@ -24,7 +26,7 @@ class RegistrationRequest(TimeStampedModel):
                             # TODO
                         )
         profile.save()
-        send_confirmartion_mail(self.email, password)
+        # send_confirmartion_mail(self.email, password)
         # self.delete()
 
     def __str__(self):

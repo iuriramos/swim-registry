@@ -2,6 +2,7 @@ from django.contrib import admin
 
 from .models.profile import Profile
 from .models.participant import Participant
+from .models.participant_category import ParticipantCategory
 from .models.registration_request import RegistrationRequest
 from .forms import RegistrationRequestForm
 
@@ -13,4 +14,5 @@ class RegistrationRequestAdmin(admin.ModelAdmin):
 
 admin.site.register(RegistrationRequest, RegistrationRequestAdmin)
 admin.site.register(Participant)
+admin.site.register(ParticipantCategory)
 admin.site.register(Profile)

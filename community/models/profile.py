@@ -26,7 +26,7 @@ class Profile(TimeStampedModel):
     )
 
     user = models.OneToOneField(User, related_name='profile')
-    # organizations = models.ManyToManyField(Participant, related_name='profiles')
+    organization = models.OneToOneField(Participant, related_name='profile', null=True)
     following_organizations = models.ManyToManyField(Participant, related_name='followers')
     notification_frequency = models.CharField(max_length=10, choices=FREQ_CHOICES, default=NEVER)
     subscriptions_content_type = models.ManyToManyField(SubscriptionContentType, related_name='profiles')

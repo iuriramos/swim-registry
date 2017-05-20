@@ -27,9 +27,11 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ user.first_name }} <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                       <li class="dropdown-header">Settings</li>
-                      {#<li><a href="{% url 'community:organization' %}">Organization</a></li>#}
-                      <li><a href="#">Organization</a></li>
                       <li><a href="{% url 'community:profile' %}">Profile</a></li>
+                      {#<li><a href="{% url 'community:organization' %}">Organization</a></li>#}
+                      {% if not user.profile.organizaion %}
+                          <li><a href="{% url 'community:organization' %}">Organization</a></li>
+                      {% endif %}
                       <li><a href="{% url 'community:subscriptions' %}">Subscriptions</a></li>
                       <li role="separator" class="divider"></li>
                       <li><a href="{% url 'registry:logout' %}">Log out</a></li>

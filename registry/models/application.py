@@ -14,6 +14,7 @@ from .document import ApplicationDocument
 from .contact_point import ContactPoint
 from .data import DataStandard, DataExchangeFormat
 from .service import Service
+from .workflow import Workflow
 
 
 class ApplicationFile(DocumentModel):
@@ -29,10 +30,10 @@ class Application(TimeStampedModel):
     opensource = models.BooleanField(default=False)
     payable = models.BooleanField(default=False)
 
-    version_category = models.ManyToManyField(VersionCategory, related_name='applications')
-    implementation_status = models.ManyToManyField(ImplementationStatusCategory, related_name='applications')
-    implementation_maturity = models.ManyToManyField(ImplementationMaturityCategory, related_name='applications')
-    registration_status = models.ManyToManyField(RegistrationStatusCategory, related_name='applications')
+    version_category = models.ForeignKey(VersionCategory, related_name='applications')
+    implementation_status = models.ForeignKey(ImplementationStatusCategory, related_name='applications')
+    implementation_maturity = models.ForeignKey(ImplementationMaturityCategory, related_name='applications')
+    registration_status = models.ForeignKey(RegistrationStatusCategory, related_name='applications')
 
     data_categories = models.ManyToManyField(DataCategory, related_name='applications')
     activity_categories = models.ManyToManyField(ActivityCategory, related_name='applications')
@@ -49,6 +50,9 @@ class Application(TimeStampedModel):
     consumed_services = models.ManyToManyField(Service, related_name='applications')
     # events = models.ManyToManyField(Event, related_name='applications')
     #  quality_service_conditions = models.OneToOneField(QualityOfServiceCondition, related_name='applications')
+
+    reviewed = models.BooleanField(default=False)
+    workflow = models.OneToOneField(Workflow, related_name='application')
 
     @property
     def organization_name(self):
