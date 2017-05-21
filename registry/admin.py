@@ -10,6 +10,12 @@ from .models.version_category import VersionCategory
 from .models.implementation import ImplementationStatusCategory, ImplementationMaturityCategory
 from .models.service import Service
 from .models.application import Application
+from .models.workflow import Workflow
+from .models.technical_interface import TechnicalInterface
+from .models.infrastructure import InfrastructureProfile, InfrastructureDescription
+from .models.document import InfrastructureReferenceDocument
+from .models.data_standard import DataStandard
+from .models.data_exchange_format import DataExchangeFormatService, DataExchangeFormatApplication
 
 
 admin.site.register(RegionCategory)

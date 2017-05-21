@@ -141,4 +141,3 @@ def organization_edit(request):
         form = OrganizationForm(instance=organization)
     return render(request, 'community/organization_edit.html', {'form': form})
 
-
