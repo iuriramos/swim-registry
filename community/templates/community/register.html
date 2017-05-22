@@ -19,16 +19,6 @@
           </div>
         {% endif %}
 
-        <h2 class="form-signin-heading">Register</h2>
-
-        {{ form.first_name }}
-        {{ form.last_name }}
-        {{ form.email }}
-        {{ form.organization }}
-        {{ form.role }}
-
-        <button class="btn btn-lg btn-primary btn-block" type="submit" value="Login">Register</button>
-
         {% if form.errors %}
             <div class="alert alert-danger">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -39,6 +29,17 @@
                 {% endfor %}
             </div>
         {% endif %}
+
+        <h2 class="form-signin-heading">Register</h2>
+
+        {{ form.first_name }}
+        {{ form.last_name }}
+        {{ form.email }}
+        {{ form.organization }}
+        {{ form.role }}
+        {{ form.note }}
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit" value="Login">Register</button>
 
       </form>
     </div>

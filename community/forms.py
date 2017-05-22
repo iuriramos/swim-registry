@@ -20,6 +20,7 @@ class RegistrationRequestForm(forms.ModelForm):
             'email': widgets.TextInput(attrs={'id': 'email_id', 'class': 'form-control', 'placeholder': 'E-mail'}),
             'organization': widgets.TextInput(attrs={'id': 'organization_id', 'class': 'form-control', 'placeholder': 'Organization'}),
             'role': widgets.TextInput(attrs={'id': 'role_id', 'class': 'form-control', 'placeholder': 'Role'}),
+            'note': widgets.Textarea(attrs={'id': 'note_id', 'class': 'form-control', 'placeholder': 'Describe how you intend to use the SWIM Registry.'}),
             'approved': widgets.Select(),
          }
 

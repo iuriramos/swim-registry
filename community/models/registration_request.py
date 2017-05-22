@@ -6,11 +6,12 @@ from community.utils import send_confirmartion_mail
 
 
 class RegistrationRequest(TimeStampedModel):
-    first_name = models.CharField(max_length=255, null=False)
-    last_name = models.CharField(max_length=255, null=False)
-    email = models.EmailField(null=False)
+    first_name = models.CharField(max_length=255)
+    last_name = models.CharField(max_length=255)
+    email = models.EmailField()
     organization = models.CharField(max_length=255)
     role = models.CharField(max_length=255)
+    note = models.TextField()
 
     def register(self):
         password = User.objects.make_random_password()

@@ -33,6 +33,7 @@ body {
   border-bottom-left-radius: 0;
 }
 .form-signin input:nth-last-child(2),
+.form-signin textarea,
 .form-signin input[type="password"]  {
   margin-bottom: 10px;
   border-top-left-radius: 0;

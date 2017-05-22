@@ -4,8 +4,16 @@
 {% block body %}
 
     <div class="container">
+
         <form class="form-signin" role="form" action="{% url 'registry:login' %}" method="post">
             {% csrf_token %}
+
+            {% if form.errors %}
+              <div class="alert alert-danger">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                Please, check out your email and password.
+              </div>
+            {% endif %}
 
             <h2 class="form-signin-heading">Please sign in</h2>
 
@@ -17,17 +25,9 @@
 
             <button class="btn btn-lg btn-primary btn-block" type="submit" value="Login">Sign in</button>
 
-            {% if form.errors %}
-              <div class="alert alert-danger">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                Please, check out your email and password.
-              </div>
-            {% endif %}
-
             <a href="{% url 'community:register' %}">Register</a>
 
         </form>
-
 
     </div>
 
