@@ -5,7 +5,7 @@ from swim_registry.models import TimeStampedModel
 class TechnicalInterface(TimeStampedModel):
     description = models.TextField(null=True)
     version = models.CharField(max_length=50, null=True)
-    image = models.ImageField(upload_to = 'services/technical_interfaces/images/', default = 'services/technical_interfaces/images/none/default.jpg')
+    image = models.ImageField(upload_to = 'services/technical_interfaces/images/', default = 'services/technical_interfaces/images/none/default.svg')
 
     infrastructure_reference_documents = models.ManyToManyField('registry.InfrastructureReferenceDocument', related_name='technical_interfaces')
     data_standards = models.ManyToManyField('registry.DataStandard', related_name='technical_interfaces')

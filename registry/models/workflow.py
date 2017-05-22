@@ -4,7 +4,7 @@ from swim_registry.models import TimeStampedModel
 
 class Workflow(TimeStampedModel):
     author = models.ForeignKey('community.Profile', related_name='workflows')
-    description = models.TextField(null=True)
+    description = models.TextField(blank=True)
     current_state = models.ForeignKey('registry.RegistrationStatusCategory', related_name='workflows_from')
     next_state = models.ForeignKey('registry.RegistrationStatusCategory', related_name='workflows_to')
     previous_node = models.ForeignKey('self')

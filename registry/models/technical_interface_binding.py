@@ -4,8 +4,8 @@ from swim_registry.models import TimeStampedModel
 
 class TechnicalInterfaceBindingModel(TimeStampedModel):
     name = models.CharField(max_length=255, unique=True)
-    description = models.TextField(null=True)
-    image = models.ImageField(upload_to = 'infrastructure/technical_interface_bindings/images/', default = 'infrastructure/technical_interface_bindings/images/none/default.jpg')
+    description = models.TextField(blank=True)
+    image = models.ImageField(upload_to = 'infrastructure/technical_interface_bindings/images/', default = 'infrastructure/technical_interface_bindings/images/none/default.svg')
 
     class Meta:
         abstract = True

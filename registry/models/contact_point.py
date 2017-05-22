@@ -4,11 +4,11 @@ from .application import Application
 from .service import Service
 
 class ContactPointModel(TimeStampedModel):
-    name = models.CharField(max_length=255, null=False)
-    description = models.TextField(null=True)
-    telephone = models.CharField(max_length=50, null=True)
-    email = models.EmailField(null=True)
-    image = models.ImageField(upload_to = 'services/contact_points/images/', default = 'services/contact_points/images/none/default.jpg', null=True)
+    name = models.CharField(max_length=255)
+    description = models.TextField(blank=True)
+    telephone = models.CharField(max_length=50, blank=True)
+    email = models.EmailField(blank=True)
+    image = models.ImageField(upload_to = 'services/contact_points/images/', default = 'services/contact_points/images/none/default.svg', blank=True)
 
     class Meta:
         abstract = True

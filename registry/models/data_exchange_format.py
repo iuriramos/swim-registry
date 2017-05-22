@@ -4,9 +4,9 @@ from swim_registry.models import TimeStampedModel
 
 class DataExchangeFormatModel(TimeStampedModel):
     name = models.CharField(max_length=255, unique=True)
-    description = models.TextField(null=True)
-    version = models.CharField(max_length=50, null=True)
-    image = models.ImageField(upload_to = 'data/data_exchange_formats/images/', default = 'data/data_exchange_formats/images/none/default.jpg')
+    description = models.TextField(blank=True)
+    version = models.CharField(max_length=50, blank=True)
+    image = models.ImageField(upload_to = 'infrastructure/data_exchange_formats/profiles/images/', default = 'infrastructure/data_exchange_formats/profiles/images/none/default.svg')
 
     infrastructure_reference_documents = models.ManyToManyField('registry.InfrastructureReferenceDocument')
     # infrastructure_documents = models.ManyToManyField(InfrastructureDocument, related_name='data_exchange_formats')

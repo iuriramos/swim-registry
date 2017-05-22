@@ -5,8 +5,8 @@ from swim_registry.models import TimeStampedModel
 class Service(TimeStampedModel):
     name = models.CharField(max_length=255, unique=True)
     organization = models.ForeignKey('community.Participant', related_name='services')
-    version = models.CharField(max_length=50, null=False)
-    image = models.ImageField(upload_to = 'services/images/profiles/', default = 'services/images/profiles/none/default.jpg')
+    version = models.CharField(max_length=50)
+    image = models.ImageField(upload_to = 'services/profiles/images/', default = 'services/profiles/images/none/default.svg')
 
     version_category = models.ForeignKey('registry.VersionCategory', related_name='services')
     implementation_status = models.ForeignKey('registry.ImplementationStatusCategory', related_name='services')
@@ -20,13 +20,15 @@ class Service(TimeStampedModel):
     flight_phases = models.ManyToManyField('registry.FlightPhaseCategory', related_name='services')
 
     technical_interface = models.OneToOneField('registry.TechnicalInterface', related_name='service')
+
+    reviewed = models.BooleanField(default=False)
+    workflow = models.OneToOneField('registry.Workflow', related_name='service')
+
     # documents = models.ManyToManyField(ServiceDocument, related_name='services')
     # contact_points = models.ManyToManyField(ContactPoint, related_name='services')
     ## events = models.ManyToManyField(Event, related_name='services')
     ##  quality_service_conditions = models.OneToOneField(TechnicalInterface, related_name='services')
 
-    reviewed = models.BooleanField(default=False)
-    workflow = models.OneToOneField('registry.Workflow', related_name='service')
 
     @property
     def organization_name(self):

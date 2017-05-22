@@ -5,8 +5,8 @@ from swim_registry.models import TimeStampedModel, DocumentModel
 class Application(TimeStampedModel):
     name = models.CharField(max_length=255, unique=True)
     organization = models.ForeignKey('community.Participant', related_name='applications') # avoid circular imports
-    version = models.CharField(max_length=50, null=False)
-    image = models.ImageField(upload_to = 'applications/images/profiles/', default = 'applications/images/profiles/none/default.jpg')
+    version = models.CharField(max_length=50)
+    image = models.ImageField(upload_to = 'applications/profiles/images/', default = 'applications/profiles/images/none/default.jpg')
     opensource = models.BooleanField(default=False)
     payable = models.BooleanField(default=False)
 
@@ -21,18 +21,20 @@ class Application(TimeStampedModel):
     regions = models.ManyToManyField('registry.RegionCategory', related_name='applications')
     flight_phases = models.ManyToManyField('registry.FlightPhaseCategory', related_name='applications')
 
-    # documents = models.ManyToManyField(ApplicationDocument, related_name='applications')
-    # contact_points = models.ManyToManyField(ContactPoint, related_name='applications')
-
-    # files = models.ManyToManyField(ApplicationFile, related_name='applications')
     data_standards = models.ManyToManyField('registry.DataStandard', related_name='applications')
-    # data_exchange_formats = models.ManyToManyField(DataExchangeFormat, related_name='applications')
     consumed_services = models.ManyToManyField('registry.Service', related_name='applications')
-    ## events = models.ManyToManyField(Event, related_name='applications')
-    ##  quality_service_conditions = models.OneToOneField(QualityOfServiceCondition, related_name='applications')
 
     reviewed = models.BooleanField(default=False)
     workflow = models.OneToOneField('registry.Workflow', related_name='application')
+    # files = models.ManyToManyField(ApplicationFile, related_name='applications')
+    # data_exchange_formats = models.ManyToManyField(DataExchangeFormat, related_name='applications')
+
+    # documents = models.ManyToManyField(ApplicationDocument, related_name='applications')
+    # contact_points = models.ManyToManyField(ContactPoint, related_name='applications')
+
+    ## events = models.ManyToManyField(Event, related_name='applications')
+    ##  quality_service_conditions = models.OneToOneField(QualityOfServiceCondition, related_name='applications')
+
 
     @property
     def organization_name(self):
