@@ -20,4 +20,4 @@ msgstr ""
 
 #: website/templates/index.html:56
 msgid "About"
-msgstr "Sobre"
+msgstr ""

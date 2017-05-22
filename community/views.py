@@ -16,7 +16,7 @@ from registry.models.contact_point import ContactPointParticipant
 from .models.profile import Profile
 from .models.participant import Participant
 from .forms import ProfileForm, RegistrationRequestForm, OrganizationForm
-from .templates.community.successful_registration import TEMPLATE_SUCCESSFUL_REGISTRATION_MSG
+from .consts import TEMPLATE_SUCCESSFUL_REGISTRATION_MSG
 
 
 class RegisterAccountView(View):
