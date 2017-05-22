@@ -1,13 +1,14 @@
 from django import forms
+from django.forms import inlineformset_factory
+from community.models.participant import Participant
+from registry.models.contact_point import ContactPointParticipant
 
-class ContactPointForm(forms.ModelForm):
 
-    class Meta:
-        model = Participant
-        fields = '__all__'
-        widgets = {
-            'name': widgets.TextInput(attrs={'id': 'name_id', 'class': 'form-control', 'placeholder': 'Name'}),
-            'description': widgets.Textarea(attrs={'id': 'description_id', 'class': 'form-control', 'placeholder': 'Description'}),
-            'email': widgets.TextInput(attrs={'id': 'email_id', 'class': 'form-control', 'placeholder': 'Email'}),
-            'telephone': widgets.TextInput(attrs={'id': 'telephone_id', 'class': 'form-control', 'placeholder': 'Telephone'}),
-        }
+ContactPointParticipantFormSet = inlineformset_factory(
+    Participant, ContactPointParticipant,
+    widgets = {
+        'name': forms.widgets.TextInput(attrs={'id': 'id_contact_points-name', 'class': 'form-control', 'placeholder': 'Name'}),
+        'description': forms.widgets.Textarea(attrs={'id': 'id_contact_points-description', 'class': 'form-control', 'placeholder': 'Description'}),
+        'email': forms.widgets.TextInput(attrs={'id': 'id_contact_points-email', 'class': 'form-control', 'placeholder': 'Email'}),
+        'telephone': forms.widgets.TextInput(attrs={'id': 'id_contact_points-telephone', 'class': 'form-control', 'placeholder': 'Telephone'}),
+    }, extra=1, fields='__all__')

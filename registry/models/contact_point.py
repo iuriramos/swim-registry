@@ -26,3 +26,10 @@ class ContactPointApplication(ContactPointModel):
 
     class Meta:
         verbose_name = 'application contact point'
+
+
+class ContactPointParticipant(ContactPointModel):
+    participant = models.ForeignKey('community.Participant', related_name='contact_points')
+
+    class Meta:
+        verbose_name = 'participant contact point'

@@ -3,17 +3,19 @@ from django.contrib import messages
 from django.views.generic.base import View
 from django.contrib.auth.decorators import login_required
 
-from community.forms import OrganizationForm
+from registry.forms.contact_point import ContactPointParticipantFormSet
+from registry.forms.document import ParticipantDocumentFormSet
 from registry.models.subscription_content_type import SubscriptionContentType
 from registry.models.region_category import RegionCategory
 from registry.models.data_category import DataCategory
 from registry.models.activity_category import ActivityCategory
 from registry.models.flight_phase_category import FlightPhaseCategory
 from registry.models.stakeholder_category import StakeholderCategory
+from registry.models.contact_point import ContactPointParticipant
 
 from .models.profile import Profile
 from .models.participant import Participant
-from .forms import ProfileForm, RegistrationRequestForm
+from .forms import ProfileForm, RegistrationRequestForm, OrganizationForm
 from .templates.community.successful_registration import TEMPLATE_SUCCESSFUL_REGISTRATION_MSG
 
 
@@ -133,11 +135,17 @@ def organization_edit(request):
     organization = profile.organization
     if request.method == 'POST':
         form = OrganizationForm(request.POST, instance=organization)
-        if form.is_valid():
-            organization = form.save()
+        formset_contact_points = ContactPointParticipantFormSet(request.POST, request.FILES, instance=organization)
+        formset_documents = ParticipantDocumentFormSet(request.POST, request.FILES, instance=organization)
+        if form.is_valid() and formset_contact_points.is_valid() and formset_documents.is_valid():
+            form.save()
+            formset_contact_points.save()
+            formset_documents.save()
             messages.add_message(request, messages.INFO, 'Organization settings updated successfully')
             return redirect('community:organization')
     else:
         form = OrganizationForm(instance=organization)
-    return render(request, 'community/organization_edit.html', {'form': form})
+        formset_contact_points = ContactPointParticipantFormSet(instance=organization)
+        formset_documents = ParticipantDocumentFormSet(instance=organization)
+    return render(request, 'community/organization_edit.html', {'form': form, 'formset_contact_points': formset_contact_points, 'formset_documents': formset_documents})
 

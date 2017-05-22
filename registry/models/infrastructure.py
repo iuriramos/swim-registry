@@ -16,7 +16,6 @@ class InfrastructureProfile(TimeStampedModel):
 
 
 class InfrastructureDescription(TimeStampedModel):
-    name = models.CharField(max_length=255, unique=True)
     description = models.TextField(null=True)
     version = models.CharField(max_length=50, null=True)
     image = models.ImageField(upload_to = 'infrastructure/profiles/images/', default = 'infrastructure/profiles/images/none/default.jpg')

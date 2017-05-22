@@ -11,6 +11,3 @@ class Workflow(TimeStampedModel):
 
     def __str__(self):
         return 'From {from_} to {to} by {author}'.format(from_=self.current_state, to=self.next_state, author=self.author)
-
-    class Meta:
-        app_label = 'registry'

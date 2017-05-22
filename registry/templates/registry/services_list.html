@@ -1,0 +1,26 @@
+{% extends 'registry/base.html' %}
+
+{% block container %}
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+            <h1 class="page-header">Your services</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+            <a class="btn btn-default pull-right" href="{% url 'registry:service_new' %}" role="button">Create new service</a>
+        </div>
+      </div>
+
+    <ul class="list-unstyled">
+    {% for service in services %}
+        <li>
+            <a href="{% url 'registry:services_edit' pk=service.pk  %}">{{ service.name }}</a>
+        </li>
+    {% endfor %}
+    </ul>
+
+  </div>
+
+{% endblock %}

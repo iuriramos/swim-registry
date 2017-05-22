@@ -5,8 +5,6 @@
       <div class="row">
         <div class="col-md-10 col-md-offset-1">
 
-           <h1>Organization settings</h1>
-
           {% if messages %}
               <div class="alert alert-success">
                 <button type="button" class="close" data-dismiss='alert' aria-hidden='true'>
@@ -24,17 +22,53 @@
                       &times;
               </button>
               {% for field in form %}
-                {% if field.errors %}
-                <li>{{ field.label }}: {{ field.errors|striptags }}</li>
-                {% endif %}
+                  {% if field.errors %}
+                     <li>{{ field.label }}: {{ field.errors|striptags }}</li>
+                 {% endif %}
               {% endfor %}
             </div>
           {% endif %}
+
+          {% for form_instance in formset_contact_points %}
+              {% if form_instance.errors %}
+                <div class="alert alert-danger">
+                  <button type="button" class="close" data-dismiss='alert' aria-hidden='true'>
+                          &times;
+                  </button>
+                  {% for field in form_instance %}
+                      {% if field.errors %}
+                         <li>{{ field.label }}: {{ field.errors|striptags }}</li>
+                     {% endif %}
+                  {% endfor %}
+                </div>
+              {% endif %}
+          {% endfor %}
+
+          {% for form_instance in formset_documents %}
+              {% if form_instance.errors %}
+                <div class="alert alert-danger">
+                  <button type="button" class="close" data-dismiss='alert' aria-hidden='true'>
+                          &times;
+                  </button>
+                  {% for field in form_instance %}
+                      {% if field.errors %}
+                         <li>{{ field.label }}: {{ field.errors|striptags }}</li>
+                     {% endif %}
+                  {% endfor %}
+                </div>
+              {% endif %}
+          {% endfor %}
 
           <form method="POST" class="post-form">
             {% csrf_token %}
 
             <div class="page-header">
+                <h1>Organization settings</h1>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                  <a class="btn btn-default pull-right" href="{% url 'registry:services_list' %}" role="button">View Services</a>
+              </div>
             </div>
             <div class="row">
               <div class="col-md-3">
@@ -55,22 +89,70 @@
                   <label for="category_id">{{ form.category.label }}</label>
                   {{ form.category }}
                 </div>
-                {% comment %}
 
-                <div class="form-group">
-                  <label for="documents_id">{{ form.documents.label }}</label>
-                  {{ form.documents }}
-                </div>
-                <div class="form-group">
-                  <label for="contact_points_id">{{ form.contact_points.label }}</label>
-                  {{ form.contact_points }}
-                </div>
+                <h2>Contact Points</h2>
+                {{ formset_contact_points.management_form }}
+                {% for form_instance in formset_contact_points %}
+                    {{ form_instance.id }}
+                    <div class="form-group">
+                      <label for="id_contact_points-name">{{ form_instance.name.label }}</label>
+                      {{ form_instance.name }}
+                    </div>
+                    <div class="form-group">
+                      <label for="id_contact_points-description">{{ form_instance.description.label }}</label>
+                      {{ form_instance.description }}
+                    </div>
+                    <div class="form-group">
+                      <label for="id_contact_points-email">{{ form_instance.email.label }}</label>
+                      {{ form_instance.email }}
+                    </div>
+                    <div class="form-group">
+                      <label for="id_contact_points-telephone">{{ form_instance.telephone.label }}</label>
+                      {{ form_instance.telephone }}
+                    </div>
 
-                {% endcomment %}
+                    {% if not forloop.last %}
+                        <hr>
+                    {% endif %}
+
+                {% endfor %}
+
+                <h2>Documents</h2>
+                {{ formset_documents.management_form }}
+                {% for form_instance in formset_documents %}
+                    {{ form_instance.id }}
+                    <div class="form-group">
+                      <label for="id_participant_documents-name">{{ form_instance.name.label }}</label>
+                      {{ form_instance.name }}
+                    </div>
+                    <div class="form-group">
+                      <label for="id_participant_documents-description">{{ form_instance.description.label }}</label>
+                      {{ form_instance.description }}
+                    </div>
+                    <div class="form-group">
+                      <label for="id_participant_documents-version">{{ form_instance.version.label }}</label>
+                      {{ form_instance.version }}
+                    </div>
+
+                    {% comment %}
+                    <div class="form-group">
+                      <label for="id_participant_documents-document">{{ form_instance.document.label }}</label>
+                      {{ form_instance.document }}
+                    </div>
+                    {% endcomment %}
+
+                    {% if not forloop.last %}
+                        <hr>
+                    {% endif %}
+
+                {% endfor %}
+
               </div>
             </div>
             <button class="btn btn-default pull-right" name="submit" type="submit">Save</button>
           </form>
+
+
         </div>
       </div>
     </div>

@@ -19,7 +19,7 @@ class DocumentModel(models.Model):
     ``created`` and ``modified`` for document models.
     """
     name = models.CharField(max_length=255, null=False)
-    description = models.TextField()
+    description = models.TextField(null=True)
     version = models.CharField(max_length=50, null=True)
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
