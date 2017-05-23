@@ -27,8 +27,8 @@ class Application(TimeStampedModel):
     reviewed = models.BooleanField(default=False)
     workflow = models.OneToOneField('registry.Workflow', related_name='application')
     # files = models.ManyToManyField(ApplicationFile, related_name='applications')
-    # data_exchange_formats = models.ManyToManyField(DataExchangeFormat, related_name='applications')
 
+    # data_exchange_formats = models.ManyToManyField(DataExchangeFormat, related_name='applications')
     # documents = models.ManyToManyField(ApplicationDocument, related_name='applications')
     # contact_points = models.ManyToManyField(ContactPoint, related_name='applications')
 
