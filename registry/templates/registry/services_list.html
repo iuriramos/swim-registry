@@ -3,24 +3,39 @@
 {% block container %}
     <div class="container">
       <div class="row">
-        <div class="col-md-12">
-            <h1 class="page-header">Your services</h1>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-            <a class="btn btn-default pull-right" href="{% url 'registry:service_new' %}" role="button">Create new service</a>
-        </div>
-      </div>
+        <div class="col-md-10 col-md-offset-1">
 
-    <ul class="list-unstyled">
-    {% for service in services %}
-        <li>
-            <a href="{% url 'registry:services_edit' pk=service.pk  %}">{{ service.name }}</a>
-        </li>
-    {% endfor %}
-    </ul>
+          {% if messages %}
+              <div class="alert alert-success">
+                <button type="button" class="close" data-dismiss='alert' aria-hidden='true'>
+                        &times;
+                </button>
+                {% for message in messages %}
+                  <li>{{ message }}</li>
+                {% endfor %}
+              </div>
+          {% endif %}
+          <h1 class="page-header">{{ user.profile.organization | title }} Services</h1>
 
+          <div class="row">
+            <div class="col-md-12">
+                <a class="btn btn-default pull-right" href="{% url 'registry:service_new' %}" role="button">Create new service</a>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <ul class="list-unstyled">
+              {% for service in services %}
+                  <li>
+                      <a href="{% url 'registry:service_edit' pk=service.pk  %}">{{ service.name }}</a>
+                  </li>
+              {% endfor %}
+              </ul>
+            </div>
+          </div>
+
+      </div>
   </div>
 
 {% endblock %}

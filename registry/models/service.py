@@ -5,7 +5,8 @@ from swim_registry.models import TimeStampedModel
 class Service(TimeStampedModel):
     name = models.CharField(max_length=255, unique=True)
     organization = models.ForeignKey('community.Participant', related_name='services')
-    version = models.CharField(max_length=50)
+    description = models.TextField(blank=True)
+    version = models.CharField(max_length=50, blank=True)
     image = models.ImageField(upload_to = 'services/profiles/images/', default = 'services/profiles/images/none/default.svg')
 
     version_category = models.ForeignKey('registry.VersionCategory', related_name='services')
@@ -19,10 +20,10 @@ class Service(TimeStampedModel):
     regions = models.ManyToManyField('registry.RegionCategory', related_name='services')
     flight_phases = models.ManyToManyField('registry.FlightPhaseCategory', related_name='services')
 
-    technical_interface = models.OneToOneField('registry.TechnicalInterface', related_name='service')
+    technical_interface = models.OneToOneField('registry.TechnicalInterface', related_name='service', null=True)
 
     reviewed = models.BooleanField(default=False)
-    workflow = models.OneToOneField('registry.Workflow', related_name='service')
+    workflow = models.OneToOneField('registry.Workflow', related_name='service', null=True)
 
     # documents = models.ManyToManyField(ServiceDocument, related_name='services')
     # contact_points = models.ManyToManyField(ContactPoint, related_name='services')

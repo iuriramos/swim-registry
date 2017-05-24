@@ -12,8 +12,9 @@ from .models.service import Service
 from .models.application import Application
 from .models.workflow import Workflow
 from .models.technical_interface import TechnicalInterface
+from .models.technical_interface_binding import TechnicalInterfaceBindingProfile
 from .models.infrastructure import InfrastructureProfile, InfrastructureDescription
-from .models.document import InfrastructureReferenceDocument
+from .models.document import InfrastructureReferenceDocument, ReferenceDocument
 from .models.data_standard import DataStandard
 from .models.data_exchange_format import DataExchangeFormatService, DataExchangeFormatApplication
 
@@ -30,3 +31,16 @@ admin.site.register(ImplementationStatusCategory)
 admin.site.register(ImplementationMaturityCategory)
 admin.site.register(Service)
 admin.site.register(Application)
+admin.site.register(ReferenceDocument)
+admin.site.register(InfrastructureReferenceDocument)
+admin.site.register(DataStandard)
+
+class TechnicalInterfaceBindingProfileInline(admin.TabularInline):
+    model = TechnicalInterfaceBindingProfile
+
+class InfrastructureProfileAdmin(admin.ModelAdmin):
+    inlines = [
+        TechnicalInterfaceBindingProfileInline,
+    ]
+
+admin.site.register(InfrastructureProfile, InfrastructureProfileAdmin)

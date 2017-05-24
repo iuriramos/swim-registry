@@ -7,7 +7,7 @@ class TechnicalInterfaceForm(forms.ModelForm):
 
     class Meta:
         model = TechnicalInterface
-        fields = '__all__'
+        exclude = ['infrastructure_description']
         widgets = {
             'description': forms.widgets.Textarea(attrs={'id': 'technical_interface__description_id', 'class': 'form-control', 'placeholder': 'Technical Interface Description'}),
             'version': forms.widgets.TextInput(attrs={'id': 'technical_interface__version_id', 'class': 'form-control', 'placeholder': 'Technical Interface Version'}),

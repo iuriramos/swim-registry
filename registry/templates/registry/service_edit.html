@@ -29,9 +29,7 @@
             </div>
           {% endif %}
 
-          {% comment %}
-
-          {% for form_instance in formset_contact_points %}
+          {% for form_instance in formset_service_document %}
               {% if form_instance.errors %}
                 <div class="alert alert-danger">
                   <button type="button" class="close" data-dismiss='alert' aria-hidden='true'>
@@ -46,14 +44,29 @@
               {% endif %}
           {% endfor %}
 
-          {% endcomment %}
-
           <form method="POST" class="post-form">
             {% csrf_token %}
 
             <div class="page-header">
-                <h1>Service</h1>
+                <h1>{{ form_service.instance.name | title }} Service</h1>
             </div>
+
+            <a class="btn btn-default pull-right" href="{% url 'registry:services_list' %}" role="button">Back to services list</a>
+
+            <div class="row">
+              <div class="col-md-12">
+                  {% if form_service.instance.pk %}
+                      {% if form_service.instance.technical_interface.pk %}
+                          <a class="btn btn-default pull-right" href="{% url 'registry:technical_interface_edit' pk=form_service.instance.pk %}" role="button">Edit Technical Interface</a>
+
+                      {% else %}
+                          <a class="btn btn-default pull-right" href="{% url 'registry:technical_interface_new' pk=form_service.instance.pk %}" role="button">Edit Technical Interface</a>
+
+                      {% endif %}
+                  {% endif %}
+              </div>
+            </div>
+
             <div class="row">
               <div class="col-md-3">
                 <div class="form-group">
@@ -64,6 +77,10 @@
                 <div class="form-group">
                   <label for="name_id">{{ form_service.name.label }}</label>
                   {{ form_service.name }}
+                </div>
+                <div class="form-group">
+                  <label for="description_id">{{ form_service.description.label }}</label>
+                  {{ form_service.description }}
                 </div>
                 <div class="form-group">
                   <label for="version_id">{{ form_service.version.label }}</label>
@@ -106,62 +123,7 @@
                   {{ form_service.flight_phases }}
                 </div>
 
-form_infrastructure_description
-
-formset_infrastructure_description_document
-formset_end_point
-formset_technical_interface_binding_description
-
-                <h2>Technical Interface</h2>
-                <div class="form-group">
-                  <label for="technical_interface__description_id">{{ form_technical_interface.description.label }}</label>
-                  {{ form_technical_interface.description }}
-                </div>
-                <div class="form-group">
-                  <label for="technical_interface__version_id">{{ form_technical_interface.version.label }}</label>
-                  {{ form_technical_interface.version }}
-                </div>
-                <div class="form-group">
-                  <label for="technical_interface__infrastructure_reference_documents_id">{{ form_technical_interface.infrastructure_reference_documents.label }}</label>
-                  {{ form_technical_interface.infrastructure_reference_documents }}
-                </div>
-                <div class="form-group">
-                  <label for="technical_interface__data_standards_id">{{ form_technical_interface.data_standards.label }}</label>
-                  {{ form_technical_interface.data_standards }}
-                </div>
-                <div class="form-group">
-                  <label for="technical_interface__infrastructure_profile_id">{{ form_technical_interface.infrastructure_profile.label }}</label>
-                  {{ form_technical_interface.infrastructure_profile }}
-                </div>
-
-                <h3>Technical Interface - Data Exchange Formats</h3>
-                {{ formset_data_exchange_format_service.management_form }}
-                {% for form_instance in formset_data_exchange_format_service %}
-                    {{ form_instance.id }}
-                    <div class="form-group">
-                      <label for="id_data_exchange_format_services-name">{{ form_instance.name.label }}</label>
-                      {{ form_instance.name }}
-                    </div>
-                    <div class="form-group">
-                      <label for="id_data_exchange_format_services-description">{{ form_instance.description.label }}</label>
-                      {{ form_instance.description }}
-                    </div>
-                    <div class="form-group">
-                      <label for="id_data_exchange_format_services-version">{{ form_instance.version.label }}</label>
-                      {{ form_instance.version }}
-                    </div>
-                    <div class="form-group">
-                      <label for="id_data_exchange_format_services-infrastructure_reference_documents">{{ form_instance.infrastructure_reference_documents.label }}</label>
-                      {{ form_instance.infrastructure_reference_documents }}
-                    </div>
-
-                    {% if not forloop.last %}
-                        <hr>
-                    {% endif %}
-
-                {% endfor %}
-
-                <h3>Technical Interface - Service Documents</h3>
+                <h2>Service Documents</h2>
                 {{ formset_service_document.management_form }}
                 {% for form_instance in formset_service_document %}
                     {{ form_instance.id }}
@@ -183,7 +145,6 @@ formset_technical_interface_binding_description
                     {% endif %}
 
                 {% endfor %}
-
 
               </div>
             </div>

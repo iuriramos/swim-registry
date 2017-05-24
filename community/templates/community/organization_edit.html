@@ -59,7 +59,7 @@
               {% endif %}
           {% endfor %}
 
-          <form method="POST" class="post-form">
+          <form enctype="multipart/form-data" method="POST" class="post-form">
             {% csrf_token %}
 
             <div class="page-header">
@@ -73,7 +73,7 @@
             <div class="row">
               <div class="col-md-3">
                 <div class="form-group">
-                  {{ form.image }}
+                    {{ form.image }}
                 </div>
               </div>
               <div class="col-md-9">

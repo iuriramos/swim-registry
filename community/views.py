@@ -134,11 +134,12 @@ def organization_edit(request):
     profile = get_profile(request)
     organization = profile.organization
     if request.method == 'POST':
-        form = OrganizationForm(request.POST, instance=organization)
+        form = OrganizationForm(request.POST, request.FILES, instance=organization)
         formset_contact_points = ContactPointParticipantFormSet(request.POST, request.FILES, instance=organization)
         formset_documents = ParticipantDocumentFormSet(request.POST, request.FILES, instance=organization)
         if form.is_valid() and formset_contact_points.is_valid() and formset_documents.is_valid():
-            form.save()
+            organization = form.save()
+            print (organization.image)
             formset_contact_points.save()
             formset_documents.save()
             messages.add_message(request, messages.INFO, 'Organization settings updated successfully')

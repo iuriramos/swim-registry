@@ -15,4 +15,3 @@ class InfrastructureDescriptionForm(forms.ModelForm):
         }
 
     # image = models.ImageField(upload_to = 'infrastructure/profiles/images/', default = 'infrastructure/profiles/images/none/default.jpg')
-

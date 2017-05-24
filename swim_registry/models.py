@@ -18,12 +18,16 @@ class DocumentModel(models.Model):
     name, description and self-updating fields
     ``created`` and ``modified`` for document models.
     """
-    name = models.CharField(max_length=255, null=False)
-    description = models.TextField(null=True)
-    version = models.CharField(max_length=50, null=True)
+    name = models.CharField(max_length=255, blank=False)
+    description = models.TextField(blank=True)
+    version = models.CharField(max_length=50, blank=True)
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
+    external_link = models.URLField(blank=True)
 
     class Meta:
         abstract = True
+
+    def __str__(self):
+        return self.name
 

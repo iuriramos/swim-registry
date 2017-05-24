@@ -3,11 +3,12 @@ from swim_registry.models import TimeStampedModel
 
 
 class TechnicalInterfaceBindingModel(TimeStampedModel):
-    name = models.CharField(max_length=255, unique=True)
+    name = models.CharField(max_length=255)
     description = models.TextField(blank=True)
     image = models.ImageField(upload_to = 'infrastructure/technical_interface_bindings/images/', default = 'infrastructure/technical_interface_bindings/images/none/default.svg')
 
     class Meta:
+        verbose_name = 'technical interface binding'
         abstract = True
 
     def __str__(self):
@@ -20,3 +21,4 @@ class TechnicalInterfaceBindingProfile(TechnicalInterfaceBindingModel):
 
 class TechnicalInterfaceBindingDescription(TechnicalInterfaceBindingModel):
     infrastructure_description = models.ForeignKey('registry.InfrastructureDescription', related_name='technical_interface_bindings')
+

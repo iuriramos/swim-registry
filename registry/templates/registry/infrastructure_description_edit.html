@@ -1,0 +1,105 @@
+{% extends 'registry/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block container %}
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+
+          {% if messages %}
+              <div class="alert alert-success">
+                <button type="button" class="close" data-dismiss='alert' aria-hidden='true'>
+                        &times;
+                </button>
+                {% for message in messages %}
+                  <li>{{ message }}</li>
+                {% endfor %}
+              </div>
+          {% endif %}
+
+          {% if form_infrastructure_description.errors %}
+            <div class="alert alert-danger">
+              <button type="button" class="close" data-dismiss='alert' aria-hidden='true'>
+                      &times;
+              </button>
+              {% for field in form_infrastructure_description %}
+                  {% if field.errors %}
+                     <li>{{ field.label }}: {{ field.errors|striptags }}</li>
+                 {% endif %}
+              {% endfor %}
+            </div>
+          {% endif %}
+
+          {% for form_instance in formset_bindings %}
+              {% if form_instance.errors %}
+                <div class="alert alert-danger">
+                  <button type="button" class="close" data-dismiss='alert' aria-hidden='true'>
+                          &times;
+                  </button>
+                  {% for field in form_instance %}
+                      {% if field.errors %}
+                         <li>{{ field.label }}: {{ field.errors|striptags }}</li>
+                     {% endif %}
+                  {% endfor %}
+                </div>
+              {% endif %}
+          {% endfor %}
+
+          {% for form_instance in formset_documents %}
+              {% if form_instance.errors %}
+                <div class="alert alert-danger">
+                  <button type="button" class="close" data-dismiss='alert' aria-hidden='true'>
+                          &times;
+                  </button>
+                  {% for field in form_instance %}
+                      {% if field.errors %}
+                         <li>{{ field.label }}: {{ field.errors|striptags }}</li>
+                     {% endif %}
+                  {% endfor %}
+                </div>
+              {% endif %}
+          {% endfor %}
+
+          <form method="post" class="post-form">
+              {% csrf_token %}
+
+              <div class="page-header">
+                  <h1>Infrastructure Description</h1>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12">
+                  <a class="btn btn-default pull-right" href="{% url 'registry:technical_interface_edit' pk=service_pk %}" role="button">Back to Technical Interface</a>
+                </div>
+              </div>
+
+              {{ form_infrastructure_description|crispy }}
+
+
+              <h2>Technical Interface Bindings</h2>
+              {{ formset_bindings | crispy }}
+
+              <h2>Infrastructure Description Documents</h2>
+              {{ formset_documents | crispy }}
+              {% comment %}
+              {{ formset_bindings.management_form|crispy }}
+              {% for form in formset_bindings %}
+                  {%  crispy form %}
+              {% endfor %}
+
+
+              <h2>Infrastructure Description Documents</h2>
+              {{ formset_documents.management_form|crispy }}
+              {% for form in formset_documents %}
+                  {%  crispy form %}
+              {% endfor %}
+
+              {% endcomment %}
+              <button class="btn btn-default pull-right" name="submit" type="submit">Save</button>
+          </form>
+
+        </div>
+      </div>
+    </div>
+
+{% endblock %}

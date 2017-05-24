@@ -2,6 +2,7 @@ from django.db import models
 
 
 class RegionCategory(models.Model):
+    BRAZIL = 'BRAZIL'
     AFRICA = 'AFRICA'
     ASIA = 'ASIA'
     EUROPE = 'EUROPE'
@@ -11,6 +12,7 @@ class RegionCategory(models.Model):
     SOUTH_AMERICA = 'SOUTH AMERICA'
 
     CHOICES = (
+        (BRAZIL, 'Brazil'),
         (AFRICA, 'Africa'),
         (ASIA, 'Asia'),
         (EUROPE, 'Europe'),

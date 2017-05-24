@@ -20,9 +20,11 @@ class InfrastructureDescription(TimeStampedModel):
     version = models.CharField(max_length=50, blank=True)
     image = models.ImageField(upload_to = 'infrastructure/infrastructure_description/images/', default = 'infrastructure/infrastructure_description/images/none/default.svg')
 
-    infrastructure_reference_documents = models.ManyToManyField('registry.InfrastructureReferenceDocument', related_name='infrastructure_description')
+    infrastructure_reference_documents = models.ManyToManyField('registry.InfrastructureReferenceDocument', related_name='infrastructure_description', blank=True)
+
+
     # infrastructure_documents = models.ManyToManyField(InfrastructureDocument, related_name='infrastructure_description')
     # technical_interface_bindings = models.ManyToManyField(TechnicalInterfaceBinding, related_name='infrastructure_description')
 
     def __str__(self):
-        return self.name
+        return self.description

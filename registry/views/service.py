@@ -2,15 +2,16 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from registry.models.service import Service
-from .base import get_profile, get_organization
+from registry.models.technical_interface import TechnicalInterface
+from registry.models.infrastructure import InfrastructureDescription
 from registry.forms.service import ServiceForm
 from registry.forms.technical_interface import TechnicalInterfaceForm
-from registry.forms.data_exchange_format import DataExchangeFormatServiceFormSet #######
-from registry.forms.document import ServiceDocumentFormSet ############
-from registry.forms.infrastructure import InfrastructureDescriptionForm ###########
-from registry.forms.document import InfrastructureDescriptionDocumentFormSet ###########
-from registry.forms.end_point import EndPointFormSet #################
-from registry.forms.technical_interface_binding import TechnicalInterfaceBindingDescriptionFormSet ###########
+from registry.forms.end_point import EndPointFormSet
+from registry.forms.infrastructure import InfrastructureDescriptionForm
+from registry.forms.document import ServiceDocumentFormSet, TechnicalInterfaceDocumentFormSet, InfrastructureDescriptionDocumentFormSet, DataExchangeFormatServiceDocumentFormSet
+from registry.forms.technical_interface_binding import TechnicalInterfaceBindingDescriptionFormSet
+from registry.forms.data_exchange_format import DataExchangeFormatServiceFormSet
+from .base import get_profile, get_organization
 
 
 @login_required
@@ -34,77 +35,173 @@ def service_show(request, pk):
 
 @login_required
 def service_new(request):
+    organization = get_organization(request)
     if request.method == 'POST':
-        form_service = ServiceForm(request.POST)
-        form_technical_interface = TechnicalInterfaceForm(request.POST)
-        formset_data_exchange_format_service = DataExchangeFormatServiceFormSet(request.POST)
-        formset_service_document = ServiceDocumentFormSet(request.POST)
-        form_infrastructure_description = InfrastructureDescriptionForm(request.POST)
-        formset_infrastructure_description_document = InfrastructureDescriptionDocumentFormSet(request.POST)
-        formset_end_point = EndPointFormSet(request.POST)
-        formset_technical_interface_binding_description = TechnicalInterfaceBindingDescriptionFormSet(request.POST)
-        if (form_service.is_valid() and
-                form_technical_interface.is_valid() and
-                formset_data_exchange_format_service.is_valid() and
-                formset_service_document.is_valid() and
-                form_infrastructure_description.is_valid() and
-                formset_infrastructure_description_document.is_valid() and
-                formset_end_point.is_valid() and
-                formset_technical_interface_binding_description.is_valid()):
-            # everything is valid
-            organization = get_organization(request)
-            infrastructure_description = form_infrastructure_description.save()
-            formset_infrastructure_description_document.save(instance=infrastructure_description)
-            formset_end_point.save(instance=infrastructure_description)
-            formset_technical_interface_binding_description.save(instance=infrastructure_description)
-            technical_interface = form_technical_interface.save(commit=False)
-            technical_interface.infrastructure_description = infrastructure_description
-            formset_data_exchange_format_service.save(instance=technical_interface)
-            formset_service_document.save(instance=technical_interface)
-            technical_interface.save()
+        form_service = ServiceForm(request.POST, request.FILES)
+        formset_service_document = ServiceDocumentFormSet(request.POST, request.FILES)
+        if form_service.is_valid() and formset_service_document.is_valid():
             service = form_service.save(commit=False)
-            service.technical_interface = technical_interface
+            formset_service_document.save()
+            service.organization = organization
             service.save()
-            messages.add_message(request, messages.INFO, 'Service created successfully')
-            return redirect('registry:services_list')
+            messages.add_message(request, messages.INFO, 'Service updated successfully.')
+            return redirect('registry:service_edit', pk=service.pk)
     else:
         form_service = ServiceForm()
-        form_technical_interface = TechnicalInterfaceForm()
-        formset_data_exchange_format_service = DataExchangeFormatServiceFormSet()
         formset_service_document = ServiceDocumentFormSet()
-        form_infrastructure_description = InfrastructureDescriptionForm()
-        formset_infrastructure_description_document = InfrastructureDescriptionDocumentFormSet()
-        formset_end_point = EndPointFormSet()
-        formset_technical_interface_binding_description = TechnicalInterfaceBindingDescriptionFormSet()
     return render(request, 'registry/service_edit.html',
                   {'form_service': form_service,
-                  'form_technical_interface': form_technical_interface,
-                  'formset_data_exchange_format_service': formset_data_exchange_format_service,
-                  'formset_service_document': formset_service_document,
-                  'form_infrastructure_description': form_infrastructure_description,
-                  'formset_infrastructure_description_document': formset_infrastructure_description_document,
-                  'formset_end_point': formset_end_point,
-                  'formset_technical_interface_binding_description': formset_technical_interface_binding_description})
+                    'formset_service_document': formset_service_document})
 
 
-# @login_required
-# def organization_edit(request):
-#     user = request.user
-#     profile = get_profile(request)
-#     organization = profile.organization
-#     if request.method == 'POST':
-#         form = OrganizationForm(request.POST, instance=organization)
-#         formset_contact_points = ContactPointParticipantFormSet(request.POST, request.FILES, instance=organization)
-#         formset_documents = ParticipantDocumentFormSet(request.POST, request.FILES, instance=organization)
-#         if form.is_valid() and formset_contact_points.is_valid() and formset_documents.is_valid():
-#             form.save()
-#             formset_contact_points.save()
-#             formset_documents.save()
-#             messages.add_message(request, messages.INFO, 'Organization settings updated successfully')
-#             return redirect('community:organization')
-#     else:
-#         form = OrganizationForm(instance=organization)
-#         formset_contact_points = ContactPointParticipantFormSet(instance=organization)
-#         formset_documents = ParticipantDocumentFormSet(instance=organization)
-#     return render(request, 'community/organization_edit.html', {'form': form, 'formset_contact_points': formset_contact_points, 'formset_documents': formset_documents})
+@login_required
+def service_edit(request, pk):
+    organization = get_organization(request)
+    service = get_object_or_404(Service, pk=pk)
+    if request.method == 'POST':
+        form_service = ServiceForm(request.POST, request.FILES, instance=service)
+        formset_service_document = ServiceDocumentFormSet(request.POST, request.FILES, instance=service)
+        if form_service.is_valid() and formset_service_document.is_valid():
+            service = form_service.save(commit=False)
+            formset_service_document.save()
+            service.organization = organization
+            service.save()
+            messages.add_message(request, messages.INFO, 'Service updated successfully.')
+            return redirect('registry:service_edit', pk=service.pk)
+    else:
+        form_service = ServiceForm(instance=service)
+        formset_service_document = ServiceDocumentFormSet(instance=service)
+    return render(request, 'registry/service_edit.html',
+                  {'form_service': form_service,
+                    'formset_service_document': formset_service_document})
 
+
+@login_required
+def technical_interface_new(request, pk):
+    service = get_object_or_404(Service, pk=pk)
+    if request.method == 'POST':
+        form_technical_interface = TechnicalInterfaceForm(request.POST, request.FILES)
+        formset_documents = TechnicalInterfaceDocumentFormSet(request.POST, request.FILES)
+        if form_technical_interface.is_valid() and formset_documents.is_valid():
+            technical_interface = form_technical_interface.save()
+            service.technical_interface = technical_interface
+            service.save()
+            formset_documents.save()
+            messages.add_message(request, messages.INFO, 'Technical Interface updated successfully.')
+            return redirect('registry:technical_interface_edit', pk=service.pk)
+    else:
+        form_technical_interface = TechnicalInterfaceForm()
+        formset_documents = TechnicalInterfaceDocumentFormSet()
+    return render(request, 'registry/technical_interface_edit.html',
+                  {'form_technical_interface': form_technical_interface,
+                    'formset_documents': formset_documents,
+                    'service_pk': pk})
+
+
+@login_required
+def technical_interface_edit(request, pk):
+    service = get_object_or_404(Service, pk=pk)
+    technical_interface = service.technical_interface
+    if request.method == 'POST':
+        form_technical_interface = TechnicalInterfaceForm(request.POST, request.FILES, instance=technical_interface)
+        formset_documents = TechnicalInterfaceDocumentFormSet(request.POST, request.FILES, instance=technical_interface)
+        if form_technical_interface.is_valid() and formset_documents.is_valid():
+            technical_interface = form_technical_interface.save()
+            service.save()
+            formset_documents.save()
+            messages.add_message(request, messages.INFO, 'Technical Interface updated successfully.')
+            return redirect('registry:technical_interface_edit', pk=service.pk)
+    else:
+        form_technical_interface = TechnicalInterfaceForm(instance=technical_interface)
+        formset_documents = TechnicalInterfaceDocumentFormSet(instance=technical_interface)
+    return render(request, 'registry/technical_interface_edit.html',
+                  {'form_technical_interface': form_technical_interface,
+                    'formset_documents': formset_documents,
+                    'service_pk': pk})
+
+
+@login_required
+def end_points_edit(request, pk):
+    technical_interface = get_object_or_404(TechnicalInterface, pk=pk)
+    service = technical_interface.service
+    if request.method == 'POST':
+        formset_end_points = EndPointFormSet(request.POST, request.FILES, instance=technical_interface)
+        if formset_end_points.is_valid():
+            formset_end_points.save()
+            messages.add_message(request, messages.INFO, 'End Points updated successfully.')
+            return redirect('registry:end_points_edit', pk=technical_interface.pk)
+    else:
+        formset_end_points = EndPointFormSet(instance=technical_interface)
+    return render(request, 'registry/end_points_edit.html',
+                    {'formset_end_points': formset_end_points,
+                     'service_pk': service.pk})
+
+
+@login_required
+def infrastructure_description_new(request, pk):
+    technical_interface = get_object_or_404(TechnicalInterface, pk=pk)
+    service = technical_interface.service
+    if request.method == 'POST':
+        form_infrastructure_description = InfrastructureDescriptionForm(request.POST, request.FILES)
+        formset_documents = InfrastructureDescriptionDocumentFormSet(request.POST, request.FILES)
+        formset_bindings = TechnicalInterfaceBindingDescriptionFormSet(request.POST, request.FILES)
+        if form_infrastructure_description.is_valid() and formset_documents.is_valid() and formset_bindings.is_valid():
+            infrastructure_description = form_infrastructure_description.save()
+            technical_interface.infrastructure_description = infrastructure_description
+            technical_interface.save()
+            formset_documents.save()
+            formset_bindings.save()
+            messages.add_message(request, messages.INFO, 'Infrastructure Description updated successfully.')
+            return redirect('registry:infrastructure_description_edit', pk=technical_interface.pk)
+    else:
+        form_infrastructure_description = InfrastructureDescriptionForm()
+        formset_documents = InfrastructureDescriptionDocumentFormSet()
+        formset_bindings = TechnicalInterfaceBindingDescriptionFormSet()
+    return render(request, 'registry/infrastructure_description_edit.html',
+                  {'form_infrastructure_description': form_infrastructure_description,
+                    'formset_documents': formset_documents, 'formset_bindings': formset_bindings,
+                    'service_pk': service.pk})
+
+
+@login_required
+def infrastructure_description_edit(request, pk):
+    technical_interface = get_object_or_404(TechnicalInterface, pk=pk)
+    service = technical_interface.service
+    infrastructure_description = technical_interface.infrastructure_description
+    if request.method == 'POST':
+        form_infrastructure_description = InfrastructureDescriptionForm(request.POST, request.FILES, instance=infrastructure_description)
+        formset_documents = InfrastructureDescriptionDocumentFormSet(request.POST, request.FILES, instance=infrastructure_description)
+        formset_bindings = TechnicalInterfaceBindingDescriptionFormSet(request.POST, request.FILES, instance=infrastructure_description)
+        if form_infrastructure_description.is_valid() and formset_documents.is_valid() and formset_bindings.is_valid():
+            infrastructure_description = form_infrastructure_description.save()
+            technical_interface.infrastructure_description = infrastructure_description
+            technical_interface.save()
+            formset_documents.save()
+            formset_bindings.save()
+            messages.add_message(request, messages.INFO, 'Infrastructure Description updated successfully.')
+            return redirect('registry:infrastructure_description_edit', pk=technical_interface.pk)
+    else:
+        form_infrastructure_description = InfrastructureDescriptionForm(instance=infrastructure_description)
+        formset_documents = InfrastructureDescriptionDocumentFormSet(instance=infrastructure_description)
+        formset_bindings = TechnicalInterfaceBindingDescriptionFormSet(instance=infrastructure_description)
+    return render(request, 'registry/infrastructure_description_edit.html',
+                  {'form_infrastructure_description': form_infrastructure_description,
+                    'formset_documents': formset_documents, 'formset_bindings': formset_bindings,
+                    'service_pk': service.pk})
+
+
+@login_required
+def data_exchange_formats_edit(request, pk):
+    technical_interface = get_object_or_404(TechnicalInterface, pk=pk)
+    service = technical_interface.service
+    if request.method == 'POST':
+        formset_data_exchange_formats = DataExchangeFormatServiceFormSet(request.POST, request.FILES, instance=technical_interface)
+        if formset_data_exchange_formats.is_valid():
+            formset_data_exchange_formats.save()
+            messages.add_message(request, messages.INFO, 'Data Exchange Formats updated successfully.')
+            return redirect('registry:data_exchange_formats_edit', pk=technical_interface.pk)
+    else:
+        formset_data_exchange_formats = DataExchangeFormatServiceFormSet(instance=technical_interface)
+    return render(request, 'registry/data_exchange_formats_edit.html',
+                    {'formset_data_exchange_formats': formset_data_exchange_formats,
+                     'service_pk': service.pk})
