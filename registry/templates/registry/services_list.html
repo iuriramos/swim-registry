@@ -18,6 +18,12 @@
           <h1 class="page-header">{{ user.profile.organization | title }} Services</h1>
 
           <div class="row">
+                <div class="col-md-12">
+                  <a class="btn btn-default pull-right" href="{% url 'community:organization_edit' %}" role="button">Back to Organization</a>
+                </div>
+              </div>
+
+          <div class="row">
             <div class="col-md-12">
                 <a class="btn btn-default pull-right" href="{% url 'registry:service_new' %}" role="button">Create new service</a>
             </div>

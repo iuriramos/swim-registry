@@ -31,7 +31,7 @@
                       <li><a href="{% url 'community:profile' %}">Profile</a></li>
                       {#<li><a href="{% url 'community:organization' %}">Organization</a></li>#}
                       {% if not user.profile.organizaion %}
-                          <li><a href="{% url 'community:organization' %}">Organization</a></li>
+                          <li><a href="{% url 'community:organization_edit' %}">Organization</a></li>
                       {% endif %}
                       <li><a href="{% url 'community:subscriptions' %}">Subscriptions</a></li>
                       <li role="separator" class="divider"></li>

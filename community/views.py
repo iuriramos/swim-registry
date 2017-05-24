@@ -103,7 +103,7 @@ def subscriptions(request):
 
 @login_required
 def organizations_all(request):
-    organizations = Participant.objects.filter(displayable=True)
+    organizations = Participant.objects.filter(reviewed=True)
     return render(request, 'community/organizations.html', {'organizations': organizations})
 
 
