@@ -1,0 +1,28 @@
+{% extends 'registry/base.html' %}
+
+{% block container %}
+    <div class="container">
+      <div class="row">
+
+        <div class="col-lg-12">
+            <h1 class="page-header">Services</h1>
+        </div>
+
+        {% for service in services %}
+          <div class="col-sm-6 col-md-4">
+            <div class="thumbnail">
+              <a  href="{% url 'registry:service_detail' service.pk %}">
+                <img class="img-responsive" src="{{service.image.url}}" width="150" alt="">
+              </a>
+              <div class="caption">
+                <h3>{{service.name}}</h3>
+                <p>{{service.description|truncatechars:144}}</p>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+
+      </div>
+    </div>
+
+{% endblock %}

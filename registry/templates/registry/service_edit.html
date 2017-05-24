@@ -1,4 +1,5 @@
 {% extends 'registry/base.html' %}
+{% load crispy_forms_tags %}
 
 {% block container %}
     <div class="container">
@@ -48,10 +49,14 @@
             {% csrf_token %}
 
             <div class="page-header">
-                <h1>{{ form_service.instance.name | title }} Service</h1>
+                {% if form_service.instance %}
+                    <h1>{{ form_service.instance.name | title }}</h1>
+                {% else %}
+                    <h1>New Service</h1>
+                {% endif %}
             </div>
 
-            <a class="btn btn-default pull-right" href="{% url 'registry:services_list' %}" role="button">Back to services list</a>
+            <a class="btn btn-default pull-right" href="{% url 'registry:organization_service_list' %}" role="button">Back to services list</a>
 
             <div class="row">
               <div class="col-md-12">
@@ -70,6 +75,9 @@
             <div class="row">
               <div class="col-md-3">
                 <div class="form-group">
+                  {% if form_service.instance %}
+                      <img src="{{form_service.instance.image.url}}">
+                  {% endif %}
                   {{ form_service.image }}
                 </div>
               </div>
@@ -124,27 +132,10 @@
                 </div>
 
                 <h2>Service Documents</h2>
-                {{ formset_service_document.management_form }}
-                {% for form_instance in formset_service_document %}
-                    {{ form_instance.id }}
-                    <div class="form-group">
-                      <label for="id_service_document-name">{{ form_instance.name.label }}</label>
-                      {{ form_instance.name }}
-                    </div>
-                    <div class="form-group">
-                      <label for="id_service_document-description">{{ form_instance.description.label }}</label>
-                      {{ form_instance.description }}
-                    </div>
-                    <div class="form-group">
-                      <label for="id_service_document-version">{{ form_instance.version.label }}</label>
-                      {{ form_instance.version }}
-                    </div>
+              {{ formset_documents | crispy }}
 
-                    {% if not forloop.last %}
-                        <hr>
-                    {% endif %}
-
-                {% endfor %}
+              <h2>Contact Points</h2>
+              {{ formset_contact_points | crispy }}
 
               </div>
             </div>

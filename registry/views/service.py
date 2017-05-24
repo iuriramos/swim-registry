@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
+from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
 from django.contrib.auth.decorators import login_required
 from registry.models.service import Service
 from registry.models.technical_interface import TechnicalInterface
@@ -7,6 +9,7 @@ from registry.models.infrastructure import InfrastructureDescription
 from registry.forms.service import ServiceForm
 from registry.forms.technical_interface import TechnicalInterfaceForm
 from registry.forms.end_point import EndPointFormSet
+from registry.forms.contact_point import ContactPointServiceFormSet
 from registry.forms.infrastructure import InfrastructureDescriptionForm
 from registry.forms.document import ServiceDocumentFormSet, TechnicalInterfaceDocumentFormSet, InfrastructureDescriptionDocumentFormSet, DataExchangeFormatServiceDocumentFormSet
 from registry.forms.technical_interface_binding import TechnicalInterfaceBindingDescriptionFormSet
@@ -14,17 +17,24 @@ from registry.forms.data_exchange_format import DataExchangeFormatServiceFormSet
 from .base import get_profile, get_organization
 
 
-@login_required
-def services_all(request):
-    services = Service.objects.filter(reviewed=True)
-    return render(request, 'registry/services.html', {'services': services})
+class ServiceListView(ListView):
+    model = Service
+    context_object_name = 'services'
+    queryset = Service.objects.filter(reviewed=True)
+    template_name = 'registry/service_list.html'
+
+
+class ServiceDetailView(DetailView):
+    model = Service
+    context_object_name = 'service'
+    template_name = 'registry/service_detail.html'
 
 
 @login_required
-def services_list(request):
+def organization_service_list(request):
     organization = get_organization(request)
     services = Service.objects.filter(organization=organization)
-    return render(request, 'registry/services_list.html', {'services': services})
+    return render(request, 'registry/organization_service_list.html', {'services': services})
 
 
 @login_required
@@ -38,20 +48,25 @@ def service_new(request):
     organization = get_organization(request)
     if request.method == 'POST':
         form_service = ServiceForm(request.POST, request.FILES)
-        formset_service_document = ServiceDocumentFormSet(request.POST, request.FILES)
-        if form_service.is_valid() and formset_service_document.is_valid():
+        formset_documents = ServiceDocumentFormSet(request.POST, request.FILES)
+        formset_contact_points = ContactPointServiceFormSet(request.POST, request.FILES)
+        if form_service.is_valid() and formset_documents.is_valid() and formset_contact_points.is_valid():
             service = form_service.save(commit=False)
-            formset_service_document.save()
+            form_service.save_m2m()
+            formset_documents.save()
+            formset_contact_points.save()
             service.organization = organization
             service.save()
             messages.add_message(request, messages.INFO, 'Service updated successfully.')
             return redirect('registry:service_edit', pk=service.pk)
     else:
         form_service = ServiceForm()
-        formset_service_document = ServiceDocumentFormSet()
+        formset_documents = ServiceDocumentFormSet()
+        formset_contact_points = ContactPointServiceFormSet()
     return render(request, 'registry/service_edit.html',
                   {'form_service': form_service,
-                    'formset_service_document': formset_service_document})
+                    'formset_documents': formset_documents,
+                    'formset_contact_points': formset_contact_points})
 
 
 @login_required
@@ -60,20 +75,25 @@ def service_edit(request, pk):
     service = get_object_or_404(Service, pk=pk)
     if request.method == 'POST':
         form_service = ServiceForm(request.POST, request.FILES, instance=service)
-        formset_service_document = ServiceDocumentFormSet(request.POST, request.FILES, instance=service)
-        if form_service.is_valid() and formset_service_document.is_valid():
+        formset_documents = ServiceDocumentFormSet(request.POST, request.FILES, instance=service)
+        formset_contact_points = ContactPointServiceFormSet(request.POST, request.FILES, instance=service)
+        if form_service.is_valid() and formset_documents.is_valid() and formset_contact_points.is_valid():
             service = form_service.save(commit=False)
-            formset_service_document.save()
+            form_service.save_m2m()
+            formset_documents.save()
+            formset_contact_points.save()
             service.organization = organization
             service.save()
             messages.add_message(request, messages.INFO, 'Service updated successfully.')
             return redirect('registry:service_edit', pk=service.pk)
     else:
         form_service = ServiceForm(instance=service)
-        formset_service_document = ServiceDocumentFormSet(instance=service)
+        formset_documents = ServiceDocumentFormSet(instance=service)
+        formset_contact_points = ContactPointServiceFormSet(instance=service)
     return render(request, 'registry/service_edit.html',
                   {'form_service': form_service,
-                    'formset_service_document': formset_service_document})
+                    'formset_documents': formset_documents,
+                    'formset_contact_points': formset_contact_points})
 
 
 @login_required

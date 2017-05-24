@@ -1,0 +1,137 @@
+{% extends 'registry/base.html' %}
+
+{% block container %}
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+
+           <div class="page-header">
+                <h1>{{ service.name }}</h1>
+            </div>
+
+          <div class="row">
+            <div class="col-md-3">
+              <img src="{{service.image.url}}" width="150" alt="service logo">
+            </div>
+            <div class="col-md-5">
+            {% if service.version %}<p><b>Version: </b>{{service.version}}</p>{% endif %}
+            <p><b>Organization: </b>{{service.organization.name}}</p>
+            <p><b>Implementation status: </b>{{service.implementation_status.name}}</p>
+            <p><b>Implementation maturity: </b>{{service.implementation_maturity.name}}</p>
+            <p><b>Version category: </b>{{service.version_category.name}}</p>
+            <p><b>Registration status: </b>{{service.registration_status.name}}</p>
+            </div>
+            <div class="col-md-4">
+              <p>
+                  <ul class="list-unstyled">
+                      <b>ATM activity categories:</b>
+                      {% for each in service.activity_categories.all %}
+                          <li>{{ each.name }}</li>
+                      {% endfor %}
+                  </ul>
+              </p>
+              <p>
+                  <ul class="list-unstyled">
+                      <b>ATM data categories:</b>
+                      {% for each in service.data_categories.all %}
+                          <li>{{ each.name }}</li>
+                      {% endfor %}
+                  </ul>
+              </p>
+              <p>
+                  <ul class="list-unstyled">
+                      <b>ATM stakeholders:</b>
+                      {% for each in service.stakeholders.all %}
+                          <li>{{ each.name }}</li>
+                      {% endfor %}
+                  </ul>
+              </p>
+              <p>
+                  <ul class="list-unstyled">
+                      <b>Regions:</b>
+                      {% for each in service.regions.all %}
+                          <li>{{ each.name }}</li>
+                      {% endfor %}
+                  </ul>
+              </p>
+              <p>
+                  <ul class="list-unstyled">
+                      <b>ATM flight phases:</b>
+                      {% for each in service.flight_phases.all %}
+                          <li>{{ each.name }}</li>
+                      {% endfor %}
+                  </ul>
+              </p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h3 class="panel-title">Description</h3>
+                </div>
+                <div class="panel-body">
+                    {{service.description}}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h3 class="panel-title">Technical Interface</h3>
+                </div>
+                <div class="list-group">
+                  <li class="list-group-item">
+                    <img src="{{service.technical_interface.image.url}}" alt="logo">
+                    <a href="#"> {{ service.technical_interface.description|truncatechars:144 }}</a>
+                  </li>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h3 class="panel-title">Documentation</h3>
+                </div>
+                <div class="list-group">
+                  {% for document in service.documents.all %}
+                      <li class="list-group-item">
+                        <img src="{{document.image.url}}" alt="logo">
+                        <a href="#"> {{ document.name }}</a>
+                      </li>
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h3 class="panel-title">Contact Points</h3>
+                </div>
+                <div class="list-group">
+                  {% for contact_point in service.contact_points.all %}
+                      <li class="list-group-item">
+                        <img src="{{contact_point.image.url}}" alt="logo">
+                        <a href="#">{{ contact_point.name }}</a>
+                      </li>
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+{% endblock %}

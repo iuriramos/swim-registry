@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.views.generic.base import View
 from django.contrib.auth.decorators import login_required
+from  django.views.generic.detail import DetailView
+from  django.views.generic.list import ListView
 
 from registry.forms.contact_point import ContactPointParticipantFormSet
 from registry.forms.document import ParticipantDocumentFormSet
@@ -102,18 +104,6 @@ def subscriptions(request):
 
 
 @login_required
-def organizations_all(request):
-    organizations = Participant.objects.filter(reviewed=True)
-    return render(request, 'community/organizations.html', {'organizations': organizations})
-
-
-@login_required
-def organization_show(request, pk):
-    organization = get_object_or_404(Participant, pk=pk)
-    return render(request, 'community/organization.html', {'organization': organization})
-
-
-@login_required
 def organization_new(request):
     if request.method == 'POST':
         form = OrganizationForm(request.POST)
@@ -143,10 +133,24 @@ def organization_edit(request):
             formset_contact_points.save()
             formset_documents.save()
             messages.add_message(request, messages.INFO, 'Organization settings updated successfully')
-            return redirect('community:organization')
+            return redirect('community:organization_edit')
     else:
         form = OrganizationForm(instance=organization)
         formset_contact_points = ContactPointParticipantFormSet(instance=organization)
         formset_documents = ParticipantDocumentFormSet(instance=organization)
     return render(request, 'community/organization_edit.html', {'form': form, 'formset_contact_points': formset_contact_points, 'formset_documents': formset_documents})
+
+
+class OrganizationListView(ListView):
+    model = Participant
+    context_object_name = 'organizations'
+    queryset = Participant.objects.filter(reviewed=True)
+    template_name = 'community/organization_list.html'
+
+
+class OrganizationDetailView(DetailView):
+    model = Participant
+    context_object_name = 'organization'
+    template_name = 'community/organization_detail.html'
+
 
