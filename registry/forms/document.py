@@ -14,7 +14,7 @@ ParticipantDocumentFormSet = inlineformset_factory(
         'name': forms.widgets.TextInput(attrs={'id': 'id_participant_document-name', 'class': 'form-control', 'placeholder': 'Name'}),
         'description': forms.widgets.Textarea(attrs={'id': 'id_participant_document-description', 'class': 'form-control', 'placeholder': 'Description'}),
         'version': forms.widgets.TextInput(attrs={'id': 'id_participant_document-version', 'class': 'form-control', 'placeholder': 'Version'}),
-    }, extra=1, exclude=('document', )) # TODO: fields='__all__'
+    }, extra=1, fields='__all__')
 
 
 InfrastructureDescriptionDocumentFormSet = inlineformset_factory(
@@ -44,6 +44,7 @@ ServiceDocumentFormSet = inlineformset_factory(
         'external_link': forms.widgets.TextInput(attrs={'class': 'form-control', 'placeholder': 'External Link'}),
         },extra=1, fields='__all__')
 
+
 TechnicalInterfaceDocumentFormSet = inlineformset_factory(
     TechnicalInterface, TechnicalInterfaceDocument,
     widgets = {
@@ -52,3 +53,4 @@ TechnicalInterfaceDocumentFormSet = inlineformset_factory(
         'version': forms.widgets.TextInput(attrs={'class': 'form-control', 'placeholder': 'Version'}),
         'external_link': forms.widgets.TextInput(attrs={'class': 'form-control', 'placeholder': 'External Link'}),
         }, extra=1, fields='__all__')
+

@@ -23,7 +23,7 @@ class ContactPointService(ContactPointModel):
 
 class ContactPointApplication(ContactPointModel):
     image = models.ImageField(upload_to = 'applications/contact_points/images/', default = 'applications/contact_points/images/none/default.svg', blank=True)
-    application = models.ForeignKey('registry.Service', related_name='contact_points')
+    application = models.ForeignKey('registry.Application', related_name='contact_points')
 
     class Meta:
         verbose_name = 'application contact point'

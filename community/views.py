@@ -122,7 +122,7 @@ def participant_new(request):
 def participant_edit(request):
     user = request.user
     profile = get_profile(request)
-    participant = profile.participant
+    participant = profile.organization
     if request.method == 'POST':
         form = ParticipantForm(request.POST, request.FILES, instance=participant)
         formset_contact_points = ContactPointParticipantFormSet(request.POST, request.FILES, instance=participant)

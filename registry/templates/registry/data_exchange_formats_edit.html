@@ -32,7 +32,7 @@
               {% endif %}
           {% endfor %}
 
-          <form method="post" class="post-form">
+          <form enctype="multipart/form-data" method="post" class="post-form">
               {% csrf_token %}
 
               <div class="page-header">

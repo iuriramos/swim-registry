@@ -45,7 +45,7 @@
               {% endif %}
           {% endfor %}
 
-          <form method="POST" class="post-form">
+          <form enctype="multipart/form-data" method="POST" class="post-form">
             {% csrf_token %}
 
             <div class="page-header">
@@ -56,7 +56,7 @@
                 {% endif %}
             </div>
 
-            <a class="btn btn-default pull-right" href="{% url 'registry:organization_service_list' %}" role="button">Back to services list</a>
+            <a class="btn btn-default pull-right" href="{% url 'registry:participant_service_list' %}" role="button">Back to services list</a>
 
             <div class="row">
               <div class="col-md-12">

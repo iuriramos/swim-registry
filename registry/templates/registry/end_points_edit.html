@@ -32,7 +32,7 @@
               {% endif %}
           {% endfor %}
 
-          <form method="post" class="post-form">
+          <form enctype="multipart/form-data" method="post" class="post-form">
               {% csrf_token %}
 
               <div class="page-header">
@@ -45,9 +45,19 @@
                 </div>
               </div>
 
-              {{ formset_end_points | crispy }}
+              {{ formset_end_points.management_form }}
+              <div id="formset_end_points">
+                  {% for form in formset_end_points.forms %}
+                      {{ form | crispy }}
+                      <hr>
+                  {% endfor %}
+              </div>
+              <div id="empty_formset_end_points" style="display:none">
+                    {{ formset_end_points.empty_form | crispy }}
+              </div>
 
-              <button class="btn btn-default pull-right" name="submit" type="submit">Add End Point</button>
+              <button class="btn btn-default pull-right" name="submit" type="submit">Save</button>
+              <a class="btn btn-default pull-right"  id="btn_formset_end_points">Add End Point</a>
           </form>
 
         </div>

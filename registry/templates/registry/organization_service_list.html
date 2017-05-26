@@ -19,7 +19,7 @@
 
           <div class="row">
                 <div class="col-md-12">
-                  <a class="btn btn-default pull-right" href="{% url 'community:organization_edit' %}" role="button">Back to Organization</a>
+                  <a class="btn btn-default pull-right" href="{% url 'community:participant_edit' %}" role="button">Back to Organization</a>
                 </div>
               </div>
 
@@ -31,12 +31,18 @@
 
           <div class="row">
             <div class="col-md-12">
-              <ul class="list-unstyled">
-              {% for service in services %}
-                  <li>
-                      <a href="{% url 'registry:service_edit' pk=service.pk  %}">{{ service.name }}</a>
-                  </li>
-              {% endfor %}
+              <table class="table table-hover">
+                {% for service in services %}
+                    <tr>
+                        <td>
+                          <a href="{% url 'registry:service_edit' pk=service.pk  %}">{{ service.name }}</a>
+                        </td>
+                        <td>
+                          {{service.description | truncatechars:100}}
+                        </td>
+                    </tr>
+                {% endfor %}
+              </table>
               </ul>
             </div>
           </div>

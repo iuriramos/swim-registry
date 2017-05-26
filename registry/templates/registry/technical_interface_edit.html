@@ -83,10 +83,21 @@
 
               {{ form_technical_interface | crispy }}
 
+
               <h2>Technical Interface Documents</h2>
-              {{ formset_documents | crispy }}
+              {{ formset_documents.management_form }}
+              <div id="formset_documents">
+                  {% for form in formset_documents.forms %}
+                      {{ form | crispy }}
+                      <hr>
+                  {% endfor %}
+              </div>
+              <div id="empty_formset_documents" style="display:none">
+                    {{ formset_documents.empty_form | crispy }}
+              </div>
 
               <button class="btn btn-default pull-right" name="submit" type="submit">Save</button>
+              <a class="btn btn-default pull-right"  id="btn_formset_documents">Add Document</a>
           </form>
 
         </div>

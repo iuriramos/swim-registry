@@ -17,6 +17,7 @@ from .models.infrastructure import InfrastructureProfile, InfrastructureDescript
 from .models.document import InfrastructureReferenceDocument, ReferenceDocument
 from .models.data_standard import DataStandard
 from .models.data_exchange_format import DataExchangeFormatService, DataExchangeFormatApplication
+from .models.contact_point import ContactPointService, ContactPointParticipant
 
 
 admin.site.register(RegionCategory)
