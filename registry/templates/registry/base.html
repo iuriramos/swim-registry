@@ -17,7 +17,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li><a href="{% url 'registry:index' %}">About</a></li>
-                    <li><a href="{% url 'community:organization_list' %}">Organizations</a></li>
+                    <li><a href="{% url 'community:participant_list' %}">Organizations</a></li>
                     <li><a href="{% url 'registry:service_list' %}">Services</a></li>
                     <li><a href="#">Applications</a></li>
                     <li><a href="#">Reference Documents</a></li>
@@ -31,7 +31,7 @@
                       <li><a href="{% url 'community:profile' %}">Profile</a></li>
                       {#<li><a href="{% url 'community:organization' %}">Organization</a></li>#}
                       {% if not user.profile.organizaion %}
-                          <li><a href="{% url 'community:organization_edit' %}">Organization</a></li>
+                          <li><a href="{% url 'community:participant_edit' %}">Organization</a></li>
                       {% endif %}
                       <li><a href="{% url 'community:subscriptions' %}">Subscriptions</a></li>
                       <li role="separator" class="divider"></li>
