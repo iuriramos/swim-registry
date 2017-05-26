@@ -17,7 +17,7 @@ from registry.models.contact_point import ContactPointParticipant
 
 from .models.profile import Profile
 from .models.participant import Participant
-from .forms import ProfileForm, RegistrationRequestForm, OrganizationForm
+from .forms import ProfileForm, RegistrationRequestForm, ParticipantForm
 from .consts import TEMPLATE_SUCCESSFUL_REGISTRATION_MSG
 
 
@@ -104,53 +104,53 @@ def subscriptions(request):
 
 
 @login_required
-def organization_new(request):
+def participant_new(request):
     if request.method == 'POST':
-        form = OrganizationForm(request.POST)
+        form = ParticipantForm(request.POST)
         if form.is_valid():
             profile = get_profile(request)
-            profile.organization = form.save()
+            profile.participant_service_list = form.save()
             profile.save()
-            messages.add_message(request, messages.INFO, 'Organization created successfully')
+            messages.add_message(request, messages.INFO, 'Participant created successfully')
             return redirect('community:profile')
     else:
-        form = OrganizationForm()
-    return render(request, 'community/organization_edit.html', {'form': form})
+        form = ParticipantForm()
+    return render(request, 'community/participant_edit.html', {'form': form})
 
 
 @login_required
-def organization_edit(request):
+def participant_edit(request):
     user = request.user
     profile = get_profile(request)
-    organization = profile.organization
+    participant = profile.participant
     if request.method == 'POST':
-        form = OrganizationForm(request.POST, request.FILES, instance=organization)
-        formset_contact_points = ContactPointParticipantFormSet(request.POST, request.FILES, instance=organization)
-        formset_documents = ParticipantDocumentFormSet(request.POST, request.FILES, instance=organization)
+        form = ParticipantForm(request.POST, request.FILES, instance=participant)
+        formset_contact_points = ContactPointParticipantFormSet(request.POST, request.FILES, instance=participant)
+        formset_documents = ParticipantDocumentFormSet(request.POST, request.FILES, instance=participant)
         if form.is_valid() and formset_contact_points.is_valid() and formset_documents.is_valid():
-            organization = form.save()
-            print (organization.image)
+            participant = form.save()
+            print (participant.image)
             formset_contact_points.save()
             formset_documents.save()
-            messages.add_message(request, messages.INFO, 'Organization settings updated successfully')
-            return redirect('community:organization_edit')
+            messages.add_message(request, messages.INFO, 'Participant settings updated successfully')
+            return redirect('community:participant_edit')
     else:
-        form = OrganizationForm(instance=organization)
-        formset_contact_points = ContactPointParticipantFormSet(instance=organization)
-        formset_documents = ParticipantDocumentFormSet(instance=organization)
-    return render(request, 'community/organization_edit.html', {'form': form, 'formset_contact_points': formset_contact_points, 'formset_documents': formset_documents})
+        form = ParticipantForm(instance=participant)
+        formset_contact_points = ContactPointParticipantFormSet(instance=participant)
+        formset_documents = ParticipantDocumentFormSet(instance=participant)
+    return render(request, 'community/participant_edit.html', {'form': form, 'formset_contact_points': formset_contact_points, 'formset_documents': formset_documents})
 
 
-class OrganizationListView(ListView):
+class ParticipantListView(ListView):
     model = Participant
-    context_object_name = 'organizations'
+    context_object_name = 'participants'
     queryset = Participant.objects.filter(reviewed=True)
-    template_name = 'community/organization_list.html'
+    template_name = 'community/participant_list.html'
 
 
-class OrganizationDetailView(DetailView):
+class ParticipantDetailView(DetailView):
     model = Participant
-    context_object_name = 'organization'
-    template_name = 'community/organization_detail.html'
+    context_object_name = 'participant'
+    template_name = 'community/participant_detail.html'
 
 

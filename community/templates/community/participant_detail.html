@@ -6,20 +6,20 @@
         <div class="col-md-10 col-md-offset-1">
 
            <div class="page-header">
-                <h1>{{ organization.name }}</h1>
+                <h1>{{ participant.name }}</h1>
             </div>
 
           <div class="row">
             <div class="col-md-3">
-              <img src="{{organization.image.url}}" width="150" alt="organization logo">
+              <img src="{{participant.image.url}}" width="150" alt="participant logo">
             </div>
             <div class="col-md-9">
               <p>
                 <b>Category: </b>
-                {{organization.category}}
+                {{participant.category}}
               </p>
               <p>
-                {{organization.description}}
+                {{participant.description}}
               </p>
             </div>
           </div>
@@ -32,7 +32,7 @@
                 </div>
                 <!-- <div class="panel-body"></div> <ul class="information-panel"></ul>-->
                 <div class="list-group">
-                  {% for service in organization.services.all %}
+                  {% for service in participant.services.all %}
                       <li class="list-group-item">
                         <a href="{% url 'registry:service_detail' pk=service.pk %}">
                           <img src="{{ service.image.url }}" alt="logo">
@@ -52,7 +52,7 @@
                   <h3 class="panel-title">Applications</h3>
                 </div>
                 <div class="list-group">
-                  {% for application in organization.applications.all %}
+                  {% for application in participant.applications.all %}
                       <li class="list-group-item">
                         <img src="{ {application.image.url }}" alt="logo">
                       </li>
@@ -69,7 +69,7 @@
                   <h3 class="panel-title">Documentation</h3>
                 </div>
                 <div class="list-group">
-                  {% for document in organization.documents.all %}
+                  {% for document in participant.documents.all %}
                       <li class="list-group-item">
                         <img src="{{document.image.url}}" alt="logo">
                       </li>
@@ -87,7 +87,7 @@
                   <h3 class="panel-title">Contact Points</h3>
                 </div>
                 <div class="list-group">
-                  {% for contact_point in organization.contact_points.all %}
+                  {% for contact_point in participant.contact_points.all %}
                       <li class="list-group-item">
                         <img src="{{contact_point.image.url}}" alt="logo">
                       </li>

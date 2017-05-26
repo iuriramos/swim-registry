@@ -8,15 +8,15 @@
             <h1 class="page-header">Organizations</h1>
         </div>
 
-        {% for organization in organizations %}
+        {% for participant in participants %}
           <div class="col-sm-6 col-md-4">
             <div class="thumbnail">
-              <a  href="{% url 'community:organization_detail' organization.pk %}">
-                <img class="img-responsive" src="{{organization.image.url}}" width="150" alt="">
+              <a  href="{% url 'community:participant_detail' participant.pk %}">
+                <img class="img-responsive" src="{{participant.image.url}}" width="150" alt="">
               </a>
               <div class="caption">
-                <h3>{{organization.name}}</h3>
-                <p>{{organization.description|truncatechars:144}}</p>
+                <h3>{{participant.name}}</h3>
+                <p>{{participant.description|truncatechars:144}}</p>
               </div>
             </div>
           </div>
