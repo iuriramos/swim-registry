@@ -45,7 +45,7 @@
               {% endif %}
           {% endfor %}
 
-          <form method="post" class="post-form">
+          <form enctype = "multipart/form-data" method="post" class="post-form">
               {% csrf_token %}
 
               <div class="page-header">
@@ -80,24 +80,37 @@
                 </div>
               {% endif %}
 
-
-              {{ form_technical_interface | crispy }}
-
-
-              <h2>Technical Interface Documents</h2>
-              {{ formset_documents.management_form }}
-              <div id="formset_documents">
-                  {% for form in formset_documents.forms %}
-                      {{ form | crispy }}
-                      <hr>
-                  {% endfor %}
-              </div>
-              <div id="empty_formset_documents" style="display:none">
-                    {{ formset_documents.empty_form | crispy }}
+              <div>
+                {{ form_technical_interface | crispy }}
               </div>
 
+              <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                  <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingOne">
+                      <h4 class="panel-title">
+                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                          Technical Interface Documents
+                        </a>
+                      </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                      <div class="panel-body">
+                        {{ formset_documents.management_form }}
+                        <div id="formset_documents">
+                            {% for form in formset_documents.forms %}
+                                {{ form | crispy }}
+                                <hr>
+                            {% endfor %}
+                        </div>
+                        <div id="empty_formset_documents" style="display:none">
+                              {{ formset_documents.empty_form | crispy }}
+                        </div>
+                        <a class="btn btn-default pull-right"  id="btn_formset_documents">Add Document</a>
+                      </div>
+                    </div>
+                  </div>
+              </div>
               <button class="btn btn-default pull-right" name="submit" type="submit">Save</button>
-              <a class="btn btn-default pull-right"  id="btn_formset_documents">Add Document</a>
           </form>
 
         </div>

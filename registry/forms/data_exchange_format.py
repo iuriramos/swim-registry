@@ -11,7 +11,7 @@ DataExchangeFormatServiceFormSet = inlineformset_factory(
         'description': forms.widgets.Textarea(attrs={'id': 'id_data_exchange_format_services-description', 'class': 'form-control', 'placeholder': 'Data exchange format description'}),
         'version': forms.widgets.TextInput(attrs={'id': 'id_data_exchange_format_services-version', 'class': 'form-control', 'placeholder': 'Data exchange format version'}),
         'infrastructure_reference_documents': forms.widgets.SelectMultiple(attrs={'id': 'id_data_exchange_format_services-infrastructure_reference_documents_id', 'class': 'form-control'}),
-    }, extra=1, fields='__all__')
+    }, extra=0, fields='__all__')
 
 #     image = models.ImageField(upload_to = 'data/data_exchange_formats/images/', default = 'data/data_exchange_formats/images/none/default.jpg')
 

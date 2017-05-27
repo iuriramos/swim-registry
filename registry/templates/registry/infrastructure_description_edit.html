@@ -75,26 +75,57 @@
 
               {{ form_infrastructure_description|crispy }}
 
+              <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+                  <div class="panel-heading" role="tab" id="headingOne">
+                    <h4 class="panel-title">
+                      <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Technical Interface Bindings
+                      </a>
+                    </h4>
+                  </div>
+                  <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                    <div class="panel-body">
+                      {{ formset_bindings.management_form }}
+                      <div id="formset_technical_interface_bindings">
+                          {% for form in formset_bindings.forms %}
+                              {{ form | crispy }}
+                              <hr>
+                          {% endfor %}
+                      </div>
+                      <div id="empty_formset_technical_interface_bindings" style="display:none">
+                            {{ formset_bindings.empty_form | crispy }}
+                      </div>
+                      <a class="btn btn-default pull-right"  id="btn_formset_technical_interface_bindings">Add Technical Interface Binding</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="panel panel-default">
+                  <div class="panel-heading" role="tab" id="headingTwo">
+                    <h4 class="panel-title">
+                      <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Infrastructure Description Documents
+                      </a>
+                    </h4>
+                  </div>
+                  <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                    <div class="panel-body">
+                      {{ formset_documents.management_form }}
+                      <div id="formset_documents">
+                          {% for form in formset_documents.forms %}
+                              {{ form | crispy }}
+                              <hr>
+                          {% endfor %}
+                      </div>
+                      <div id="empty_formset_documents" style="display:none">
+                            {{ formset_documents.empty_form | crispy }}
+                      </div>
+                      <a class="btn btn-default pull-right"  id="btn_formset_documents">Add Document</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
-              <h2>Technical Interface Bindings</h2>
-              {{ formset_bindings | crispy }}
-
-              <h2>Infrastructure Description Documents</h2>
-              {{ formset_documents | crispy }}
-              {% comment %}
-              {{ formset_bindings.management_form|crispy }}
-              {% for form in formset_bindings %}
-                  {%  crispy form %}
-              {% endfor %}
-
-
-              <h2>Infrastructure Description Documents</h2>
-              {{ formset_documents.management_form|crispy }}
-              {% for form in formset_documents %}
-                  {%  crispy form %}
-              {% endfor %}
-
-              {% endcomment %}
               <button class="btn btn-default pull-right" name="submit" type="submit">Save</button>
           </form>
 

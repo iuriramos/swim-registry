@@ -1,4 +1,5 @@
 {% extends 'registry/base.html' %}
+{% load crispy_forms_tags %}
 
 {% block container %}
     <div class="container">
@@ -90,62 +91,56 @@
                   {{ form.category }}
                 </div>
 
-                <h2>Contact Points</h2>
-                {{ formset_contact_points.management_form }}
-                {% for form_instance in formset_contact_points %}
-                    {{ form_instance.id }}
-                    <div class="form-group">
-                      <label for="id_contact_points-name">{{ form_instance.name.label }}</label>
-                      {{ form_instance.name }}
+                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                  <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingOne">
+                      <h4 class="panel-title">
+                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                          Documents
+                        </a>
+                      </h4>
                     </div>
-                    <div class="form-group">
-                      <label for="id_contact_points-description">{{ form_instance.description.label }}</label>
-                      {{ form_instance.description }}
+                    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                      <div class="panel-body">
+                        {{ formset_documents.management_form }}
+                        <div id="formset_documents">
+                            {% for form in formset_documents.forms %}
+                                {{ form | crispy }}
+                                <hr>
+                            {% endfor %}
+                        </div>
+                        <div id="empty_formset_documents" style="display:none">
+                              {{ formset_documents.empty_form | crispy }}
+                        </div>
+                        <a class="btn btn-default pull-right"  id="btn_formset_documents">Add Document</a>
+                      </div>
                     </div>
-                    <div class="form-group">
-                      <label for="id_contact_points-email">{{ form_instance.email.label }}</label>
-                      {{ form_instance.email }}
+                  </div>
+                  <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingTwo">
+                      <h4 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                          Contact Points
+                        </a>
+                      </h4>
                     </div>
-                    <div class="form-group">
-                      <label for="id_contact_points-telephone">{{ form_instance.telephone.label }}</label>
-                      {{ form_instance.telephone }}
+                    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                      <div class="panel-body">
+                        {{ formset_contact_points.management_form }}
+                        <div id="formset_contact_points">
+                            {% for form in formset_contact_points.forms %}
+                                {{ form | crispy }}
+                                <hr>
+                            {% endfor %}
+                        </div>
+                        <div id="empty_formset_contact_points" style="display:none">
+                              {{ formset_contact_points.empty_form | crispy }}
+                        </div>
+                        <a class="btn btn-default pull-right"  id="btn_formset_contact_points">Add Contact Point</a>
+                      </div>
                     </div>
-
-                    {% if not forloop.last %}
-                        <hr>
-                    {% endif %}
-
-                {% endfor %}
-
-                <h2>Documents</h2>
-                {{ formset_documents.management_form }}
-                {% for form_instance in formset_documents %}
-                    {{ form_instance.id }}
-                    <div class="form-group">
-                      <label for="id_participant_documents-name">{{ form_instance.name.label }}</label>
-                      {{ form_instance.name }}
-                    </div>
-                    <div class="form-group">
-                      <label for="id_participant_documents-description">{{ form_instance.description.label }}</label>
-                      {{ form_instance.description }}
-                    </div>
-                    <div class="form-group">
-                      <label for="id_participant_documents-version">{{ form_instance.version.label }}</label>
-                      {{ form_instance.version }}
-                    </div>
-
-                    {% comment %}
-                    <div class="form-group">
-                      <label for="id_participant_documents-document">{{ form_instance.document.label }}</label>
-                      {{ form_instance.document }}
-                    </div>
-                    {% endcomment %}
-
-                    {% if not forloop.last %}
-                        <hr>
-                    {% endif %}
-
-                {% endfor %}
+                  </div>
+                </div>
 
               </div>
             </div>

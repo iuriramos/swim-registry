@@ -45,9 +45,21 @@
                 </div>
               </div>
 
-              {{ formset_data_exchange_formats | crispy }}
+              <h2>Data Exchange Formats</h2>
+              {{ formset_data_exchange_formats.management_form }}
+              <div id="formset_data_exchange_formats">
+                  {% for form in formset_data_exchange_formats.forms %}
+                      {{ form | crispy }}
+                      <hr>
+                  {% endfor %}
+              </div>
+              <div id="empty_formset_data_exchange_formats" style="display:none">
+                    {{ formset_data_exchange_formats.empty_form | crispy }}
+              </div>
 
-              <button class="btn btn-default pull-right" name="submit" type="submit">Add Data Exchange Format</button>
+
+              <button class="btn btn-default pull-right" name="submit" type="submit">Save</button>
+              <a class="btn btn-default pull-right"  id="btn_formset_data_exchange_formats">Add Data Exchange Format</a>
           </form>
 
         </div>

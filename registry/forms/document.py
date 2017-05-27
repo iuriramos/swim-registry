@@ -14,7 +14,7 @@ ParticipantDocumentFormSet = inlineformset_factory(
         'name': forms.widgets.TextInput(attrs={'id': 'id_participant_document-name', 'class': 'form-control', 'placeholder': 'Name'}),
         'description': forms.widgets.Textarea(attrs={'id': 'id_participant_document-description', 'class': 'form-control', 'placeholder': 'Description'}),
         'version': forms.widgets.TextInput(attrs={'id': 'id_participant_document-version', 'class': 'form-control', 'placeholder': 'Version'}),
-    }, extra=1, fields='__all__')
+    }, extra=0, fields='__all__')
 
 
 InfrastructureDescriptionDocumentFormSet = inlineformset_factory(
@@ -23,7 +23,7 @@ InfrastructureDescriptionDocumentFormSet = inlineformset_factory(
         'name': forms.widgets.TextInput(attrs={'class': 'form-control', 'placeholder': 'Name'}),
         'description': forms.widgets.Textarea(attrs={'class': 'form-control', 'placeholder': 'Description'}),
         'version': forms.widgets.TextInput(attrs={'class': 'form-control', 'placeholder': 'Version'}),
-    }, extra=1, fields='__all__')
+    }, extra=0, fields='__all__')
 
 
 DataExchangeFormatServiceDocumentFormSet = inlineformset_factory(
@@ -32,7 +32,7 @@ DataExchangeFormatServiceDocumentFormSet = inlineformset_factory(
         'name': forms.widgets.TextInput(attrs={'class': 'form-control', 'placeholder': 'Name'}),
         'description': forms.widgets.Textarea(attrs={'class': 'form-control', 'placeholder': 'Description'}),
         'version': forms.widgets.TextInput(attrs={'class': 'form-control', 'placeholder': 'Version'}),
-    }, extra=1, fields='__all__')
+    }, extra=0, fields='__all__')
 
 
 ServiceDocumentFormSet = inlineformset_factory(
@@ -42,7 +42,7 @@ ServiceDocumentFormSet = inlineformset_factory(
         'description': forms.widgets.Textarea(attrs={'class': 'form-control', 'placeholder': 'Description'}),
         'version': forms.widgets.TextInput(attrs={'class': 'form-control', 'placeholder': 'Version'}),
         'external_link': forms.widgets.TextInput(attrs={'class': 'form-control', 'placeholder': 'External Link'}),
-        },extra=1, fields='__all__')
+        },extra=0, fields='__all__')
 
 
 TechnicalInterfaceDocumentFormSet = inlineformset_factory(
@@ -52,5 +52,5 @@ TechnicalInterfaceDocumentFormSet = inlineformset_factory(
         'description': forms.widgets.Textarea(attrs={'class': 'form-control', 'placeholder': 'Description'}),
         'version': forms.widgets.TextInput(attrs={'class': 'form-control', 'placeholder': 'Version'}),
         'external_link': forms.widgets.TextInput(attrs={'class': 'form-control', 'placeholder': 'External Link'}),
-        }, extra=1, fields='__all__')
+        }, extra=0, fields='__all__')
 

@@ -13,7 +13,7 @@ ContactPointParticipantFormSet = inlineformset_factory(
         'description': forms.widgets.Textarea(attrs={'class': 'form-control', 'placeholder': 'Description'}),
         'email': forms.widgets.TextInput(attrs={'class': 'form-control', 'placeholder': 'Email'}),
         'telephone': forms.widgets.TextInput(attrs={'class': 'form-control', 'placeholder': 'Telephone'}),
-    }, extra=1, fields='__all__')
+    }, extra=0, fields='__all__')
 
 
 ContactPointServiceFormSet = inlineformset_factory(
@@ -23,5 +23,5 @@ ContactPointServiceFormSet = inlineformset_factory(
         'description': forms.widgets.Textarea(attrs={'class': 'form-control', 'placeholder': 'Description'}),
         'email': forms.widgets.TextInput(attrs={'class': 'form-control', 'placeholder': 'Email'}),
         'telephone': forms.widgets.TextInput(attrs={'class': 'form-control', 'placeholder': 'Telephone'}),
-    }, extra=1, fields='__all__')
+    }, extra=0, fields='__all__')
 

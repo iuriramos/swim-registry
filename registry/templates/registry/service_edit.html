@@ -131,11 +131,56 @@
                   {{ form_service.flight_phases }}
                 </div>
 
-                <h2>Service Documents</h2>
-              {{ formset_documents | crispy }}
-
-              <h2>Contact Points</h2>
-              {{ formset_contact_points | crispy }}
+                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                  <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingOne">
+                      <h4 class="panel-title">
+                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                          Service Documents
+                        </a>
+                      </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                      <div class="panel-body">
+                        {{ formset_documents.management_form }}
+                        <div id="formset_documents">
+                            {% for form in formset_documents.forms %}
+                                {{ form | crispy }}
+                                <hr>
+                            {% endfor %}
+                        </div>
+                        <div id="empty_formset_documents" style="display:none">
+                              {{ formset_documents.empty_form | crispy }}
+                        </div>
+                        <a class="btn btn-default pull-right"  id="btn_formset_documents">Add Document</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingTwo">
+                      <h4 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                          Contact Points
+                        </a>
+                      </h4>
+                    </div>
+                    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                      <div class="panel-body">
+                        {{ formset_contact_points.management_form }}
+                        <div id="formset_contact_points">
+                            {% for form in formset_contact_points.forms %}
+                                {{ form | crispy }}
+                                <hr>
+                            {% endfor %}
+                        </div>
+                        <div id="empty_formset_contact_points" style="display:none">
+                              {{ formset_contact_points.empty_form | crispy }}
+                        </div>
+                        <a class="btn btn-default pull-right"  id="btn_formset_contact_points">Add Contact Point</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
               </div>
             </div>
