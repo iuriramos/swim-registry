@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
 from swim_registry.models import TimeStampedModel
 
@@ -10,10 +11,10 @@ class Profile(TimeStampedModel):
     WEEKLY = 'WEEKLY'
 
     FREQ_CHOICES = (
-        (NEVER, 'Never'),
-        (IMMEDIATE, 'Immediate'),
-        (DAILY, 'Daily'),
-        (WEEKLY,  'Weekly'),
+        (NEVER, _('Never')),
+        (IMMEDIATE, _('Immediate')),
+        (DAILY,_('Daily')),
+        (WEEKLY,  _('Weekly')),
     )
 
     user = models.OneToOneField(User, related_name='profile')

@@ -1,5 +1,5 @@
-
 {% extends "registry/base_login.html" %}
+{% load i18n %}
 
 {% block body %}
 
@@ -11,11 +11,11 @@
             {% if form.errors %}
               <div class="alert alert-danger">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                Please, check out your email and password.
+                {% trans "Please, check out your email and password." %}
               </div>
             {% endif %}
 
-            <h2 class="form-signin-heading">Please sign in</h2>
+            <h2 class="form-signin-heading">{% trans "Please sign in" %}</h2>
 
             <input type="hidden" name="next" value="{{ next }}" />
 
@@ -23,9 +23,9 @@
 
             <input type="password" id="id_password" name="password" class="form-control" placeholder="Password" required>
 
-            <button class="btn btn-lg btn-primary btn-block" type="submit" value="Login">Sign in</button>
+            <button class="btn btn-lg btn-primary btn-block" type="submit" value="Login">{% trans "Sign in" %}</button>
 
-            <a href="{% url 'community:register' %}">Register</a>
+            <a href="{% url 'community:register' %}">{% trans "Register" %}</a>
 
         </form>
 

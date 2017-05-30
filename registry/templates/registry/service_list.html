@@ -1,11 +1,12 @@
 {% extends 'registry/base.html' %}
+{% load i18n %}
 
 {% block container %}
     <div class="container">
       <div class="row">
 
         <div class="col-lg-12">
-            <h1 class="page-header">Services</h1>
+            <h1 class="page-header">{% trans "Services" %}</h1>
         </div>
 
         {% for service in services %}

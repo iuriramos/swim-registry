@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.translation import ugettext_lazy as _
 
 
 class SubscriptionContentType(models.Model):
@@ -25,27 +26,27 @@ class SubscriptionContentType(models.Model):
     DATA_STANDARD = 'DATA STANDARD'
 
     CHOICES = (
-        (AIRM_MODEL,  'AIRM Model'),
-        (COMPLIANCE_REFERENCE_DOCUMENT,  'Compliance Reference Document'),
-        (CONTACT_POINT,  'Contact Point'),
-        (ORGANISATION_DOCUMENT,  'Organisation Document'),
-        (GENERAL_DOCUMENT,  'General Document'),
-        (INFORMATION_REFERENCE_DOCUMENT,  'Information Reference Document'),
-        (INFRASTRUCTURE_PROFILE,  'Infrastructure Profile'),
-        (REFERENCE_DOCUMENT,  'Reference Document'),
-        (INFRASTRUCTURE_STANDARD,  'Infrastructure Standard'),
-        (INTERFACE,  'Interface'),
-        (ORGANISATION,  'Organisation'),
-        (PROPRIETARY_DATA_EXCHANGE_FORMAT,  'Proprietary Data Exchange Format'),
-        (SERVICE_IMPLEMENTATION,  'Service Implementation'),
-        (SERVICE_COMPLIANCE_CLAIM, 'Service Compliance Claim'),
-        (SERVICE_DEFINITION, 'Service Definition'),
-        (SERVICE_DEFINITION_PROGRESS, 'Service Definition Progress'),
-        (SERVICE_DOCUMENT, 'Service Document'),
-        (SERVICE_END_POINT, 'Service End Point'),
-        (SERVICE_LOGICAL_MODEL, 'Service Logical Model'),
-        (SERVICE_REFERENCE_DOCUMENT, 'Service Reference Document'),
-        (DATA_STANDARD, 'Data Standard'),
+        (AIRM_MODEL,  _('AIRM Model')),
+        (COMPLIANCE_REFERENCE_DOCUMENT,  _('Compliance Reference Document')),
+        (CONTACT_POINT,  _('Contact Point')),
+        (ORGANISATION_DOCUMENT, _('Organisation Document')),
+        (GENERAL_DOCUMENT,  _('General Document')),
+        (INFORMATION_REFERENCE_DOCUMENT, _('Information Reference Document')),
+        (INFRASTRUCTURE_PROFILE,  _('Infrastructure Profile')),
+        (REFERENCE_DOCUMENT,  _('Reference Document')),
+        (INFRASTRUCTURE_STANDARD,  _('Infrastructure Standard')),
+        (INTERFACE,  _('Interface')),
+        (ORGANISATION,  _('Organisation')),
+        (PROPRIETARY_DATA_EXCHANGE_FORMAT, _('Proprietary Data Exchange Format')),
+        (SERVICE_IMPLEMENTATION,  _('Service Implementation')),
+        (SERVICE_COMPLIANCE_CLAIM, _('Service Compliance Claim')),
+        (SERVICE_DEFINITION, _('Service Definition')),
+        (SERVICE_DEFINITION_PROGRESS, _('Service Definition Progress')),
+        (SERVICE_DOCUMENT,_('Service Document')),
+        (SERVICE_END_POINT, _('Service End Point')),
+        (SERVICE_LOGICAL_MODEL, _('Service Logical Model')),
+        (SERVICE_REFERENCE_DOCUMENT, _('Service Reference Document')),
+        (DATA_STANDARD, _('Data Standard')),
     )
 
     name = models.CharField(max_length=50, choices=CHOICES, unique=True)

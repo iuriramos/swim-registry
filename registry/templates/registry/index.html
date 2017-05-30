@@ -1,4 +1,5 @@
 {% extends "registry/base.html" %}
+{% load i18n %}
 {% load staticfiles %}
 
 {% block container %}
@@ -7,9 +8,9 @@
           <div class="col-md-10 col-md-offset-1">
               <div class="row">
                   <div class="col-md-12">
-                      <h1>Welcome to SWIM Registry Brazil</h1>
+                      <h1>{% trans "Welcome to SWIM Registry Brazil" %}</h1>
                       <blockquote class="text-justify">
-                          <p>The Registry is the inventory of reference for service related resources in SWIM. The SWIM concept aims at enabling direct ATM business benefits by assuring that the right information will be available with the right quality to the right person at the right time. Given its transversal nature, it covers all ATM information including aeronautical, flight, aerodrome, meteorological, air traffic flow, and surveillance. SWIM is an important driver for new and updated standards, infrastructure and governance, hence enabling the management of ATM information and its exchange between qualified parties via interoperable services.</p>
+                          <p>{% trans "The Registry is the inventory of reference for service related resources in SWIM. The SWIM concept aims at enabling direct ATM business benefits by assuring that the right information will be available with the right quality to the right person at the right time. Given its transversal nature, it covers all ATM information including aeronautical, flight, aerodrome, meteorological, air traffic flow, and surveillance. SWIM is an important driver for new and updated standards, infrastructure and governance, hence enabling the management of ATM information and its exchange between qualified parties via interoperable services." %}</p>
                       </blockquote>
                   </div>
               </div>

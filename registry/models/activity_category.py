@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.translation import ugettext_lazy as _
 
 
 class ActivityCategory(models.Model):
@@ -31,40 +32,40 @@ class ActivityCategory(models.Model):
     ATM_NETWORK_MANAGEMENT = 'ATM NETWORK MANAGEMENT'
 
     CHOICES = (
-        (AERONAUTICAL_INFORMATION_MANAGEMENT, 'Aeronautical Information Management'),
-        (AIRPORT_CDM, 'Airport CDM'),
-        (COLLISION_AVOIDANCE, 'Collision Avoidance'),
-        (SURVEILLANCE_INFRASTRUCTURE, 'Surveillance Infrastructure'),
-        (TRAFFIC_SEQUENCING, 'Traffic Sequencing'),
-        (TRAFFIC_SYNCHRONISATION, 'Traffic Synchronisation'),
-        (TRAJECTORY_EXECUTION_AND_CONFORMANCE_MONITORING, 'Trajectory Execution And Conformance Monitoring'),
-        (CNS_INFRASTRUCTURE, 'CNS Infrastructure'),
-        (FLIGHT_INFORMATION_MANAGEMENT, 'Flight Information Management'),
-        (NAVIGTION_INFRASTRUCTURE, 'Navigtion Infrastructure'),
-        (ROUTE_DESIGN, 'Route Design'),
-        (SEPARATION_PROVISION, 'Separation Provision'),
-        (TRAJECTORY_PLANNING, 'Trajectory Planning'),
-        (AIRSPACE_AND_SURFACE_STRUCTURE_DESIGN, 'Airspace And Surface Structure Design'),
-        (ATM_INFORMATION_MANAGEMENT, 'ATM Information Management'),
-        (COMMUNICATION_INFRASTRUCTURE, 'Communication Infrastructure'),
-        (METEOROLOGICAL_INFORMATION, 'Meteorological Information'),
-        (ROUTE_ASSIGNMENT_AND_GUIDANCE, 'Route Assignment And Guidance'),
-        (AIRSPACE_AND_SURFACE_STRUCTURE_ALLOCATION, 'Airspace And Surface Structure Allocation'),
-        (MET_INFORMATION_MANAGEMENT, 'MET Information Management'),
-        (AIRSPACE_ACCESS, 'Airspace Access'),
-        (SHARED_INFORMATION_SERVICE_MANAGEMENT , 'Shared Information Service Management'),
-        (DEMAND_AND_CAPACITY_BALANCING, 'Demand And Capacity Balancing'),
-        (CONFLICT_MANAGEMENT, 'Conflict Management'),
-        (AIRPORT_MANAGEMENT, 'Airport Management'),
-        (TRAJECTORY_MANAGEMENT, 'Trajectory Management'),
-        (ATM_NETWORK_MANAGEMENT, 'ATM Network Management'),
+        (AERONAUTICAL_INFORMATION_MANAGEMENT, _('Aeronautical Information Management')),
+        (AIRPORT_CDM, _('Airport CDM')),
+        (COLLISION_AVOIDANCE, _('Collision Avoidance')),
+        (SURVEILLANCE_INFRASTRUCTURE, _('Surveillance Infrastructure')),
+        (TRAFFIC_SEQUENCING, _('Traffic Sequencing')),
+        (TRAFFIC_SYNCHRONISATION, _('Traffic Synchronisation')),
+        (TRAJECTORY_EXECUTION_AND_CONFORMANCE_MONITORING, _('Trajectory Execution And Conformance Monitoring')),
+        (CNS_INFRASTRUCTURE, _('CNS Infrastructure')),
+        (FLIGHT_INFORMATION_MANAGEMENT, _('Flight Information Management')),
+        (NAVIGTION_INFRASTRUCTURE, _('Navigtion Infrastructure')),
+        (ROUTE_DESIGN, _('Route Design')),
+        (SEPARATION_PROVISION, _('Separation Provision')),
+        (TRAJECTORY_PLANNING, _('Trajectory Planning')),
+        (AIRSPACE_AND_SURFACE_STRUCTURE_DESIGN, _('Airspace And Surface Structure Design')),
+        (ATM_INFORMATION_MANAGEMENT, _('ATM Information Management')),
+        (COMMUNICATION_INFRASTRUCTURE, _('Communication Infrastructure')),
+        (METEOROLOGICAL_INFORMATION, _('Meteorological Information')),
+        (ROUTE_ASSIGNMENT_AND_GUIDANCE, _('Route Assignment And Guidance')),
+        (AIRSPACE_AND_SURFACE_STRUCTURE_ALLOCATION, _('Airspace And Surface Structure Allocation')),
+        (MET_INFORMATION_MANAGEMENT, _('MET Information Management')),
+        (AIRSPACE_ACCESS, _('Airspace Access')),
+        (SHARED_INFORMATION_SERVICE_MANAGEMENT , _('Shared Information Service Management')),
+        (DEMAND_AND_CAPACITY_BALANCING, _('Demand And Capacity Balancing')),
+        (CONFLICT_MANAGEMENT, _('Conflict Management')),
+        (AIRPORT_MANAGEMENT, _('Airport Management')),
+        (TRAJECTORY_MANAGEMENT, _('Trajectory Management')),
+        (ATM_NETWORK_MANAGEMENT, _('ATM Network Management')),
     )
 
     name = models.CharField(max_length=50, choices=CHOICES, unique=True)
 
     class Meta:
-        verbose_name = 'ATM activity category'
-        verbose_name_plural = 'ATM activity categories'
+        verbose_name = _('ATM activity category')
+        verbose_name_plural = _('ATM activity categories')
 
 
     def __str__(self):

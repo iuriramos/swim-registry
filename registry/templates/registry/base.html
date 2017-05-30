@@ -1,4 +1,5 @@
 {% extends "registry/base_login.html" %}
+{% load i18n %}
 {% load staticfiles %}
 
 {% block body %}
@@ -8,34 +9,34 @@
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+                    <span class="sr-only">{% trans "Toggle navigation" %}</span> {% trans "Menu" %} <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand page-scroll" href="{% url 'website:index' %}">SWIM Registry Brazil</a>
+                <a class="navbar-brand page-scroll" href="{% url 'website:index' %}">{% trans "SWIM Registry Brazil" %}</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li><a href="{% url 'registry:index' %}">About</a></li>
-                    <li><a href="{% url 'community:participant_list' %}">Organizations</a></li>
-                    <li><a href="{% url 'registry:service_list' %}">Services</a></li>
-                    <li><a href="#">Applications</a></li>
-                    <li><a href="#">Reference Documents</a></li>
-                    <li><a href="#">Support</a></li>
+                    <li><a href="{% url 'registry:index' %}">{% trans "About" %}</a></li>
+                    <li><a href="{% url 'community:participant_list' %}">{% trans "Organizations" %}</a></li>
+                    <li><a href="{% url 'registry:service_list' %}">{% trans "Services" %}</a></li>
+                    <li><a href="#">{% trans "Applications" %}</a></li>
+                    <li><a href="#">{% trans "Reference Documents" %}</a></li>
+                    <li><a href="#">{% trans "Support" %}</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                   <li class="dropdown pull-right">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ user.first_name }} <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                      <li class="dropdown-header">Settings</li>
-                      <li><a href="{% url 'community:profile' %}">Profile</a></li>
+                      <li class="dropdown-header">{% trans "Settings" %}</li>
+                      <li><a href="{% url 'community:profile' %}">{% trans "Profile" %}</a></li>
                       {#<li><a href="{% url 'community:organization' %}">Organization</a></li>#}
                       {% if not user.profile.organizaion %}
-                          <li><a href="{% url 'community:participant_edit' %}">Organization</a></li>
+                          <li><a href="{% url 'community:participant_edit' %}">{% trans "Organization" %}</a></li>
                       {% endif %}
-                      <li><a href="{% url 'community:subscriptions' %}">Subscriptions</a></li>
+                      <li><a href="{% url 'community:subscriptions' %}">{% trans "Subscriptions" %}</a></li>
                       <li role="separator" class="divider"></li>
-                      <li><a href="{% url 'registry:logout' %}">Log out</a></li>
+                      <li><a href="{% url 'registry:logout' %}">{% trans "Log out" %}</a></li>
                     </ul>
                   </li>
                 </ul>

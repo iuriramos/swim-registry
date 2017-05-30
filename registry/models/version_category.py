@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.translation import ugettext_lazy as _
 
 
 class VersionCategory(models.Model):
@@ -8,17 +9,17 @@ class VersionCategory(models.Model):
     UPCOMING_NOT_SUPPORTED = 'UPCOMING NOT SUPPORTED'
 
     CHOICES = (
-        (CURRENT_AND_SUPPORTED, 'Current and Supported'),
-        (NON_SUPPORTED, 'Non Supported'),
-        (OBSOLETE_BUT_SUPPORTED, 'Obsolete but Supported'),
-        (UPCOMING_NOT_SUPPORTED, 'Upcoming not Supported'),
+        (CURRENT_AND_SUPPORTED, _('Current and Supported')),
+        (NON_SUPPORTED, _('Non Supported')),
+        (OBSOLETE_BUT_SUPPORTED, _('Obsolete but Supported')),
+        (UPCOMING_NOT_SUPPORTED, _('Upcoming not Supported')),
     )
 
     name = models.CharField(max_length=50, choices=CHOICES, unique=True)
 
     class Meta:
-        verbose_name = 'version category'
-        verbose_name_plural = 'version categories'
+        verbose_name = _('version category')
+        verbose_name_plural = _('version categories')
 
     def __str__(self):
         return self.name

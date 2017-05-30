@@ -16,16 +16,20 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.conf.urls.static import static
 from django.conf.urls.i18n import i18n_patterns
+#from .admin import admin_site
 from django.contrib import admin
-
+from django.utils.translation import ugettext_lazy as _
 from .settings.base import MEDIA_ROOT, MEDIA_URL
 
+
 urlpatterns = i18n_patterns(
+    # url(r'^admin/', include(admin_site.urls)),
     url(r'^admin/', admin.site.urls),
     url(r'^', include('website.urls')),
     url(r'^', include('community.urls')),
     url(r'^', include('registry.urls')),
 
 )
-
 urlpatterns += static(MEDIA_URL, document_root=MEDIA_ROOT)
+
+admin.site.site_header = _('SWIM Registry Administration')

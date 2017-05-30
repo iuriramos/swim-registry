@@ -1,11 +1,12 @@
 {% extends 'registry/base.html' %}
+{% load i18n %}
 
 {% block container %}
     <div class="container">
       <div class="row">
         <div class="col-md-10 col-md-offset-1">
 
-           <h1>Profile settings</h1>
+           <h1>{% trans "Profile settings" %}</h1>
 
 
           {% if messages %}
@@ -41,20 +42,20 @@
             <div class="row">
               <div class="col-md-12">
                 {% if not user.profile.organization %}
-                    <a class="btn btn-default pull-right" href="{% url 'community:organization_new' %}" role="button">Create your organization</a>
+                    <a class="btn btn-default pull-right" href="{% url 'community:organization_new' %}" role="button">{% trans "Create your organization" %}</a>
                 {% endif %}
               </div>
             </div>
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
-                  <label for="first_name_id">First name</label>
+                  <label for="first_name_id">{% trans "First name" %}</label>
                   <input type="text" name="first_name" class="form-control" id="first_name_id" value="{{ user.first_name }}">
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <label for="last_name_id">Last name</label>
+                  <label for="last_name_id">{% trans "Last name" %}</label>
                   <input type="text" name="last_name" class="form-control" id="last_name_id" value="{{ user.last_name }}">
                 </div>
               </div>
@@ -73,7 +74,7 @@
                 </div>
               </div>
             </div>
-            <button class="btn btn-default pull-right" name="submit" type="submit">Save</button>
+            <button class="btn btn-default pull-right" name="submit" type="submit">{% trans "Save" %}</button>
           </form>
         </div>
       </div>

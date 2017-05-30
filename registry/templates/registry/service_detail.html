@@ -1,4 +1,5 @@
 {% extends 'registry/base.html' %}
+{% load i18n %}
 
 {% block container %}
     <div class="container">
@@ -14,17 +15,17 @@
               <img src="{{service.image.url}}" width="150" alt="service logo">
             </div>
             <div class="col-md-5">
-            {% if service.version %}<p><b>Version: </b>{{service.version}}</p>{% endif %}
-            <p><b>Organization: </b>{{service.organization.name}}</p>
-            <p><b>Implementation status: </b>{{service.implementation_status.name}}</p>
-            <p><b>Implementation maturity: </b>{{service.implementation_maturity.name}}</p>
-            <p><b>Version category: </b>{{service.version_category.name}}</p>
-            <p><b>Registration status: </b>{{service.registration_status.name}}</p>
+            {% if service.version %}<p><b>{% trans "Version" %}: </b>{{service.version}}</p>{% endif %}
+            <p><b>{% trans "Organization" %}: </b>{{service.organization.name}}</p>
+            <p><b>{% trans "Implementation status" %}: </b>{{service.implementation_status.name}}</p>
+            <p><b>{% trans "Implementation maturity" %}: </b>{{service.implementation_maturity.name}}</p>
+            <p><b>{% trans "Version category" %}: </b>{{service.version_category.name}}</p>
+            <p><b>{% trans "Registration status" %}: </b>{{service.registration_status.name}}</p>
             </div>
             <div class="col-md-4">
               <p>
                   <ul class="list-unstyled">
-                      <b>ATM activity categories:</b>
+                      <b>{% trans "ATM activity categories" %}:</b>
                       {% for each in service.activity_categories.all %}
                           <li>{{ each.name }}</li>
                       {% endfor %}
@@ -32,7 +33,7 @@
               </p>
               <p>
                   <ul class="list-unstyled">
-                      <b>ATM data categories:</b>
+                      <b>{% trans "ATM data categories" %}:</b>
                       {% for each in service.data_categories.all %}
                           <li>{{ each.name }}</li>
                       {% endfor %}
@@ -40,7 +41,7 @@
               </p>
               <p>
                   <ul class="list-unstyled">
-                      <b>ATM stakeholders:</b>
+                      <b>{% trans "ATM stakeholders" %}:</b>
                       {% for each in service.stakeholders.all %}
                           <li>{{ each.name }}</li>
                       {% endfor %}
@@ -48,7 +49,7 @@
               </p>
               <p>
                   <ul class="list-unstyled">
-                      <b>Regions:</b>
+                      <b>{% trans "Regions" %}:</b>
                       {% for each in service.regions.all %}
                           <li>{{ each.name }}</li>
                       {% endfor %}
@@ -56,7 +57,7 @@
               </p>
               <p>
                   <ul class="list-unstyled">
-                      <b>ATM flight phases:</b>
+                      <b>{% trans "ATM flight phases" %}:</b>
                       {% for each in service.flight_phases.all %}
                           <li>{{ each.name }}</li>
                       {% endfor %}
@@ -69,7 +70,7 @@
             <div class="col-md-12">
               <div class="panel panel-default">
                 <div class="panel-heading">
-                  <h3 class="panel-title">Description</h3>
+                  <h3 class="panel-title">{% trans "Description" %}</h3>
                 </div>
                 <div class="panel-body">
                     {{service.description}}
@@ -82,7 +83,7 @@
             <div class="col-md-12">
               <div class="panel panel-default">
                 <div class="panel-heading">
-                  <h3 class="panel-title">Technical Interface</h3>
+                  <h3 class="panel-title">{% trans "Technical Interface" %}</h3>
                 </div>
                 <div class="list-group">
                   <li class="list-group-item">
@@ -98,7 +99,7 @@
             <div class="col-md-12">
               <div class="panel panel-default">
                 <div class="panel-heading">
-                  <h3 class="panel-title">Documentation</h3>
+                  <h3 class="panel-title">{% trans "Documentation" %}</h3>
                 </div>
                 <div class="list-group">
                   {% for document in service.documents.all %}
@@ -116,7 +117,7 @@
             <div class="col-md-12">
               <div class="panel panel-default">
                 <div class="panel-heading">
-                  <h3 class="panel-title">Contact Points</h3>
+                  <h3 class="panel-title">{% trans "Contact Points" %}</h3>
                 </div>
                 <div class="list-group">
                   {% for contact_point in service.contact_points.all %}

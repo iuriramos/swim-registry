@@ -1,3 +1,4 @@
+from django.utils.translation import ugettext_lazy as _
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.views.generic.list import ListView
@@ -57,7 +58,7 @@ def service_new(request):
             formset_contact_points.save()
             service.organization = organization
             service.save()
-            messages.add_message(request, messages.INFO, 'Service updated successfully.')
+            messages.add_message(request, messages.INFO, _('Service created successfully. You can now edit servce technical interface.'))
             return redirect('registry:service_edit', pk=service.pk)
     else:
         form_service = ServiceForm()
@@ -84,7 +85,7 @@ def service_edit(request, pk):
             formset_contact_points.save()
             service.organization = organization
             service.save()
-            messages.add_message(request, messages.INFO, 'Service updated successfully.')
+            messages.add_message(request, messages.INFO, _('Service updated successfully.'))
             return redirect('registry:service_edit', pk=service.pk)
     else:
         form_service = ServiceForm(instance=service)
@@ -107,7 +108,7 @@ def technical_interface_new(request, pk):
             service.technical_interface = technical_interface
             service.save()
             formset_documents.save()
-            messages.add_message(request, messages.INFO, 'Technical Interface updated successfully.')
+            messages.add_message(request, messages.INFO, _('Technical Interface created successfully. You can now edit other technical interface parameters such as infrastructure description, data exchange formats and end points.'))
             return redirect('registry:technical_interface_edit', pk=service.pk)
     else:
         form_technical_interface = TechnicalInterfaceForm()
@@ -129,7 +130,7 @@ def technical_interface_edit(request, pk):
             technical_interface = form_technical_interface.save()
             service.save()
             formset_documents.save()
-            messages.add_message(request, messages.INFO, 'Technical Interface updated successfully.')
+            messages.add_message(request, messages.INFO, _('Technical Interface updated successfully.'))
             return redirect('registry:technical_interface_edit', pk=service.pk)
     else:
         form_technical_interface = TechnicalInterfaceForm(instance=technical_interface)
@@ -148,7 +149,7 @@ def end_points_edit(request, pk):
         formset_end_points = EndPointFormSet(request.POST, request.FILES, instance=technical_interface)
         if formset_end_points.is_valid():
             formset_end_points.save()
-            messages.add_message(request, messages.INFO, 'End Points updated successfully.')
+            messages.add_message(request, messages.INFO, _('End Points updated successfully.'))
             return redirect('registry:end_points_edit', pk=technical_interface.pk)
     else:
         formset_end_points = EndPointFormSet(instance=technical_interface)
@@ -171,7 +172,7 @@ def infrastructure_description_new(request, pk):
             technical_interface.save()
             formset_documents.save()
             formset_bindings.save()
-            messages.add_message(request, messages.INFO, 'Infrastructure Description updated successfully.')
+            messages.add_message(request, messages.INFO, _('Infrastructure Description created successfully.'))
             return redirect('registry:infrastructure_description_edit', pk=technical_interface.pk)
     else:
         form_infrastructure_description = InfrastructureDescriptionForm()
@@ -198,7 +199,7 @@ def infrastructure_description_edit(request, pk):
             technical_interface.save()
             formset_documents.save()
             formset_bindings.save()
-            messages.add_message(request, messages.INFO, 'Infrastructure Description updated successfully.')
+            messages.add_message(request, messages.INFO, _('Infrastructure Description updated successfully.'))
             return redirect('registry:infrastructure_description_edit', pk=technical_interface.pk)
     else:
         form_infrastructure_description = InfrastructureDescriptionForm(instance=infrastructure_description)
@@ -218,7 +219,7 @@ def data_exchange_formats_edit(request, pk):
         formset_data_exchange_formats = DataExchangeFormatServiceFormSet(request.POST, request.FILES, instance=technical_interface)
         if formset_data_exchange_formats.is_valid():
             formset_data_exchange_formats.save()
-            messages.add_message(request, messages.INFO, 'Data Exchange Formats updated successfully.')
+            messages.add_message(request, messages.INFO, _('Data Exchange Formats updated successfully.'))
             return redirect('registry:data_exchange_formats_edit', pk=technical_interface.pk)
     else:
         formset_data_exchange_formats = DataExchangeFormatServiceFormSet(instance=technical_interface)

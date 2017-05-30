@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.translation import ugettext_lazy as _
 
 
 class ImplementationMaturityCategory(models.Model):
@@ -6,15 +7,15 @@ class ImplementationMaturityCategory(models.Model):
     PROTOTYPE = 'PROTOTYPE'
 
     CHOICES = (
-        (OPERATIONAL, 'Operational'),
-        (PROTOTYPE, 'Prototype'),
+        (OPERATIONAL, _('Operational')),
+        (PROTOTYPE, _('Prototype')),
     )
 
     name = models.CharField(max_length=50, choices=CHOICES, unique=True)
 
     class Meta:
-        verbose_name = 'implementation maturity category'
-        verbose_name_plural = 'implementation maturity categories'
+        verbose_name = _('implementation maturity category')
+        verbose_name_plural = _('implementation maturity categories')
 
     def __str__(self):
         return self.name
@@ -26,16 +27,16 @@ class ImplementationStatusCategory(models.Model):
     UNDER_DEVELOPMENT = 'UNDER DEVELOPMENT'
 
     CHOICES = (
-        (CURRENT_AND_SUPPORTED, 'Read for consumption'),
-        (TERMINATED, 'Terminated'),
-        (UNDER_DEVELOPMENT, 'Under development'),
+        (CURRENT_AND_SUPPORTED, _('Read for consumption')),
+        (TERMINATED, _('Terminated')),
+        (UNDER_DEVELOPMENT, _('Under development')),
     )
 
     name = models.CharField(max_length=50, choices=CHOICES, unique=True)
 
     class Meta:
-        verbose_name = 'implementation status category'
-        verbose_name_plural = 'implementation status categories'
+        verbose_name = _('implementation status category')
+        verbose_name_plural = _('implementation status categories')
 
     def __str__(self):
         return self.name

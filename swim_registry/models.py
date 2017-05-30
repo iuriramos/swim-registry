@@ -1,4 +1,14 @@
 from django.db import models
+from django.utils.translation import ugettext_lazy as _
+
+
+def make_choices(choices):
+    """
+    Returns tuples of localized choices based on the dict choices parameter.
+    Uses lazy translation for choices names.
+    """
+    return tuple([(k, _(v)) for k, v in choices.items()])
+
 
 class TimeStampedModel(models.Model):
     """

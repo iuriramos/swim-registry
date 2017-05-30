@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.translation import ugettext_lazy as _
 from swim_registry.models import TimeStampedModel
 
 
@@ -19,5 +20,5 @@ class TechnicalInterface(TimeStampedModel):
     # end_points = models.ManyToManyField(EndPoint, related_name='technical_interfaces')
 
     def __str__(self):
-        return 'Technical Interface of {service}'.format(service=self.service)
+        return _('Technical Interface of {service}').format(service=self.service)
 

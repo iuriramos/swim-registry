@@ -1,4 +1,5 @@
 {% extends 'registry/base.html' %}
+{% load i18n %}
 {% load crispy_forms_tags %}
 
 {% block container %}
@@ -64,12 +65,12 @@
               {% csrf_token %}
 
               <div class="page-header">
-                  <h1>Infrastructure Description</h1>
+                  <h1>{% trans "Infrastructure Description" %}</h1>
               </div>
 
               <div class="row">
                 <div class="col-md-12">
-                  <a class="btn btn-default pull-right" href="{% url 'registry:technical_interface_edit' pk=service_pk %}" role="button">Back to Technical Interface</a>
+                  <a class="btn btn-default pull-right" href="{% url 'registry:technical_interface_edit' pk=service_pk %}" role="button">{% trans "Back to Technical Interface" %}</a>
                 </div>
               </div>
 
@@ -80,7 +81,7 @@
                   <div class="panel-heading" role="tab" id="headingOne">
                     <h4 class="panel-title">
                       <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                        Technical Interface Bindings
+                        {% trans "Technical Interface Bindings" %}
                       </a>
                     </h4>
                   </div>
@@ -96,7 +97,7 @@
                       <div id="empty_formset_technical_interface_bindings" style="display:none">
                             {{ formset_bindings.empty_form | crispy }}
                       </div>
-                      <a class="btn btn-default pull-right"  id="btn_formset_technical_interface_bindings">Add Technical Interface Binding</a>
+                      <a class="btn btn-default pull-right"  id="btn_formset_technical_interface_bindings">{% trans "Add Technical Interface Binding" %}</a>
                     </div>
                   </div>
                 </div>
@@ -104,7 +105,7 @@
                   <div class="panel-heading" role="tab" id="headingTwo">
                     <h4 class="panel-title">
                       <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                        Infrastructure Description Documents
+                        {% trans "Infrastructure Description Documents" %}
                       </a>
                     </h4>
                   </div>
@@ -120,13 +121,13 @@
                       <div id="empty_formset_documents" style="display:none">
                             {{ formset_documents.empty_form | crispy }}
                       </div>
-                      <a class="btn btn-default pull-right"  id="btn_formset_documents">Add Document</a>
+                      <a class="btn btn-default pull-right"  id="btn_formset_documents">{% trans "Add Document" %}</a>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <button class="btn btn-default pull-right" name="submit" type="submit">Save</button>
+              <button class="btn btn-default pull-right" name="submit" type="submit">{% trans "Save" %}</button>
           </form>
 
         </div>

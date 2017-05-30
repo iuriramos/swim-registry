@@ -1,4 +1,5 @@
 {% extends 'registry/base.html' %}
+{% load i18n %}
 {% load crispy_forms_tags %}
 
 {% block container %}
@@ -36,16 +37,16 @@
               {% csrf_token %}
 
               <div class="page-header">
-                  <h1>Data Exchange Formats</h1>
+                  <h1>{% trans "Data Exchange Formats" %}</h1>
               </div>
 
               <div class="row">
                 <div class="col-md-12">
-                  <a class="btn btn-default pull-right" href="{% url 'registry:technical_interface_edit' pk=service_pk %}" role="button">Back to Technical Interface</a>
+                  <a class="btn btn-default pull-right" href="{% url 'registry:technical_interface_edit' pk=service_pk %}" role="button">{% trans "Back to Technical Interface" %}</a>
                 </div>
               </div>
 
-              <h2>Data Exchange Formats</h2>
+              <h2>{% trans "Data Exchange Formats" %}</h2>
               {{ formset_data_exchange_formats.management_form }}
               <div id="formset_data_exchange_formats">
                   {% for form in formset_data_exchange_formats.forms %}
@@ -58,8 +59,8 @@
               </div>
 
 
-              <button class="btn btn-default pull-right" name="submit" type="submit">Save</button>
-              <a class="btn btn-default pull-right"  id="btn_formset_data_exchange_formats">Add Data Exchange Format</a>
+              <button class="btn btn-default pull-right" name="submit" type="submit">{% trans "Save" %}</button>
+              <a class="btn btn-default pull-right"  id="btn_formset_data_exchange_formats">{% trans "Add Data Exchange Format" %}</a>
           </form>
 
         </div>

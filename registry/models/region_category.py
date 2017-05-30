@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.translation import ugettext_lazy as _
 
 
 class RegionCategory(models.Model):
@@ -12,21 +13,21 @@ class RegionCategory(models.Model):
     SOUTH_AMERICA = 'SOUTH AMERICA'
 
     CHOICES = (
-        (BRAZIL, 'Brazil'),
-        (AFRICA, 'Africa'),
-        (ASIA, 'Asia'),
-        (EUROPE, 'Europe'),
-        (GLOBAL , 'Global'),
-        (NORTH_AMERICA, 'North America'),
-        (OCEANIA, 'Oceania'),
-        (SOUTH_AMERICA, 'South America'),
+        (BRAZIL, _('Brazil')),
+        (AFRICA, _('Africa')),
+        (ASIA, _('Asia')),
+        (EUROPE, _('Europe')),
+        (GLOBAL , _('Global')),
+        (NORTH_AMERICA, _('North America')),
+        (OCEANIA, _('Oceania')),
+        (SOUTH_AMERICA, _('South America')),
     )
 
     name = models.CharField(max_length=50, choices=CHOICES, unique=True)
 
     class Meta:
-        verbose_name = 'region category'
-        verbose_name_plural = 'region categories'
+        verbose_name = _('region category')
+        verbose_name_plural = _('region categories')
 
     def __str__(self):
         return self.name

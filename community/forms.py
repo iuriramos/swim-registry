@@ -1,6 +1,7 @@
 from django import forms
 from django.forms import widgets
 from django.contrib.auth.models import User
+from django.utils.translation import ugettext_lazy as _
 from django.core.exceptions import ValidationError
 from .models.profile import Profile
 from .models.participant import Participant
@@ -15,12 +16,12 @@ class RegistrationRequestForm(forms.ModelForm):
         model = RegistrationRequest
         fields = '__all__'
         widgets = {
-            'first_name': widgets.TextInput(attrs={'id': 'first_name_id', 'class': 'form-control', 'autofocus': True, 'placeholder': 'First name'}),
-            'last_name': widgets.TextInput(attrs={'id': 'last_name_id', 'class': 'form-control', 'placeholder': 'Last name'}),
-            'email': widgets.TextInput(attrs={'id': 'email_id', 'class': 'form-control', 'placeholder': 'E-mail'}),
-            'organization': widgets.TextInput(attrs={'id': 'organization_id', 'class': 'form-control', 'placeholder': 'Organization'}),
-            'role': widgets.TextInput(attrs={'id': 'role_id', 'class': 'form-control', 'placeholder': 'Role'}),
-            'note': widgets.Textarea(attrs={'id': 'note_id', 'class': 'form-control', 'placeholder': 'Describe how you intend to use the SWIM Registry.'}),
+            'first_name': widgets.TextInput(attrs={'id': 'first_name_id', 'class': 'form-control', 'autofocus': True, 'placeholder': _('First name')}),
+            'last_name': widgets.TextInput(attrs={'id': 'last_name_id', 'class': 'form-control', 'placeholder': _('Last name')}),
+            'email': widgets.TextInput(attrs={'id': 'email_id', 'class': 'form-control', 'placeholder': _('E-mail')}),
+            'organization': widgets.TextInput(attrs={'id': 'organization_id', 'class': 'form-control', 'placeholder': _('Organization')}),
+            'role': widgets.TextInput(attrs={'id': 'role_id', 'class': 'form-control', 'placeholder': _('Role')}),
+            'note': widgets.Textarea(attrs={'id': 'note_id', 'class': 'form-control', 'placeholder': _('Describe how you intend to use the SWIM Registry.')}),
             'approved': widgets.Select(),
          }
 
@@ -36,7 +37,7 @@ class RegistrationRequestForm(forms.ModelForm):
             return False
         user_exists = User.objects.filter(username=self.cleaned_data['email']).exists()
         if user_exists:
-            self.add_error('email', ValidationError('email already registered', code='invalid_email'))
+            self.add_error('email', ValidationError(_('Email already registered'), code='invalid_email'))
             return False
         return True
 
@@ -61,8 +62,8 @@ class ParticipantForm(forms.ModelForm):
         # exclude = ['displayable']
         exclude = ['displayable', 'contact_points', 'documents']
         widgets = {
-            'name': widgets.TextInput(attrs={'id': 'name_id', 'class': 'form-control', 'placeholder': 'Name'}),
-            'description': widgets.Textarea(attrs={'id': 'description_id', 'class': 'form-control', 'placeholder': 'Description'}),
+            'name': widgets.TextInput(attrs={'id': 'name_id', 'class': 'form-control', 'placeholder': _('Name')}),
+            'description': widgets.Textarea(attrs={'id': 'description_id', 'class': 'form-control', 'placeholder': _('Description')}),
             'category': widgets.Select(attrs={'id': 'category_id', 'class': 'form-control'}),
         }
 

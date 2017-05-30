@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
+from django.utils.translation import ugettext_lazy as _
 from django.views.generic.base import View
 from django.contrib.auth.decorators import login_required
 from  django.views.generic.detail import DetailView
@@ -33,7 +34,7 @@ class RegisterAccountView(View):
         form = RegistrationRequestForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.add_message(request, messages.INFO, TEMPLATE_SUCCESSFUL_REGISTRATION_MSG)
+            messages.add_message(request, messages.INFO, _(TEMPLATE_SUCCESSFUL_REGISTRATION_MSG))
             return redirect('community:register')
         return render(request, self.template_name, {'form': form})
 
@@ -55,7 +56,7 @@ def profile_edit(request):
             user.last_name = form.cleaned_data['last_name']
             user.save()
             # send information message
-            messages.add_message(request, messages.INFO, 'Profile settings updated successfully')
+            messages.add_message(request, messages.INFO, _('Profile settings updated successfully'))
             return redirect('community:profile')
     else:
         form =ProfileForm(instance=profile)
@@ -111,7 +112,7 @@ def participant_new(request):
             profile = get_profile(request)
             profile.participant_service_list = form.save()
             profile.save()
-            messages.add_message(request, messages.INFO, 'Participant created successfully')
+            messages.add_message(request, messages.INFO, _('Organization created successfully'))
             return redirect('community:profile')
     else:
         form = ParticipantForm()
@@ -132,7 +133,7 @@ def participant_edit(request):
             print (participant.image)
             formset_contact_points.save()
             formset_documents.save()
-            messages.add_message(request, messages.INFO, 'Participant settings updated successfully')
+            messages.add_message(request, messages.INFO, _('Organization settings updated successfully'))
             return redirect('community:participant_edit')
     else:
         form = ParticipantForm(instance=participant)

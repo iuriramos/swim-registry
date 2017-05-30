@@ -1,5 +1,6 @@
 from django.db import models
 from swim_registry.models import TimeStampedModel
+from django.utils.translation import ugettext_lazy as _
 
 
 class TechnicalInterfaceBindingModel(TimeStampedModel):
@@ -8,7 +9,7 @@ class TechnicalInterfaceBindingModel(TimeStampedModel):
     image = models.ImageField(upload_to = 'infrastructure/technical_interface_bindings/images/', default = 'infrastructure/technical_interface_bindings/images/none/default.svg')
 
     class Meta:
-        verbose_name = 'technical interface binding'
+        verbose_name = _('technical interface binding')
         abstract = True
 
     def __str__(self):

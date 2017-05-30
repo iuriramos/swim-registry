@@ -1,4 +1,5 @@
 {% extends 'registry/base.html' %}
+{% load i18n %}
 
 {% block container %}
     <div class="container">
@@ -15,17 +16,17 @@
                 {% endfor %}
               </div>
           {% endif %}
-          <h1 class="page-header">{{ user.profile.organization | title }} Services</h1>
+          <h1 class="page-header">{{ user.profile.organization | title }} {% trans "Services" %}</h1>
 
           <div class="row">
                 <div class="col-md-12">
-                  <a class="btn btn-default pull-right" href="{% url 'community:participant_edit' %}" role="button">Back to Organization</a>
+                  <a class="btn btn-default pull-right" href="{% url 'community:participant_edit' %}" role="button">{% trans "Back to Organization" %}</a>
                 </div>
               </div>
 
           <div class="row">
             <div class="col-md-12">
-                <a class="btn btn-default pull-right" href="{% url 'registry:service_new' %}" role="button">Create new service</a>
+                <a class="btn btn-default pull-right" href="{% url 'registry:service_new' %}" role="button">{% trans "Create new service" %}</a>
             </div>
           </div>
 

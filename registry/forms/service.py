@@ -1,5 +1,6 @@
 from django import forms
 from django.core.exceptions import ValidationError
+from django.utils.translation import ugettext_lazy as _
 from registry.models.service import Service
 
 
@@ -9,9 +10,9 @@ class ServiceForm(forms.ModelForm):
         model = Service
         exclude = ['organization', 'reviewed', 'workflow', 'technical_interface']
         widgets = {
-            'name': forms.widgets.TextInput(attrs={'id': 'name_id', 'class': 'form-control', 'placeholder': 'Name'}),
-            'description': forms.widgets.Textarea(attrs={'id': 'description_id', 'class': 'form-control', 'placeholder': 'Description'}),
-            'version': forms.widgets.TextInput(attrs={'id': 'version_id', 'class': 'form-control', 'placeholder': 'Version'}),
+            'name': forms.widgets.TextInput(attrs={'id': 'name_id', 'class': 'form-control', 'placeholder': _('Name')}),
+            'description': forms.widgets.Textarea(attrs={'id': 'description_id', 'class': 'form-control', 'placeholder': _('Description')}),
+            'version': forms.widgets.TextInput(attrs={'id': 'version_id', 'class': 'form-control', 'placeholder': _('Version')}),
             'version_category': forms.widgets.Select(attrs={'id': 'version_category_id', 'class': 'form-control'}),
             'implementation_status': forms.widgets.Select(attrs={'id': 'implementation_status_id', 'class': 'form-control'}),
             'implementation_maturity': forms.widgets.Select(attrs={'id': 'implementation_maturity_id', 'class': 'form-control'}),

@@ -1,4 +1,5 @@
 {% extends 'registry/base.html' %}
+{% load i18n %}
 {% load crispy_forms_tags %}
 
 {% block container %}
@@ -64,11 +65,11 @@
             {% csrf_token %}
 
             <div class="page-header">
-                <h1>Organization settings</h1>
+                <h1>{% trans "Organization settings" %}</h1>
             </div>
             <div class="row">
               <div class="col-md-12">
-                  <a class="btn btn-default pull-right" href="{% url 'registry:participant_service_list' %}" role="button">View Services</a>
+                  <a class="btn btn-default pull-right" href="{% url 'registry:participant_service_list' %}" role="button">{% trans "View Services" %}</a>
               </div>
             </div>
             <div class="row">
@@ -96,7 +97,7 @@
                     <div class="panel-heading" role="tab" id="headingOne">
                       <h4 class="panel-title">
                         <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                          Documents
+                          {% trans "Documents" %}
                         </a>
                       </h4>
                     </div>
@@ -112,7 +113,7 @@
                         <div id="empty_formset_documents" style="display:none">
                               {{ formset_documents.empty_form | crispy }}
                         </div>
-                        <a class="btn btn-default pull-right"  id="btn_formset_documents">Add Document</a>
+                        <a class="btn btn-default pull-right"  id="btn_formset_documents">{% trans "Add Document" %}</a>
                       </div>
                     </div>
                   </div>
@@ -120,7 +121,7 @@
                     <div class="panel-heading" role="tab" id="headingTwo">
                       <h4 class="panel-title">
                         <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                          Contact Points
+                          {% trans "Contact Points" %}
                         </a>
                       </h4>
                     </div>
@@ -136,7 +137,7 @@
                         <div id="empty_formset_contact_points" style="display:none">
                               {{ formset_contact_points.empty_form | crispy }}
                         </div>
-                        <a class="btn btn-default pull-right"  id="btn_formset_contact_points">Add Contact Point</a>
+                        <a class="btn btn-default pull-right"  id="btn_formset_contact_points">{% trans "Add Contact Point" %}</a>
                       </div>
                     </div>
                   </div>
@@ -144,9 +145,8 @@
 
               </div>
             </div>
-            <button class="btn btn-default pull-right" name="submit" type="submit">Save</button>
+            <button class="btn btn-default pull-right" name="submit" type="submit">{% trans "Save" %}</button>
           </form>
-
 
         </div>
       </div>

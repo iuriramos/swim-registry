@@ -1,7 +1,9 @@
 from django.db import models
+from django.utils.translation import ugettext_lazy as _
 from swim_registry.models import TimeStampedModel
 from .application import Application
 from .service import Service
+
 
 class ContactPointModel(TimeStampedModel):
     name = models.CharField(max_length=255)
@@ -18,7 +20,7 @@ class ContactPointService(ContactPointModel):
     service = models.ForeignKey('registry.Service', related_name='contact_points')
 
     class Meta:
-        verbose_name = 'service contact point'
+        verbose_name = _('service contact point')
 
 
 class ContactPointApplication(ContactPointModel):
@@ -26,7 +28,7 @@ class ContactPointApplication(ContactPointModel):
     application = models.ForeignKey('registry.Application', related_name='contact_points')
 
     class Meta:
-        verbose_name = 'application contact point'
+        verbose_name = _('application contact point')
 
 
 class ContactPointParticipant(ContactPointModel):
@@ -34,4 +36,4 @@ class ContactPointParticipant(ContactPointModel):
     participant = models.ForeignKey('community.Participant', related_name='contact_points')
 
     class Meta:
-        verbose_name = 'participant contact point'
+        verbose_name = _('participant contact point')

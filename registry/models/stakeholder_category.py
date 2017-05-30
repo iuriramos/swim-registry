@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.translation import ugettext_lazy as _
 
 
 class StakeholderCategory(models.Model):
@@ -8,17 +9,17 @@ class StakeholderCategory(models.Model):
     NETWORK_MANAGER  = 'NETWORK MANAGER'
 
     CHOICES = (
-        (AIRPORT_OPERATOR, 'Airport Operator'),
-        (AIRSPACE_USER, 'Airspace User'),
-        (ANSP, 'ANSP'),
-        (NETWORK_MANAGER, 'Network Manager'),
+        (AIRPORT_OPERATOR, _('Airport Operator')),
+        (AIRSPACE_USER, _('Airspace User')),
+        (ANSP, _('ANSP')),
+        (NETWORK_MANAGER, _('Network Manager')),
     )
 
     name = models.CharField(max_length=50, choices=CHOICES, unique=True)
 
     class Meta:
-        verbose_name = 'stakeholder category'
-        verbose_name_plural = 'stakeholder categories'
+        verbose_name = _('stakeholder category')
+        verbose_name_plural = _('stakeholder categories')
 
     def __str__(self):
         return self.name

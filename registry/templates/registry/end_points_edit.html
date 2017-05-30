@@ -1,4 +1,5 @@
 {% extends 'registry/base.html' %}
+{% load i18n %}
 {% load crispy_forms_tags %}
 
 {% block container %}
@@ -36,12 +37,12 @@
               {% csrf_token %}
 
               <div class="page-header">
-                  <h1>End Points</h1>
+                  <h1>{% trans "End Points" %}</h1>
               </div>
 
               <div class="row">
                 <div class="col-md-12">
-                  <a class="btn btn-default pull-right" href="{% url 'registry:technical_interface_edit' pk=service_pk %}" role="button">Back to Technical Interface</a>
+                  <a class="btn btn-default pull-right" href="{% url 'registry:technical_interface_edit' pk=service_pk %}" role="button">{% trans "Back to Technical Interface" %}</a>
                 </div>
               </div>
 
@@ -56,8 +57,8 @@
                     {{ formset_end_points.empty_form | crispy }}
               </div>
 
-              <button class="btn btn-default pull-right" name="submit" type="submit">Save</button>
-              <a class="btn btn-default pull-right"  id="btn_formset_end_points">Add End Point</a>
+              <button class="btn btn-default pull-right" name="submit" type="submit">{% trans "Save" %}</button>
+              <a class="btn btn-default pull-right"  id="btn_formset_end_points">{% trans "Add End Point" %}</a>
           </form>
 
         </div>
