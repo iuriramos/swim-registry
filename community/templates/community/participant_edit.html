@@ -67,11 +67,13 @@
             <div class="page-header">
                 <h1>{% trans "Organization settings" %}</h1>
             </div>
-            <div class="row">
-              <div class="col-md-12">
-                  <a class="btn btn-default pull-right" href="{% url 'registry:participant_service_list' %}" role="button">{% trans "View Services" %}</a>
-              </div>
-            </div>
+
+            <ol class="breadcrumb">
+              <li>
+                  <a href="{% url 'registry:participant_service_list' %}" role="button">{% trans "View Services" %}</a>
+              </li>
+            </ol>
+
             <div class="row">
               <div class="col-md-3">
                 <div class="form-group">

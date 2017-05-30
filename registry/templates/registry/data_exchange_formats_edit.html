@@ -40,13 +40,12 @@
                   <h1>{% trans "Data Exchange Formats" %}</h1>
               </div>
 
-              <div class="row">
-                <div class="col-md-12">
-                  <a class="btn btn-default pull-right" href="{% url 'registry:technical_interface_edit' pk=service_pk %}" role="button">{% trans "Back to Technical Interface" %}</a>
-                </div>
-              </div>
+              <ol class="breadcrumb">
+                <li>
+                    <a href="{% url 'registry:technical_interface_edit' pk=service_pk %}" role="button">{% trans "Back to Technical Interface" %}</a>
+                </li>
+              </ol>
 
-              <h2>{% trans "Data Exchange Formats" %}</h2>
               {{ formset_data_exchange_formats.management_form }}
               <div id="formset_data_exchange_formats">
                   {% for form in formset_data_exchange_formats.forms %}

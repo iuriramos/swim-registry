@@ -18,17 +18,14 @@
           {% endif %}
           <h1 class="page-header">{{ user.profile.organization | title }} {% trans "Services" %}</h1>
 
-          <div class="row">
-                <div class="col-md-12">
-                  <a class="btn btn-default pull-right" href="{% url 'community:participant_edit' %}" role="button">{% trans "Back to Organization" %}</a>
-                </div>
-              </div>
-
-          <div class="row">
-            <div class="col-md-12">
-                <a class="btn btn-default pull-right" href="{% url 'registry:service_new' %}" role="button">{% trans "Create new service" %}</a>
-            </div>
-          </div>
+          <ol class="breadcrumb">
+            <li>
+                <a href="{% url 'community:participant_edit' %}" role="button">{% trans "Back to Organization" %}</a>
+            </li>
+            <li>
+                <a href="{% url 'registry:service_new' %}" role="button">{% trans "Create new service" %}</a>
+            </li>
+          </ol>
 
           <div class="row">
             <div class="col-md-12">

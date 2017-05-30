@@ -57,21 +57,22 @@
                 {% endif %}
             </div>
 
-            <a class="btn btn-default pull-right" href="{% url 'registry:participant_service_list' %}" role="button">{% trans "Back to services list" %}</a>
-
-            <div class="row">
-              <div class="col-md-12">
+            <ol class="breadcrumb">
+              <li>
+                  <a href="{% url 'registry:participant_service_list' %}" role="button">{% trans "Back to Services" %}</a>
+              </li>
+              <li>
                   {% if form_service.instance.pk %}
                       {% if form_service.instance.technical_interface.pk %}
-                          <a class="btn btn-default pull-right" href="{% url 'registry:technical_interface_edit' pk=form_service.instance.pk %}" role="button">{% trans "Edit Technical Interface" %}</a>
+                          <a href="{% url 'registry:technical_interface_edit' pk=form_service.instance.pk %}" role="button">{% trans "Edit Technical Interface" %}</a>
 
                       {% else %}
-                          <a class="btn btn-default pull-right" href="{% url 'registry:technical_interface_new' pk=form_service.instance.pk %}" role="button">{% trans "Edit Technical Interface" %}</a>
+                          <a href="{% url 'registry:technical_interface_new' pk=form_service.instance.pk %}" role="button">{% trans "Edit Technical Interface" %}</a>
 
                       {% endif %}
                   {% endif %}
-              </div>
-            </div>
+              </li>
+            </ol>
 
             <div class="row">
               <div class="col-md-3">

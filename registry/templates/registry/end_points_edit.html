@@ -40,11 +40,11 @@
                   <h1>{% trans "End Points" %}</h1>
               </div>
 
-              <div class="row">
-                <div class="col-md-12">
-                  <a class="btn btn-default pull-right" href="{% url 'registry:technical_interface_edit' pk=service_pk %}" role="button">{% trans "Back to Technical Interface" %}</a>
-                </div>
-              </div>
+              <ol class="breadcrumb">
+                <li>
+                   <a href="{% url 'registry:technical_interface_edit' pk=service_pk %}" role="button">{% trans "Back to Technical Interface" %}</a>
+                </li>
+              </ol>
 
               {{ formset_end_points.management_form }}
               <div id="formset_end_points">

@@ -68,11 +68,11 @@
                   <h1>{% trans "Infrastructure Description" %}</h1>
               </div>
 
-              <div class="row">
-                <div class="col-md-12">
-                  <a class="btn btn-default pull-right" href="{% url 'registry:technical_interface_edit' pk=service_pk %}" role="button">{% trans "Back to Technical Interface" %}</a>
-                </div>
-              </div>
+              <ol class="breadcrumb">
+                <li>
+                  <a href="{% url 'registry:technical_interface_edit' pk=service_pk %}" role="button">{% trans "Back to Technical Interface" %}</a>
+                </li>
+              </ol>
 
               {{ form_infrastructure_description|crispy }}
 

@@ -11,6 +11,12 @@
           <form method="POST" class="post-form">
             {% csrf_token %}
 
+              <ol class="breadcrumb">
+                <li>
+                   <a href="{% url 'community:participant_edit' %}" role="button">{% trans "Back to Organization" %}</a>
+                </li>
+              </ol>
+
               <div class="row">
                   <div class="col-md-6">
                       <div class="form-group">
