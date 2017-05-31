@@ -7,7 +7,7 @@
         <div class="col-md-10 col-md-offset-1">
 
            <div class="page-header">
-                <h1>{{ service.name }} {% trans "Technical Interface" %}</h1>
+                <h1>{% trans "Technical Interface" %}: {{ service.name }} </h1>
             </div>
 
           <div class="row">
@@ -45,7 +45,7 @@
                           <li class="list-group-item">
                             <p>
                               <img src="{{ each.image.url }}" alt="logo" width="50">
-                              <a href="#">{{ each.name }}</a>
+                              <a href="{% url 'registry:infrastructure_reference_document_detail' pk=each.pk %}">{{ each.name }}</a>
                             </p>
                             <p>
                               {{ each.description|truncatechars:100 }}
@@ -65,7 +65,7 @@
                           <li class="list-group-item">
                             <p>
                               <img src="{{ each.image.url }}" alt="logo" width="50">
-                              <a href="#">{{ each.name }}</a>
+                              <a href="{% url 'registry:technical_interface_document_detail' pk=each.pk %}">{{ each.name }}</a>
                             </p>
                             <p>
                               {{ each.description }}
@@ -96,7 +96,7 @@
                           <li class="list-group-item">
                             <p>
                               <img src="{{ each.image.url }}" alt="logo" width="50">
-                              <a href="#">{{ each.name }}</a>
+                              <a href="{% url 'registry:data_standard_detail' pk=each.pk %}">{{ each.name }}</a>
                             </p>
                             <p>
                               {{ each.description|truncatechars:100 }}
@@ -116,7 +116,7 @@
                           <li class="list-group-item">
                             <p>
                               <img src="{{ each.image.url }}" alt="logo" width="50">
-                              <a href="#">{{ each.name }}</a>
+                              <a href="{% url 'registry:service_data_exchange_format_detail' pk=each.pk %}">{{ each.name }}</a>
                             </p>
                             <p>
                               {{ each.description|truncatechars:100 }}
@@ -180,7 +180,7 @@
                       {% for each in service.technical_interface.end_points.all %}
                           <li class="list-group-item">
                               <img src="{{ each.image.url }}" alt="logo" width="50">
-                              <a href="#">{{ each.name }}</a>
+                              <a href="{% url 'registry:end_point_detail' pk=each.pk %}">{{ each.name }}</a>
                           </li>
                       {% endfor %}
                     </div>

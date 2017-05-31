@@ -15,12 +15,32 @@
               <img src="{{service.image.url}}" width="150" alt="service logo">
             </div>
             <div class="col-md-5">
-            {% if service.version %}<p><b>{% trans "Version" %}: </b>{{service.version}}</p>{% endif %}
-            <p><b>{% trans "Organization" %}: </b>{{service.organization.name}}</p>
-            <p><b>{% trans "Implementation status" %}: </b>{{service.implementation_status.name}}</p>
-            <p><b>{% trans "Implementation maturity" %}: </b>{{service.implementation_maturity.name}}</p>
-            <p><b>{% trans "Version category" %}: </b>{{service.version_category.name}}</p>
-            <p><b>{% trans "Registration status" %}: </b>{{service.registration_status.name}}</p>
+            {% if service.version %}
+              <p>
+                <b>{% trans "Version" %}: </b>
+                {{service.version}}
+              </p>
+            {% endif %}
+            <p>
+              <b>{% trans "Organization" %}: </b>
+              {{service.organization.name}}
+            </p>
+            <p>
+              <b>{% trans "Implementation status" %}: </b>
+              {{service.implementation_status.name}}
+            </p>
+            <p>
+              <b>{% trans "Implementation maturity" %}: </b>
+              {{service.implementation_maturity.name}}
+            </p>
+            <p>
+              <b>{% trans "Version category" %}: </b>
+              {{service.version_category.name}}
+            </p>
+            <p>
+              <b>{% trans "Registration status" %}: </b>
+              {{service.registration_status.name}}
+            </p>
             </div>
             <div class="col-md-4">
               <p>
@@ -85,12 +105,17 @@
                 <div class="panel-heading">
                   <h3 class="panel-title">{% trans "Technical Interface" %}</h3>
                 </div>
-                <div class="list-group">
-                  <li class="list-group-item">
-                    <img src="{{service.technical_interface.image.url}}" alt="logo" width="50">
-                    <a href="{% url 'registry:technical_interface_detail' pk=service.pk %}"> {{ service.technical_interface.description|truncatechars:144 }}</a>
-                  </li>
-                </div>
+                {% if service.technical_interface %}
+                  <div class="list-group">
+                    <li class="list-group-item">
+                      <img src="{{service.technical_interface.image.url}}" alt="logo" width="50">
+                      <a href="{% url 'registry:technical_interface_detail' pk=service.pk %}">{% trans "Technical Interface" %}</a>
+                      {% if service.technical_interface.description %}
+                           <p>{{ service.technical_interface.description|truncatechars:100 }}</p>
+                      {% endif %}
+                    </li>
+                  </div>
+                {% endif %}
               </div>
             </div>
           </div>
@@ -123,7 +148,7 @@
                   {% for contact_point in service.contact_points.all %}
                       <li class="list-group-item">
                         <img src="{{contact_point.image.url}}" alt="logo" width="50">
-                        <a href="#">{{ contact_point.name }}</a>
+                        <a href="{% url 'registry:service_contact_point_detail' pk=contact_point.pk %}">{{ contact_point.name }}</a>
                       </li>
                   {% endfor %}
                 </div>

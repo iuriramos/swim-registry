@@ -1,0 +1,38 @@
+{% extends 'registry/base.html' %}
+{% load i18n %}
+
+
+{% block container %}
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+           <div class="page-header">
+                <h1>{% trans "End Point" %}: {{ end_point.name }}</h1>
+            </div>
+
+          <div class="row">
+            <div class="col-md-3">
+              <img src="{{end_point.image.url}}" width="150" alt="end_point logo">
+            </div>
+            <div class="col-md-9">
+              {% if end_point.description %}
+                <p>
+                  {{end_point.description}}
+                </p>
+              {% endif %}
+
+              {% if end_point.address %}
+                <p>
+                  <b>{% trans "Address" %}: </b>
+                  {{ end_point.address }}
+                </p>
+              {% endif %}
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+{% endblock %}

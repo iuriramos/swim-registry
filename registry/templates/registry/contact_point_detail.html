@@ -1,0 +1,43 @@
+{% extends 'registry/base.html' %}
+{% load i18n %}
+
+{% block container %}
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+           <div class="page-header">
+                <h1>{% trans "Contact Point" %}: {{ contact_point.name }}</h1>
+            </div>
+
+          <div class="row">
+            <div class="col-md-3">
+              <img src="{{contact_point.image.url}}" width="150" alt="contact_point logo">
+            </div>
+            <div class="col-md-9">
+              {% if contact_point.description %}
+                <p>
+                  {{contact_point.description}}
+                </p>
+              {% endif %}
+
+              {% if contact_point.telephone %}
+                <p>
+                  <b>{% trans "Telephone" %}: </b>
+                  {{ contact_point.telephone }}
+                </p>
+              {% endif %}
+
+              {% if contact_point.email %}
+                <p>
+                  <b>{% trans "E-mail" %}: </b>
+                  {{ contact_point.email|urlize }}
+                </p>
+              {% endif %}
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+{% endblock %}

@@ -1,7 +1,7 @@
 from django.contrib.auth.views import login, logout_then_login
 from django.contrib.auth.decorators import login_required
 from django.conf.urls import url
-from .views import index, service
+from .views import (index, service, document, end_point, data_standard, data_exchange_format)
 
 app_name='registry'
 
@@ -22,6 +22,19 @@ urlpatterns = [
     # url(r'^technical-interface/(?P<pk>\d+)/data-exchange-formats/new/$', service.data_exchange_format_new, name='data_exchange_format_new'),
     url(r'^technical-interface/(?P<pk>\d+)/data-exchange-formats/edit/$', service.data_exchange_formats_edit, name='data_exchange_formats_edit'),
     url(r'^technical-interface/(?P<pk>\d+)/end-points/edit/$', service.end_points_edit, name='end_points_edit'),
-    url(r'^service-documents/(?P<pk>\d+)/detail/$', login_required(service.ServiceDocumentDetailView.as_view()), name='service_document_detail'),
+    url(r'^service-documents/(?P<pk>\d+)/detail/$', login_required(document.ServiceDocumentDetailView.as_view()), name='service_document_detail'),
+    url(r'^infrastructure-reference-documents/(?P<pk>\d+)/detail/$', login_required(document.InfrastructureReferenceDocumentDetailView.as_view()), name='infrastructure_reference_document_detail'),
+    url(r'^infrastructure-description-documents/(?P<pk>\d+)/detail/$', login_required(document.InfrastructureDescriptionDocumentDetailView.as_view()), name='infrastructure_description_document_detail'),
+    url(r'^service-data-exchange-format-documents/(?P<pk>\d+)/detail/$', login_required(document.DataExchangeFormatServiceDocumentDetailView.as_view()), name='data_exchange_format_service_document_detail'),
+    url(r'^technical-interface-documents/(?P<pk>\d+)/detail/$', login_required(document.TechnicalInterfaceDocumentDetailView.as_view()), name='technical_interface_document_detail'),
+    url(r'^service-contact-points/(?P<pk>\d+)/detail/$', login_required(service.ServiceContactPointDetailView.as_view()), name='service_contact_point_detail'),
+    url(r'^end-points/(?P<pk>\d+)/detail/$', login_required(end_point.EndPointDetailView.as_view()), name='end_point_detail'),
+    url(r'^data-standards/(?P<pk>\d+)/detail/$', login_required(data_standard.DataStandardDetailView.as_view()), name='data_standard_detail'),
+    url(r'^service-data-exchange-formats/(?P<pk>\d+)/detail/$', login_required(data_exchange_format.DataExchangeFormatServiceDetailView.as_view()), name='service_data_exchange_format_detail'),
     # url(r'^about/$', views.about, name='about'),
 ]
+
+# ReferenceDocumentDetailView
+# DataExchangeFormatApplicationDocumentDetailView
+# ApplicationDocumentDetailView
+# ParticipantDocumentDetailView

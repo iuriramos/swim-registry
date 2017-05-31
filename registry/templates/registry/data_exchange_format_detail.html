@@ -1,0 +1,58 @@
+{% extends 'registry/base.html' %}
+{% load i18n %}
+
+{% block container %}
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+
+           <div class="page-header">
+                <h1>{% trans "Data Exchange Format" %}: {{ data_exchange_format.name }}</h1>
+            </div>
+
+          <div class="row">
+            <div class="col-md-3">
+              <img src="{{ data_exchange_format.image.url }}" width="150" alt="data_exchange_format logo">
+            </div>
+            <div class="col-md-9">
+              <p>
+                <b>{% trans "Description" %}: </b>
+                {{ data_exchange_format.description }}
+              </p>
+              {% if data_exchange_format.version %}
+                <p>
+                  <b>{% trans "Version" %}:</b>
+                  {{ data_exchange_format.version }}
+                </p>
+              {% endif %}
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h3 class="panel-title">{% trans "Documentation" %}</h3>
+                </div>
+                <div class="list-group">
+                  {% for each in data_exchange_format.infrastructure_reference_documents.all %}
+                      <li class="list-group-item">
+                        <p>
+                          <img src="{{ each.image.url }}" alt="logo" width="50">
+                          <a href="{% url 'registry:infrastructure_reference_document_detail' pk=each.pk %}">{{ each.name }}</a>
+                        </p>
+                        <p>
+                          {{ each.description|truncatechars:100 }}
+                        </p>
+                      </li>
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+{% endblock %}
