@@ -1,4 +1,3 @@
-from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from registry.models.document import (ServiceDocument, TechnicalInterfaceDocument,
     ReferenceDocument, InfrastructureReferenceDocument, InfrastructureDescriptionDocument,

@@ -146,7 +146,7 @@
                       <li class="list-group-item">
                         <p>
                           <img src="{{ service.technical_interface.infrastructure_profile.image.url }}" alt="logo" width="50">
-                          <a href="#">{{ service.technical_interface.infrastructure_profile.name }}</a>
+                          <a href="{% url 'registry:infrastructure_profile_detail' pk=service.technical_interface.infrastructure_profile.pk %}">{{ service.technical_interface.infrastructure_profile.name }}</a>
                         </p>
                         <p>
                           {{ service.technical_interface.infrastructure_profile.description | truncatechars:100 }}
@@ -164,7 +164,7 @@
                       <li class="list-group-item">
                         <p>
                           <img src="{{ service.technical_interface.infrastructure_description.image.url }}" alt="logo" width="50">
-                          <a href="#">{{ service.technical_interface.infrastructure_description.description|truncatechars:50 }}</a>
+                          <a href="{% url 'registry:infrastructure_description_detail' pk=service.technical_interface.infrastructure_description.pk %}">Infrastructure Description</a>
                         </p>
                         <p>
                           {{ service.technical_interface.infrastructure_description.description | truncatechars:100 }}

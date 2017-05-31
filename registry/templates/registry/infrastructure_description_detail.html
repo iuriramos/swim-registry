@@ -1,0 +1,90 @@
+{% extends 'registry/base.html' %}
+{% load i18n %}
+
+{% block container %}
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+
+           <div class="page-header">
+                <h1>{% trans "Infrastructure Description" %}</h1>
+            </div>
+
+          <div class="row">
+            <div class="col-md-3">
+              <img src="{{infrastructure_description.image.url}}" width="150" alt="infrastructure_description logo">
+            </div>
+            <div class="col-md-9">
+            {% if infrastructure_description.description %}
+              <p>
+                {{ infrastructure_description.description }}
+              </p>
+            {% endif %}
+            {% if infrastructure_description.version %}
+              <p>
+                <b>{% trans "Version" %}: </b>
+                {{infrastructure_description.version}}
+              </p>
+            {% endif %}
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h3 class="panel-title">{% trans "Technical Interface Bindings" %}</h3>
+                </div>
+                <div class="list-group">
+                  {% for each in infrastructure_description.technical_interface_bindings.all %}
+                      <li class="list-group-item">
+                        <img src="{{ each.image.url }}" alt="logo" width="50">
+                        <a href="{% url 'registry:description_technical_interface_binding_detail' pk=each.pk %}"> {{ each.name }}</a>
+                      </li>
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h3 class="panel-title">{% trans "Infrastrcture Reference Documents" %}</h3>
+                </div>
+                <div class="list-group">
+                  {% for each in infrastructure_description.infrastructure_reference_documents.all %}
+                      <li class="list-group-item">
+                        <img src="{{ each.image.url }}" alt="logo" width="50">
+                        <a href="{% url 'registry:infrastructure_reference_document_detail' pk=each.pk %}">{{ each.name }}</a>
+                      </li>
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h3 class="panel-title">{% trans "Infrastructure Documents" %}</h3>
+                </div>
+                <div class="list-group">
+                  {% for each in infrastructure_description.documents.all %}
+                      <li class="list-group-item">
+                        <img src="{{ each.image.url }}" alt="logo" width="50">
+                        <a href="{% url 'registry:infrastructure_description_document_detail' pk=each.pk %}">{{ each.name }}</a>
+                      </li>
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+{% endblock %}

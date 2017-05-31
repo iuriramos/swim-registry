@@ -27,19 +27,19 @@
             </p>
             <p>
               <b>{% trans "Implementation status" %}: </b>
-              {{service.implementation_status.name}}
+              {{service.implementation_status.get_name_display}}
             </p>
             <p>
               <b>{% trans "Implementation maturity" %}: </b>
-              {{service.implementation_maturity.name}}
+              {{service.implementation_maturity.get_name_display}}
             </p>
             <p>
               <b>{% trans "Version category" %}: </b>
-              {{service.version_category.name}}
+              {{service.version_category.get_name_display}}
             </p>
             <p>
               <b>{% trans "Registration status" %}: </b>
-              {{service.registration_status.name}}
+              {{service.registration_status.get_name_display}}
             </p>
             </div>
             <div class="col-md-4">
@@ -47,7 +47,7 @@
                   <ul class="list-unstyled">
                       <b>{% trans "ATM activity categories" %}:</b>
                       {% for each in service.activity_categories.all %}
-                          <li>{{ each.name }}</li>
+                          <li>{{ each.get_name_display }}</li>
                       {% endfor %}
                   </ul>
               </p>
@@ -55,7 +55,7 @@
                   <ul class="list-unstyled">
                       <b>{% trans "ATM data categories" %}:</b>
                       {% for each in service.data_categories.all %}
-                          <li>{{ each.name }}</li>
+                          <li>{{ each.get_name_display }}</li>
                       {% endfor %}
                   </ul>
               </p>
@@ -63,7 +63,7 @@
                   <ul class="list-unstyled">
                       <b>{% trans "ATM stakeholders" %}:</b>
                       {% for each in service.stakeholders.all %}
-                          <li>{{ each.name }}</li>
+                          <li>{{ each.get_name_display }}</li>
                       {% endfor %}
                   </ul>
               </p>
@@ -71,7 +71,7 @@
                   <ul class="list-unstyled">
                       <b>{% trans "Regions" %}:</b>
                       {% for each in service.regions.all %}
-                          <li>{{ each.name }}</li>
+                          <li>{{ each.get_name_display }}</li>
                       {% endfor %}
                   </ul>
               </p>
@@ -79,7 +79,7 @@
                   <ul class="list-unstyled">
                       <b>{% trans "ATM flight phases" %}:</b>
                       {% for each in service.flight_phases.all %}
-                          <li>{{ each.name }}</li>
+                          <li>{{ each.get_name_display }}</li>
                       {% endfor %}
                   </ul>
               </p>
