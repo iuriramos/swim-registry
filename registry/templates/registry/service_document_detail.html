@@ -1,0 +1,48 @@
+{% extends 'registry/base.html' %}
+{% load i18n %}
+
+{% block container %}
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+
+           <div class="page-header">
+                <h1>{{ document.name }}</h1>
+            </div>
+
+          <div class="row">
+            <div class="col-md-3">
+              <img src="{{document.image.url}}" width="150" alt="document logo">
+            </div>
+            <div class="col-md-9">
+              {% if document.description %}
+                <p>
+                  {{document.description}}
+                </p>
+              {% endif %}
+
+              {% if document.version %}
+                <p>
+                  <b>{% trans "Version" %}: </b>
+                  {{ document.version }}
+                </p>
+              {% endif %}
+
+              {% if document.external_link %}
+                <p>
+                  <b>{% trans "External Link" %}: </b>
+                  {{ document.external_link|urlize }}
+                </p>
+              {% endif %}
+
+              {% if document.document %}
+                <a href="{{ document.document.url }}">{{ document.name }}</a>
+              {% endif %}
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+{% endblock %}

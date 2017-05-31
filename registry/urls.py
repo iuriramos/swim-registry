@@ -22,5 +22,6 @@ urlpatterns = [
     # url(r'^technical-interface/(?P<pk>\d+)/data-exchange-formats/new/$', service.data_exchange_format_new, name='data_exchange_format_new'),
     url(r'^technical-interface/(?P<pk>\d+)/data-exchange-formats/edit/$', service.data_exchange_formats_edit, name='data_exchange_formats_edit'),
     url(r'^technical-interface/(?P<pk>\d+)/end-points/edit/$', service.end_points_edit, name='end_points_edit'),
+    url(r'^service-documents/(?P<pk>\d+)/detail/$', login_required(service.ServiceDocumentDetailView.as_view()), name='service_document_detail'),
     # url(r'^about/$', views.about, name='about'),
 ]

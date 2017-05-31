@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from registry.models.service import Service
 from registry.models.technical_interface import TechnicalInterface
 from registry.models.infrastructure import InfrastructureDescription
+from registry.models.document import ServiceDocument
 from registry.forms.service import ServiceForm
 from registry.forms.technical_interface import TechnicalInterfaceForm
 from registry.forms.end_point import EndPointFormSet
@@ -35,6 +36,12 @@ class TechnicalInterfaceDetailView(DetailView):
     model = Service
     context_object_name = 'service'
     template_name = 'registry/technical_interface_detail.html'
+
+
+class ServiceDocumentDetailView(DetailView):
+    model = ServiceDocument
+    context_object_name = 'document'
+    template_name = 'registry/service_document_detail.html'
 
 
 @login_required

@@ -105,7 +105,7 @@
                   {% for document in service.documents.all %}
                       <li class="list-group-item">
                         <img src="{{document.image.url}}" alt="logo" width="50">
-                        <a href="#"> {{ document.name }}</a>
+                        <a href="{% url 'registry:service_document_detail' pk=document.pk %}"> {{ document.name }}</a>
                       </li>
                   {% endfor %}
                 </div>

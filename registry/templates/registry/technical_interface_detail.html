@@ -38,7 +38,7 @@
                 <div class="col-md-6">
                   <div class="panel panel-default">
                     <div class="panel-heading">
-                      <h3 class="panel-title">{% trans "Infrastructure Reference Documents" %}</h3>
+                      <h3 class="panel-title">{% trans "Infrastructure Reference Documents" %} ({% trans "SWIM Reference" %})</h3>
                     </div>
                     <div class="list-group">
                       {% for each in service.technical_interface.infrastructure_reference_documents.all %}
@@ -58,7 +58,7 @@
                 <div class="col-md-6">
                   <div class="panel panel-default">
                     <div class="panel-heading">
-                      <h3 class="panel-title">{% trans "Technical Interface Documents" %}</h3>
+                      <h3 class="panel-title">{% trans "Technical Interface Documents" %} ({% trans "Implementation Specific" %})</h3>
                     </div>
                     <div class="list-group">
                       {% for each in service.technical_interface.documents.all %}
@@ -89,7 +89,7 @@
                 <div class="col-md-6">
                   <div class="panel panel-default">
                     <div class="panel-heading">
-                      <h3 class="panel-title">{% trans "Data Standards" %}</h3>
+                      <h3 class="panel-title">{% trans "Data Standards" %} ({% trans "SWIM Reference" %})</h3>
                     </div>
                     <div class="list-group">
                       {% for each in service.technical_interface.data_standards.all %}
@@ -109,7 +109,7 @@
                 <div class="col-md-6">
                   <div class="panel panel-default">
                     <div class="panel-heading">
-                      <h3 class="panel-title">{% trans "Data Exchange Formats" %}</h3>
+                      <h3 class="panel-title">{% trans "Data Exchange Formats" %} ({% trans "Implementation Specific" %})</h3>
                     </div>
                     <div class="list-group">
                       {% for each in service.technical_interface.data_exchange_formats.all %}
@@ -140,7 +140,7 @@
                 <div class="col-md-6">
                   <div class="panel panel-default">
                     <div class="panel-heading">
-                      <h3 class="panel-title">{% trans "Infrastructure Profile" %}</h3>
+                      <h3 class="panel-title">{% trans "SWIM Infrastructure Profile" %} ({% trans "SWIM Reference" %})</h3>
                     </div>
                     <div class="list-group">
                       <li class="list-group-item">
@@ -158,7 +158,7 @@
                 <div class="col-md-6">
                   <div class="panel panel-default">
                     <div class="panel-heading">
-                      <h3 class="panel-title">{% trans "Infrastructure Description" %}</h3>
+                      <h3 class="panel-title">{% trans "Infrastructure Description" %} ({% trans "Implementation Specific" %})</h3>
                     </div>
                     <div class="list-group">
                       <li class="list-group-item">
@@ -174,7 +174,7 @@
                   </div>
                   <div class="panel panel-default">
                     <div class="panel-heading">
-                      <h3 class="panel-title">{% trans "End Points" %}</h3>
+                      <h3 class="panel-title">{% trans "End Points" %} ({% trans "Implementation Specific" %})</h3>
                     </div>
                     <div class="list-group">
                       {% for each in service.technical_interface.end_points.all %}
