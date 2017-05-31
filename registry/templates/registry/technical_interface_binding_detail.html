@@ -1,0 +1,31 @@
+{% extends 'registry/base.html' %}
+{% load i18n %}
+
+
+{% block container %}
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+           <div class="page-header">
+                <h1>{% trans "Technical Interface Binding" %}: {{ technical_interface_binding.name }}</h1>
+            </div>
+
+          <div class="row">
+            <div class="col-md-3">
+              <img src="{{technical_interface_binding.image.url}}" width="150" alt="technical_interface_binding logo">
+            </div>
+            <div class="col-md-9">
+              {% if technical_interface_binding.description %}
+                <p>
+                  {{technical_interface_binding.description}}
+                </p>
+              {% endif %}
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+{% endblock %}

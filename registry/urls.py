@@ -1,7 +1,9 @@
 from django.contrib.auth.views import login, logout_then_login
 from django.contrib.auth.decorators import login_required
 from django.conf.urls import url
-from .views import (index, service, document, end_point, data_standard, data_exchange_format)
+from .views import (index, service, document, end_point, data_standard, data_exchange_format,
+        technical_interface_binding)
+
 
 app_name='registry'
 
@@ -31,6 +33,9 @@ urlpatterns = [
     url(r'^end-points/(?P<pk>\d+)/detail/$', login_required(end_point.EndPointDetailView.as_view()), name='end_point_detail'),
     url(r'^data-standards/(?P<pk>\d+)/detail/$', login_required(data_standard.DataStandardDetailView.as_view()), name='data_standard_detail'),
     url(r'^service-data-exchange-formats/(?P<pk>\d+)/detail/$', login_required(data_exchange_format.DataExchangeFormatServiceDetailView.as_view()), name='service_data_exchange_format_detail'),
+    url(r'^infrastructure-profile/technical-interface-binding/(?P<pk>\d+)/detail/$', login_required(technical_interface_binding.TechnicalInterfaceBindingProfileDetailView.as_view()), name='profile_technical_interface_binding_detail'),
+    url(r'^infrastructure-description/technical-interface-binding/(?P<pk>\d+)/detail/$', login_required(technical_interface_binding.TechnicalInterfaceBindingDescriptionDetailView.as_view()), name='description_technical_interface_binding_detail'),
+
     # url(r'^about/$', views.about, name='about'),
 ]
 
