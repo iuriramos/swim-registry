@@ -87,8 +87,8 @@
                 </div>
                 <div class="list-group">
                   <li class="list-group-item">
-                    <img src="{{service.technical_interface.image.url}}" alt="logo">
-                    <a href="#"> {{ service.technical_interface.description|truncatechars:144 }}</a>
+                    <img src="{{service.technical_interface.image.url}}" alt="logo" width="50">
+                    <a href="{% url 'registry:technical_interface_detail' pk=service.pk %}"> {{ service.technical_interface.description|truncatechars:144 }}</a>
                   </li>
                 </div>
               </div>
@@ -104,7 +104,7 @@
                 <div class="list-group">
                   {% for document in service.documents.all %}
                       <li class="list-group-item">
-                        <img src="{{document.image.url}}" alt="logo">
+                        <img src="{{document.image.url}}" alt="logo" width="50">
                         <a href="#"> {{ document.name }}</a>
                       </li>
                   {% endfor %}
@@ -122,7 +122,7 @@
                 <div class="list-group">
                   {% for contact_point in service.contact_points.all %}
                       <li class="list-group-item">
-                        <img src="{{contact_point.image.url}}" alt="logo">
+                        <img src="{{contact_point.image.url}}" alt="logo" width="50">
                         <a href="#">{{ contact_point.name }}</a>
                       </li>
                   {% endfor %}

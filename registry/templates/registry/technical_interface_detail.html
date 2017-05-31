@@ -1,0 +1,197 @@
+{% extends 'registry/base.html' %}
+{% load i18n %}
+
+{% block container %}
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+
+           <div class="page-header">
+                <h1>{{ service.name }} {% trans "Technical Interface" %}</h1>
+            </div>
+
+          <div class="row">
+            <div class="col-md-3">
+              <img src="{{ service.technical_interface.image.url }}" width="150" alt="service.technical_interface logo">
+            </div>
+            <div class="col-md-9">
+              <p>
+                <b>{% trans "Description" %}: </b>
+                {{ service.technical_interface.description }}
+              </p>
+              {% if service.technical_interface.version %}
+                <p>
+                  <b>{% trans "Version" %}:</b>
+                  {{ service.technical_interface.version }}
+                </p>
+              {% endif %}
+            </div>
+          </div>
+
+          <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div class="panel-heading">
+              <h3 class="panel-title">{% trans "Service" %}</h3>
+            </div>
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <h3 class="panel-title">{% trans "Infrastructure Reference Documents" %}</h3>
+                    </div>
+                    <div class="list-group">
+                      {% for each in service.technical_interface.infrastructure_reference_documents.all %}
+                          <li class="list-group-item">
+                            <p>
+                              <img src="{{ each.image.url }}" alt="logo" width="50">
+                              <a href="#">{{ each.name }}</a>
+                            </p>
+                            <p>
+                              {{ each.description|truncatechars:100 }}
+                            </p>
+                          </li>
+                      {% endfor %}
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <h3 class="panel-title">{% trans "Technical Interface Documents" %}</h3>
+                    </div>
+                    <div class="list-group">
+                      {% for each in service.technical_interface.documents.all %}
+                          <li class="list-group-item">
+                            <p>
+                              <img src="{{ each.image.url }}" alt="logo" width="50">
+                              <a href="#">{{ each.name }}</a>
+                            </p>
+                            <p>
+                              {{ each.description }}
+                            </p>
+                          </li>
+                      {% endfor %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div class="panel-heading">
+              <h3 class="panel-title">{% trans "Information" %}</h3>
+            </div>
+            <div class="panel-body">
+               <div class="row">
+                <div class="col-md-6">
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <h3 class="panel-title">{% trans "Data Standards" %}</h3>
+                    </div>
+                    <div class="list-group">
+                      {% for each in service.technical_interface.data_standards.all %}
+                          <li class="list-group-item">
+                            <p>
+                              <img src="{{ each.image.url }}" alt="logo" width="50">
+                              <a href="#">{{ each.name }}</a>
+                            </p>
+                            <p>
+                              {{ each.description|truncatechars:100 }}
+                            </p>
+                          </li>
+                      {% endfor %}
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <h3 class="panel-title">{% trans "Data Exchange Formats" %}</h3>
+                    </div>
+                    <div class="list-group">
+                      {% for each in service.technical_interface.data_exchange_formats.all %}
+                          <li class="list-group-item">
+                            <p>
+                              <img src="{{ each.image.url }}" alt="logo" width="50">
+                              <a href="#">{{ each.name }}</a>
+                            </p>
+                            <p>
+                              {{ each.description|truncatechars:100 }}
+                            </p>
+                          </li>
+                      {% endfor %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div class="panel-heading">
+              <h3 class="panel-title">{% trans "Infrastructure" %}</h3>
+            </div>
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <h3 class="panel-title">{% trans "Infrastructure Profile" %}</h3>
+                    </div>
+                    <div class="list-group">
+                      <li class="list-group-item">
+                        <p>
+                          <img src="{{ service.technical_interface.infrastructure_profile.image.url }}" alt="logo" width="50">
+                          <a href="#">{{ service.technical_interface.infrastructure_profile.name }}</a>
+                        </p>
+                        <p>
+                          {{ service.technical_interface.infrastructure_profile.description | truncatechars:100 }}
+                        </p>
+                      </li>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <h3 class="panel-title">{% trans "Infrastructure Description" %}</h3>
+                    </div>
+                    <div class="list-group">
+                      <li class="list-group-item">
+                        <p>
+                          <img src="{{ service.technical_interface.infrastructure_description.image.url }}" alt="logo" width="50">
+                          <a href="#">{{ service.technical_interface.infrastructure_description.description|truncatechars:50 }}</a>
+                        </p>
+                        <p>
+                          {{ service.technical_interface.infrastructure_description.description | truncatechars:100 }}
+                        </p>
+                      </li>
+                    </div>
+                  </div>
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <h3 class="panel-title">{% trans "End Points" %}</h3>
+                    </div>
+                    <div class="list-group">
+                      {% for each in service.technical_interface.end_points.all %}
+                          <li class="list-group-item">
+                              <img src="{{ each.image.url }}" alt="logo" width="50">
+                              <a href="#">{{ each.name }}</a>
+                          </li>
+                      {% endfor %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+{% endblock %}

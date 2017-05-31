@@ -16,6 +16,7 @@ urlpatterns = [
     url(r'^services/(?P<pk>\d+)/edit/$', service.service_edit, name='service_edit'),
     url(r'^services/(?P<pk>\d+)/technical-interface/new/$', service.technical_interface_new, name='technical_interface_new'),
     url(r'^services/(?P<pk>\d+)/technical-interface/edit/$', service.technical_interface_edit, name='technical_interface_edit'),
+    url(r'^services/(?P<pk>\d+)/technical-interface/detail/$', login_required(service.TechnicalInterfaceDetailView.as_view()), name='technical_interface_detail'),
     url(r'^technical-interface/(?P<pk>\d+)/infrastructure-description/new/$', service.infrastructure_description_new, name='infrastructure_description_new'),
     url(r'^technical-interface/(?P<pk>\d+)/infrastructure-description/edit/$', service.infrastructure_description_edit, name='infrastructure_description_edit'),
     # url(r'^technical-interface/(?P<pk>\d+)/data-exchange-formats/new/$', service.data_exchange_format_new, name='data_exchange_format_new'),

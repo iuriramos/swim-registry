@@ -31,6 +31,12 @@ class ServiceDetailView(DetailView):
     template_name = 'registry/service_detail.html'
 
 
+class TechnicalInterfaceDetailView(DetailView):
+    model = Service
+    context_object_name = 'service'
+    template_name = 'registry/technical_interface_detail.html'
+
+
 @login_required
 def organization_service_list(request):
     organization = get_organization(request)
