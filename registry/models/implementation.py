@@ -11,7 +11,7 @@ class ImplementationMaturityCategory(models.Model):
         (PROTOTYPE, _('Prototype')),
     )
 
-    name = models.CharField(max_length=50, choices=CHOICES, unique=True)
+    name = models.CharField(max_length=50, choices=CHOICES, unique=True, verbose_name=_('name'))
 
     class Meta:
         verbose_name = _('implementation maturity category')
@@ -32,7 +32,7 @@ class ImplementationStatusCategory(models.Model):
         (UNDER_DEVELOPMENT, _('Under development')),
     )
 
-    name = models.CharField(max_length=50, choices=CHOICES, unique=True)
+    name = models.CharField(max_length=50, choices=CHOICES, unique=True, verbose_name=_('name'))
 
     class Meta:
         verbose_name = _('implementation status category')

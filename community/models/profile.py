@@ -17,16 +17,19 @@ class Profile(TimeStampedModel):
         (WEEKLY,  _('Weekly')),
     )
 
-    user = models.OneToOneField(User, related_name='profile')
-    organization = models.OneToOneField('community.Participant', related_name='profile', null=True)
-    following_organizations = models.ManyToManyField('community.Participant', related_name='followers')
-    notification_frequency = models.CharField(max_length=10, choices=FREQ_CHOICES, default=NEVER)
-    subscriptions_content_type = models.ManyToManyField('registry.SubscriptionContentType', related_name='profiles')
-    subscriptions_region = models.ManyToManyField('registry.RegionCategory', related_name='profiles')
-    subscriptions_stakeholder = models.ManyToManyField('registry.StakeholderCategory', related_name='profiles')
-    subscriptions_data = models.ManyToManyField('registry.DataCategory', related_name='profiles')
-    subscriptions_activity = models.ManyToManyField('registry.ActivityCategory', related_name='profiles')
-    subscriptions_flight_phase = models.ManyToManyField('registry.FlightPhaseCategory', related_name='profiles')
+    user = models.OneToOneField(User, related_name='profile', verbose_name=_('user'))
+    organization = models.OneToOneField('community.Participant', related_name='profile', null=True, verbose_name=_('organization'))
+    following_organizations = models.ManyToManyField('community.Participant', related_name='followers', verbose_name=_('following organizations'))
+    notification_frequency = models.CharField(max_length=10, choices=FREQ_CHOICES, default=NEVER, verbose_name=_('notification frequency'))
+    subscriptions_content_type = models.ManyToManyField('registry.SubscriptionContentType', related_name='profiles', verbose_name=_('content type subscriptions'))
+    subscriptions_region = models.ManyToManyField('registry.RegionCategory', related_name='profiles', verbose_name=_('region subscriptions'))
+    subscriptions_stakeholder = models.ManyToManyField('registry.StakeholderCategory', related_name='profiles', verbose_name=_('stakeholder subscriptions'))
+    subscriptions_data = models.ManyToManyField('registry.DataCategory', related_name='profiles', verbose_name=_('ATM data subscriptions'))
+    subscriptions_activity = models.ManyToManyField('registry.ActivityCategory', related_name='profiles', verbose_name=_('ATM activity subscriptions'))
+    subscriptions_flight_phase = models.ManyToManyField('registry.FlightPhaseCategory', related_name='profiles', verbose_name=_('flight phases subscriptions'))
+
+    class Meta:
+        verbose_name=_('profile')
 
     @property
     def first_name(self):

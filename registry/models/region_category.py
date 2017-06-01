@@ -23,7 +23,7 @@ class RegionCategory(models.Model):
         (SOUTH_AMERICA, _('South America')),
     )
 
-    name = models.CharField(max_length=50, choices=CHOICES, unique=True)
+    name = models.CharField(max_length=50, choices=CHOICES, unique=True, verbose_name=_('name'))
 
     class Meta:
         verbose_name = _('region category')

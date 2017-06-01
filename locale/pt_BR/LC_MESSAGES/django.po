@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-31 16:14-0300\n"
+"POT-Creation-Date: 2017-06-01 10:44-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,29 +18,9 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: community/forms.py:19 community/templates/community/profile.html:52
-msgid "First name"
-msgstr "Nome"
-
-#: community/forms.py:20 community/templates/community/profile.html:58
-msgid "Last name"
-msgstr "Sobrenome"
-
-#: community/forms.py:21
-#: registry/templates/registry/contact_point_detail.html:32
-msgid "E-mail"
+#: community/forms.py:13 registry/models/workflow.py:12
+msgid "approved"
 msgstr ""
-
-#: community/forms.py:22 registry/templates/registry/base.html:35
-#: registry/templates/registry/service_detail.html:25
-#, fuzzy
-#| msgid "Organizations"
-msgid "Organization"
-msgstr "Organizações"
-
-#: community/forms.py:23
-msgid "Role"
-msgstr "Papel"
 
 #: community/forms.py:24
 msgid "Describe how you intend to use the SWIM Registry."
@@ -50,11 +30,28 @@ msgstr "Descreva como você pretende utilizar o SWIM Registry"
 msgid "Email already registered"
 msgstr "Email já registrado"
 
+#: community/forms.py:46 community/models/registration_request.py:10
+#, fuzzy
+#| msgid "First name"
+msgid "first name"
+msgstr "Nome"
+
+#: community/forms.py:47 community/models/registration_request.py:11
+#, fuzzy
+#| msgid "Last name"
+msgid "last name"
+msgstr "Sobrenome"
+
+#: community/forms.py:48 community/models/registration_request.py:12
+#: registry/models/contact_point.py:12
+msgid "email"
+msgstr ""
+
 #: community/forms.py:65 registry/forms/contact_point.py:13
 #: registry/forms/contact_point.py:23 registry/forms/document.py:15
 #: registry/forms/document.py:24 registry/forms/document.py:33
 #: registry/forms/document.py:42 registry/forms/document.py:52
-#: registry/forms/end_point.py:11 registry/forms/service.py:13
+#: registry/forms/end_point.py:11 registry/forms/service.py:21
 msgid "Name"
 msgstr "Nome"
 
@@ -62,13 +59,79 @@ msgstr "Nome"
 #: registry/forms/contact_point.py:24 registry/forms/document.py:16
 #: registry/forms/document.py:25 registry/forms/document.py:34
 #: registry/forms/document.py:43 registry/forms/document.py:53
-#: registry/forms/end_point.py:12 registry/forms/service.py:14
+#: registry/forms/end_point.py:12 registry/forms/service.py:22
+#: registry/forms/service.py:51
 #: registry/templates/registry/data_exchange_format_detail.html:19
 #: registry/templates/registry/data_standard_detail.html:19
 #: registry/templates/registry/service_detail.html:93
 #: registry/templates/registry/technical_interface_detail.html:19
 msgid "Description"
 msgstr "Descrição"
+
+#: community/models/participant.py:7
+#: community/models/participant_category.py:24
+#: registry/models/activity_category.py:64 registry/models/application.py:7
+#: registry/models/contact_point.py:9 registry/models/data_category.py:22
+#: registry/models/data_exchange_format.py:7 registry/models/data_standard.py:7
+#: registry/models/end_point.py:7 registry/models/flight_phase_category.py:22
+#: registry/models/implementation.py:14 registry/models/implementation.py:35
+#: registry/models/infrastructure.py:7 registry/models/region_category.py:26
+#: registry/models/registration_status_category.py:16
+#: registry/models/service.py:7 registry/models/stakeholder_category.py:18
+#: registry/models/subscription_content_type.py:52
+#: registry/models/technical_interface_binding.py:7
+#: registry/models/version_category.py:18 swim_registry/models.py:23
+#, fuzzy
+#| msgid "Last name"
+msgid "name"
+msgstr "Sobrenome"
+
+#: community/models/participant.py:8 registry/models/contact_point.py:10
+#: registry/models/data_exchange_format.py:8 registry/models/data_standard.py:8
+#: registry/models/end_point.py:8 registry/models/infrastructure.py:8
+#: registry/models/infrastructure.py:24 registry/models/service.py:9
+#: registry/models/technical_interface.py:7
+#: registry/models/technical_interface_binding.py:8
+#: registry/models/workflow.py:8 swim_registry/models.py:24
+#, fuzzy
+#| msgid "Description"
+msgid "description"
+msgstr "Descrição"
+
+#: community/models/participant.py:9
+msgid "website"
+msgstr ""
+
+#: community/models/participant.py:10
+#: community/models/participant_category.py:27
+msgid "participant category"
+msgstr ""
+
+#: community/models/participant.py:11 registry/models/application.py:10
+#: registry/models/contact_point.py:19 registry/models/contact_point.py:27
+#: registry/models/contact_point.py:35
+#: registry/models/data_exchange_format.py:10
+#: registry/models/data_standard.py:10 registry/models/document.py:8
+#: registry/models/document.py:13 registry/models/document.py:23
+#: registry/models/document.py:29 registry/models/document.py:35
+#: registry/models/document.py:41 registry/models/document.py:47
+#: registry/models/document.py:53 registry/models/document.py:59
+#: registry/models/end_point.py:9 registry/models/infrastructure.py:10
+#: registry/models/infrastructure.py:26 registry/models/service.py:11
+#: registry/models/technical_interface.py:9
+#: registry/models/technical_interface_binding.py:9
+msgid "image"
+msgstr ""
+
+#: community/models/participant.py:12 registry/models/application.py:28
+#: registry/models/service.py:26
+msgid "reviewed"
+msgstr ""
+
+#: community/models/participant.py:18 registry/models/contact_point.py:36
+#: registry/models/document.py:60
+msgid "participant"
+msgstr ""
 
 #: community/models/participant_category.py:15
 msgid "Airspace company"
@@ -101,10 +164,6 @@ msgstr ""
 msgid "Other"
 msgstr ""
 
-#: community/models/participant_category.py:27
-msgid "participant category"
-msgstr ""
-
 #: community/models/participant_category.py:28
 msgid "participant categories"
 msgstr ""
@@ -125,6 +184,73 @@ msgstr ""
 msgid "Weekly"
 msgstr ""
 
+#: community/models/profile.py:20
+msgid "user"
+msgstr ""
+
+#: community/models/profile.py:21 community/models/registration_request.py:13
+#: registry/models/application.py:8 registry/models/service.py:8
+#, fuzzy
+#| msgid "Organizations"
+msgid "organization"
+msgstr "Organizações"
+
+#: community/models/profile.py:22
+#, fuzzy
+#| msgid "Organizations"
+msgid "following organizations"
+msgstr "Organizações"
+
+#: community/models/profile.py:23
+msgid "notification frequency"
+msgstr ""
+
+#: community/models/profile.py:24
+msgid "content type subscriptions"
+msgstr ""
+
+#: community/models/profile.py:25
+#, fuzzy
+#| msgid "Description"
+msgid "region subscriptions"
+msgstr "Descrição"
+
+#: community/models/profile.py:26
+msgid "stakeholder subscriptions"
+msgstr ""
+
+#: community/models/profile.py:27
+msgid "ATM data subscriptions"
+msgstr ""
+
+#: community/models/profile.py:28
+msgid "ATM activity subscriptions"
+msgstr ""
+
+#: community/models/profile.py:29
+#, fuzzy
+#| msgid "Flight trajectory"
+msgid "flight phases subscriptions"
+msgstr "Trajetória de voo"
+
+#: community/models/profile.py:32
+msgid "profile"
+msgstr ""
+
+#: community/models/registration_request.py:14
+msgid "institutional role"
+msgstr ""
+
+#: community/models/registration_request.py:15
+msgid "note"
+msgstr ""
+
+#: community/models/registration_request.py:35
+#, fuzzy
+#| msgid "Organizations"
+msgid "registration request"
+msgstr "Organizações"
+
 #: community/templates/community/participant_detail.html:19
 msgid "Category"
 msgstr ""
@@ -132,7 +258,8 @@ msgstr ""
 #: community/templates/community/participant_detail.html:32
 #: registry/templates/registry/base.html:22
 #: registry/templates/registry/organization_service_list.html:19
-#: registry/templates/registry/service_list.html:9
+#: registry/templates/registry/service_list.html:11
+#: registry/templates/registry/service_list.html:32
 #: website/templates/index.html:48 website/templates/index.html:93
 msgid "Services"
 msgstr "Serviços"
@@ -150,9 +277,9 @@ msgid "Documentation"
 msgstr ""
 
 #: community/templates/community/participant_detail.html:88
-#: community/templates/community/participant_edit.html:126
+#: community/templates/community/participant_edit.html:132
 #: registry/templates/registry/service_detail.html:145
-#: registry/templates/registry/service_edit.html:165
+#: registry/templates/registry/service_edit.html:167
 #, fuzzy
 #| msgid "Contact"
 msgid "Contact Points"
@@ -165,37 +292,43 @@ msgid "Organization settings"
 msgstr "Organizações"
 
 #: community/templates/community/participant_edit.html:73
+#: registry/templates/registry/organization_service_list.html:23
+msgid "Edit your Profile"
+msgstr ""
+
+#: community/templates/community/participant_edit.html:76
+#: community/templates/community/profile.html:49
 #, fuzzy
 #| msgid "Services"
 msgid "View Services"
 msgstr "Serviços"
 
-#: community/templates/community/participant_edit.html:102
+#: community/templates/community/participant_edit.html:108
 #, fuzzy
 #| msgid "Services"
 msgid "Documents"
 msgstr "Serviços"
 
-#: community/templates/community/participant_edit.html:118
-#: registry/templates/registry/infrastructure_description_edit.html:124
-#: registry/templates/registry/service_edit.html:157
-#: registry/templates/registry/technical_interface_edit.html:105
+#: community/templates/community/participant_edit.html:124
+#: registry/templates/registry/infrastructure_description_edit.html:126
+#: registry/templates/registry/service_edit.html:159
+#: registry/templates/registry/technical_interface_edit.html:111
 msgid "Add Document"
 msgstr ""
 
-#: community/templates/community/participant_edit.html:142
-#: registry/templates/registry/service_edit.html:181
+#: community/templates/community/participant_edit.html:148
+#: registry/templates/registry/service_edit.html:183
 msgid "Add Contact Point"
 msgstr ""
 
-#: community/templates/community/participant_edit.html:150
-#: community/templates/community/profile.html:77
+#: community/templates/community/participant_edit.html:156
+#: community/templates/community/profile.html:86
 #: community/templates/community/subscriptions.html:134
 #: registry/templates/registry/data_exchange_formats_edit.html:61
 #: registry/templates/registry/end_points_edit.html:60
-#: registry/templates/registry/infrastructure_description_edit.html:130
-#: registry/templates/registry/service_edit.html:188
-#: registry/templates/registry/technical_interface_edit.html:110
+#: registry/templates/registry/infrastructure_description_edit.html:132
+#: registry/templates/registry/service_edit.html:190
+#: registry/templates/registry/technical_interface_edit.html:121
 msgid "Save"
 msgstr ""
 
@@ -209,11 +342,25 @@ msgstr "Organizações"
 msgid "Profile settings"
 msgstr ""
 
-#: community/templates/community/profile.html:45
+#: community/templates/community/profile.html:46
+#, fuzzy
+#| msgid "Organizations"
+msgid "Edit your organization"
+msgstr "Organizações"
+
+#: community/templates/community/profile.html:53
 #, fuzzy
 #| msgid "Organizations"
 msgid "Create your organization"
 msgstr "Organizações"
+
+#: community/templates/community/profile.html:61
+msgid "First name"
+msgstr "Nome"
+
+#: community/templates/community/profile.html:67
+msgid "Last name"
+msgstr "Sobrenome"
 
 #: community/templates/community/register.html:34
 #: community/templates/community/register.html:43
@@ -226,7 +373,6 @@ msgid "Subscriptions settings"
 msgstr ""
 
 #: community/templates/community/subscriptions.html:16
-#: registry/templates/registry/organization_service_list.html:23
 #, fuzzy
 #| msgid "Organizations"
 msgid "Back to Organization"
@@ -302,7 +448,7 @@ msgstr ""
 #: registry/forms/document.py:17 registry/forms/document.py:26
 #: registry/forms/document.py:35 registry/forms/document.py:44
 #: registry/forms/document.py:54 registry/forms/infrastructure.py:14
-#: registry/forms/service.py:15
+#: registry/forms/service.py:23
 #: registry/templates/registry/data_exchange_format_detail.html:24
 #: registry/templates/registry/data_standard_detail.html:24
 #: registry/templates/registry/document_detail.html:26
@@ -324,6 +470,54 @@ msgstr ""
 #: registry/templates/registry/technical_interface_detail.html:161
 msgid "Infrastructure Description"
 msgstr ""
+
+#: registry/forms/service.py:50
+#, fuzzy
+#| msgid "Services"
+msgid "Service Name"
+msgstr "Serviços"
+
+#: registry/forms/service.py:53
+msgid "Version Category"
+msgstr ""
+
+#: registry/forms/service.py:54
+#, fuzzy
+#| msgid "Services"
+msgid "Implementation Status"
+msgstr "Serviços"
+
+#: registry/forms/service.py:55
+#, fuzzy
+#| msgid "Services"
+msgid "Implementation Maturity"
+msgstr "Serviços"
+
+#: registry/forms/service.py:56
+msgid "Registration Status"
+msgstr ""
+
+#: registry/forms/service.py:57
+msgid "Data Category"
+msgstr ""
+
+#: registry/forms/service.py:58
+msgid "Activity Category"
+msgstr ""
+
+#: registry/forms/service.py:59
+msgid "Stakeholder"
+msgstr ""
+
+#: registry/forms/service.py:60
+msgid "Region"
+msgstr ""
+
+#: registry/forms/service.py:61
+#, fuzzy
+#| msgid "Flight trajectory"
+msgid "Flight Phase"
+msgstr "Trajetória de voo"
 
 #: registry/forms/technical_interface.py:13
 msgid "Technical Interface Description"
@@ -447,16 +641,110 @@ msgstr ""
 msgid "ATM activity category"
 msgstr ""
 
-#: registry/models/activity_category.py:68
+#: registry/models/activity_category.py:68 registry/models/application.py:20
+#: registry/models/service.py:19
 #: registry/templates/registry/service_detail.html:48
 msgid "ATM activity categories"
 msgstr ""
+
+#: registry/models/application.py:9 registry/models/data_exchange_format.py:9
+#: registry/models/data_standard.py:9 registry/models/infrastructure.py:9
+#: registry/models/infrastructure.py:25 registry/models/service.py:10
+#: registry/models/technical_interface.py:8 swim_registry/models.py:25
+msgid "version"
+msgstr ""
+
+#: registry/models/application.py:11
+msgid "open source"
+msgstr ""
+
+#: registry/models/application.py:12
+msgid "payable"
+msgstr ""
+
+#: registry/models/application.py:14 registry/models/service.py:13
+#: registry/models/version_category.py:21
+msgid "version category"
+msgstr ""
+
+#: registry/models/application.py:15 registry/models/service.py:14
+#, fuzzy
+#| msgid "Services"
+msgid "implementation status"
+msgstr "Serviços"
+
+#: registry/models/application.py:16
+#, fuzzy
+#| msgid "Services"
+msgid "implementation maurity"
+msgstr "Serviços"
+
+#: registry/models/application.py:17 registry/models/service.py:16
+#, fuzzy
+#| msgid "Organizations"
+msgid "registration status"
+msgstr "Organizações"
+
+#: registry/models/application.py:19 registry/models/data_category.py:26
+#: registry/models/service.py:18
+#: registry/templates/registry/service_detail.html:56
+msgid "ATM data categories"
+msgstr ""
+
+#: registry/models/application.py:21 registry/models/service.py:20
+msgid "stakeholders"
+msgstr ""
+
+#: registry/models/application.py:22 registry/models/service.py:21
+#, fuzzy
+#| msgid "Organizations"
+msgid "regions"
+msgstr "Organizações"
+
+#: registry/models/application.py:23 registry/models/service.py:22
+#, fuzzy
+#| msgid "Flight trajectory"
+msgid "flight phases"
+msgstr "Trajetória de voo"
+
+#: registry/models/application.py:25 registry/models/technical_interface.py:12
+msgid "data standards"
+msgstr ""
+
+#: registry/models/application.py:26
+#, fuzzy
+#| msgid "Other services"
+msgid "consumed services"
+msgstr "Outros serviços"
+
+#: registry/models/application.py:29 registry/models/service.py:27
+#: registry/models/workflow.py:15
+msgid "workflow"
+msgstr ""
+
+#: registry/models/contact_point.py:11
+msgid "telephone"
+msgstr ""
+
+#: registry/models/contact_point.py:20 registry/models/document.py:48
+#: registry/models/service.py:40
+#, fuzzy
+#| msgid "Services"
+msgid "service"
+msgstr "Serviços"
 
 #: registry/models/contact_point.py:23
 #, fuzzy
 #| msgid "Contact"
 msgid "service contact point"
 msgstr "Contato"
+
+#: registry/models/contact_point.py:28
+#: registry/models/data_exchange_format.py:27 registry/models/document.py:54
+#, fuzzy
+#| msgid "Organizations"
+msgid "application"
+msgstr "Organizações"
 
 #: registry/models/contact_point.py:31
 msgid "application contact point"
@@ -494,10 +782,56 @@ msgstr ""
 msgid "ATM data category"
 msgstr ""
 
-#: registry/models/data_category.py:26
-#: registry/templates/registry/service_detail.html:56
-msgid "ATM data categories"
+#: registry/models/data_exchange_format.py:11
+#: registry/models/data_standard.py:12 registry/models/infrastructure.py:12
+#: registry/models/infrastructure.py:28
+#: registry/models/technical_interface.py:11
+#, fuzzy
+#| msgid "Services"
+msgid "infrastructure reference documents"
+msgstr "Serviços"
+
+#: registry/models/data_exchange_format.py:23 registry/models/document.py:42
+#: registry/models/end_point.py:11 registry/models/service.py:24
+#: registry/models/technical_interface.py:23
+msgid "technical interface"
 msgstr ""
+
+#: registry/models/data_standard.py:15
+msgid "data standard"
+msgstr ""
+
+#: registry/models/document.py:7 registry/models/document.py:12
+#: registry/models/document.py:22 registry/models/document.py:28
+#: registry/models/document.py:34 registry/models/document.py:40
+#: registry/models/document.py:46 registry/models/document.py:52
+#: registry/models/document.py:58
+#, fuzzy
+#| msgid "Services"
+msgid "document"
+msgstr "Serviços"
+
+#: registry/models/document.py:24 registry/models/infrastructure.py:34
+#: registry/models/technical_interface.py:16
+#: registry/models/technical_interface_binding.py:23
+#, fuzzy
+#| msgid "Services"
+msgid "infrastructure description"
+msgstr "Serviços"
+
+#: registry/models/document.py:30 registry/models/document.py:36
+msgid "data exchange format"
+msgstr ""
+
+#: registry/models/end_point.py:10
+msgid "address"
+msgstr ""
+
+#: registry/models/end_point.py:14
+#, fuzzy
+#| msgid "Services"
+msgid "end point"
+msgstr "Serviços"
 
 #: registry/models/flight_phase_category.py:14
 msgid "Airport (ramp)"
@@ -571,6 +905,14 @@ msgstr ""
 msgid "implementation status categories"
 msgstr ""
 
+#: registry/models/infrastructure.py:17
+#: registry/models/technical_interface.py:14
+#: registry/models/technical_interface_binding.py:19
+#, fuzzy
+#| msgid "Services"
+msgid "infrastructure profile"
+msgstr "Serviços"
+
 #: registry/models/region_category.py:16
 msgid "Brazil"
 msgstr ""
@@ -632,6 +974,12 @@ msgstr ""
 #: registry/models/registration_status_category.py:20
 msgid "registration status categories"
 msgstr ""
+
+#: registry/models/service.py:15
+#, fuzzy
+#| msgid "Services"
+msgid "implementation maturity"
+msgstr "Serviços"
 
 #: registry/models/stakeholder_category.py:12
 msgid "Airport Operator"
@@ -764,13 +1112,13 @@ msgstr "Serviços"
 msgid "Data Standard"
 msgstr ""
 
-#: registry/models/technical_interface.py:23
-#, python-brace-format
-msgid "Technical Interface of {service}"
+#: registry/models/subscription_content_type.py:55
+msgid "subscription content type"
 msgstr ""
 
-#: registry/models/technical_interface_binding.py:12
-msgid "technical interface binding"
+#: registry/models/technical_interface.py:26
+#, python-brace-format
+msgid "Technical Interface of {service}"
 msgstr ""
 
 #: registry/models/version_category.py:12
@@ -789,17 +1137,29 @@ msgstr ""
 msgid "Upcoming not Supported"
 msgstr ""
 
-#: registry/models/version_category.py:21
-msgid "version category"
-msgstr ""
-
 #: registry/models/version_category.py:22
 msgid "version categories"
 msgstr ""
 
-#: registry/models/workflow.py:14
+#: registry/models/workflow.py:7
+msgid "author"
+msgstr ""
+
+#: registry/models/workflow.py:9
+msgid "old state"
+msgstr ""
+
+#: registry/models/workflow.py:10
+msgid "new state"
+msgstr ""
+
+#: registry/models/workflow.py:11
+msgid "previous node"
+msgstr ""
+
+#: registry/models/workflow.py:18
 #, python-brace-format
-msgid "From {from_} to {to} by {author}"
+msgid "From {old_state} to {new_state} by {author}"
 msgstr ""
 
 #: registry/templates/registry/base.html:12 website/templates/index.html:37
@@ -838,12 +1198,23 @@ msgstr ""
 msgid "Profile"
 msgstr ""
 
+#: registry/templates/registry/base.html:35
+#: registry/templates/registry/service_detail.html:25
+#, fuzzy
+#| msgid "Organizations"
+msgid "Organization"
+msgstr "Organizações"
+
 #: registry/templates/registry/base.html:37
 msgid "Subscriptions"
 msgstr ""
 
 #: registry/templates/registry/base.html:39
 msgid "Log out"
+msgstr ""
+
+#: registry/templates/registry/contact_point_detail.html:32
+msgid "E-mail"
 msgstr ""
 
 #: registry/templates/registry/data_exchange_format_detail.html:10
@@ -911,7 +1282,7 @@ msgid ""
 msgstr ""
 
 #: registry/templates/registry/infrastructure_description_detail.html:36
-#: registry/templates/registry/infrastructure_description_edit.html:84
+#: registry/templates/registry/infrastructure_description_edit.html:86
 #: registry/templates/registry/infrastructure_profile_detail.html:36
 msgid "Technical Interface Bindings"
 msgstr ""
@@ -929,11 +1300,11 @@ msgstr "Serviços"
 msgid "Infrastructure Documents"
 msgstr "Serviços"
 
-#: registry/templates/registry/infrastructure_description_edit.html:100
+#: registry/templates/registry/infrastructure_description_edit.html:102
 msgid "Add Technical Interface Binding"
 msgstr ""
 
-#: registry/templates/registry/infrastructure_description_edit.html:108
+#: registry/templates/registry/infrastructure_description_edit.html:110
 msgid "Infrastructure Description Documents"
 msgstr ""
 
@@ -950,6 +1321,12 @@ msgid "Sign in"
 msgstr ""
 
 #: registry/templates/registry/organization_service_list.html:26
+#, fuzzy
+#| msgid "Organizations"
+msgid "Edit your Organization"
+msgstr "Organizações"
+
+#: registry/templates/registry/organization_service_list.html:29
 #, fuzzy
 #| msgid "Other services"
 msgid "Create new service"
@@ -1003,11 +1380,16 @@ msgstr "Serviços"
 msgid "Edit Technical Interface"
 msgstr ""
 
-#: registry/templates/registry/service_edit.html:141
+#: registry/templates/registry/service_edit.html:143
 #, fuzzy
 #| msgid "Services"
 msgid "Service Documents"
 msgstr "Serviços"
+
+#: registry/templates/registry/service_list.html:18
+#: registry/templates/registry/service_list.html:23
+msgid "Filter"
+msgstr ""
 
 #: registry/templates/registry/technical_interface_binding_detail.html:10
 msgid "Technical Interface Binding"
@@ -1032,7 +1414,7 @@ msgid "SWIM Reference"
 msgstr ""
 
 #: registry/templates/registry/technical_interface_detail.html:61
-#: registry/templates/registry/technical_interface_edit.html:89
+#: registry/templates/registry/technical_interface_edit.html:95
 msgid "Technical Interface Documents"
 msgstr ""
 
@@ -1086,7 +1468,7 @@ msgstr ""
 msgid "Data Exchange Formats updated successfully."
 msgstr ""
 
-#: registry/views/end_point.py:24
+#: registry/views/end_point.py:25
 msgid "End Points updated successfully."
 msgstr ""
 
@@ -1098,12 +1480,12 @@ msgstr ""
 msgid "Infrastructure Description updated successfully."
 msgstr ""
 
-#: registry/views/service.py:54
+#: registry/views/service.py:87
 msgid ""
 "Service created successfully. You can now edit servce technical interface."
 msgstr ""
 
-#: registry/views/service.py:81
+#: registry/views/service.py:114
 msgid "Service updated successfully."
 msgstr ""
 
@@ -1116,6 +1498,18 @@ msgstr ""
 
 #: registry/views/technical_interface.py:50
 msgid "Technical Interface updated successfully."
+msgstr ""
+
+#: swim_registry/models.py:10 swim_registry/models.py:26
+msgid "created"
+msgstr ""
+
+#: swim_registry/models.py:11 swim_registry/models.py:27
+msgid "modified"
+msgstr ""
+
+#: swim_registry/models.py:28
+msgid "external link"
 msgstr ""
 
 #: swim_registry/urls.py:35
@@ -1221,6 +1615,9 @@ msgstr ""
 #: website/templates/index.html:183
 msgid "contact@translab.unb.br"
 msgstr ""
+
+#~ msgid "Role"
+#~ msgstr "Papel"
 
 #, fuzzy
 #~| msgid "SWIM Registry Brazil"

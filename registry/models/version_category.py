@@ -15,7 +15,7 @@ class VersionCategory(models.Model):
         (UPCOMING_NOT_SUPPORTED, _('Upcoming not Supported')),
     )
 
-    name = models.CharField(max_length=50, choices=CHOICES, unique=True)
+    name = models.CharField(max_length=50, choices=CHOICES, unique=True, verbose_name=_('name'))
 
     class Meta:
         verbose_name = _('version category')

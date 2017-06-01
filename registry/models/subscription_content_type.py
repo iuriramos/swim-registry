@@ -49,7 +49,10 @@ class SubscriptionContentType(models.Model):
         (DATA_STANDARD, _('Data Standard')),
     )
 
-    name = models.CharField(max_length=50, choices=CHOICES, unique=True)
+    name = models.CharField(max_length=50, choices=CHOICES, unique=True, verbose_name=_('name'))
+
+    class Meta:
+        verbose_name=_('subscription content type')
 
     def __str__(self):
         return self.name

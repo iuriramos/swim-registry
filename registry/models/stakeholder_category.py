@@ -15,7 +15,7 @@ class StakeholderCategory(models.Model):
         (NETWORK_MANAGER, _('Network Manager')),
     )
 
-    name = models.CharField(max_length=50, choices=CHOICES, unique=True)
+    name = models.CharField(max_length=50, choices=CHOICES, unique=True, verbose_name=_('name'))
 
     class Meta:
         verbose_name = _('stakeholder category')

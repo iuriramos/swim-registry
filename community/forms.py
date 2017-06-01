@@ -10,17 +10,17 @@ from .models.registration_request import RegistrationRequest
 
 class RegistrationRequestForm(forms.ModelForm):
     approved = forms.TypedChoiceField(required=False, coerce=lambda x: x =='True',
-                                   choices=((False, 'No'), (True, 'Yes')))
+                                   choices=((False, 'No'), (True, 'Yes')), label=_('approved'))
 
     class Meta:
         model = RegistrationRequest
         fields = '__all__'
         widgets = {
-            'first_name': widgets.TextInput(attrs={'id': 'first_name_id', 'class': 'form-control', 'autofocus': True, 'placeholder': _('First name')}),
-            'last_name': widgets.TextInput(attrs={'id': 'last_name_id', 'class': 'form-control', 'placeholder': _('Last name')}),
-            'email': widgets.TextInput(attrs={'id': 'email_id', 'class': 'form-control', 'placeholder': _('E-mail')}),
-            'organization': widgets.TextInput(attrs={'id': 'organization_id', 'class': 'form-control', 'placeholder': _('Organization')}),
-            'role': widgets.TextInput(attrs={'id': 'role_id', 'class': 'form-control', 'placeholder': _('Role')}),
+            'first_name': widgets.TextInput(attrs={'id': 'first_name_id', 'class': 'form-control', 'autofocus': True}),
+            'last_name': widgets.TextInput(attrs={'id': 'last_name_id', 'class': 'form-control'}),
+            'email': widgets.TextInput(attrs={'id': 'email_id', 'class': 'form-control'}),
+            'organization': widgets.TextInput(attrs={'id': 'organization_id', 'class': 'form-control'}),
+            'role': widgets.TextInput(attrs={'id': 'role_id', 'class': 'form-control'}),
             'note': widgets.Textarea(attrs={'id': 'note_id', 'class': 'form-control', 'placeholder': _('Describe how you intend to use the SWIM Registry.')}),
             'approved': widgets.Select(),
          }
@@ -43,9 +43,9 @@ class RegistrationRequestForm(forms.ModelForm):
 
 
 class ProfileForm(forms.ModelForm):
-    first_name = forms.CharField(max_length=255, required=True)
-    last_name = forms.CharField(max_length=255, required=True)
-    email = forms.EmailField(max_length=255, required=True)
+    first_name = forms.CharField(max_length=255, required=True, label=_('first name'))
+    last_name = forms.CharField(max_length=255, required=True, label=_('last name'))
+    email = forms.EmailField(max_length=255, required=True, label=_('email'))
 
     class Meta:
         model = Profile

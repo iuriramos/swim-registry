@@ -61,7 +61,7 @@ class ActivityCategory(models.Model):
         (ATM_NETWORK_MANAGEMENT, _('ATM Network Management')),
     )
 
-    name = models.CharField(max_length=50, choices=CHOICES, unique=True)
+    name = models.CharField(max_length=50, choices=CHOICES, unique=True, verbose_name=_('name'))
 
     class Meta:
         verbose_name = _('ATM activity category')

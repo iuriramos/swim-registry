@@ -21,7 +21,7 @@ class ParticipantCategory(models.Model):
         (OTHER, _('Other')),
     )
 
-    name = models.CharField(max_length=50, choices=CHOICES, unique=True)
+    name = models.CharField(max_length=50, choices=CHOICES, unique=True, verbose_name=_('name'))
 
     class Meta:
         verbose_name = _('participant category')

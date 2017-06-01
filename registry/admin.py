@@ -12,7 +12,7 @@ from .models.service import Service
 from .models.application import Application
 from .models.workflow import Workflow
 from .models.technical_interface import TechnicalInterface
-from .models.technical_interface_binding import TechnicalInterfaceBindingProfile
+from .models.technical_interface_binding import TechnicalInterfaceBindingProfile, TechnicalInterfaceBindingDescription
 from .models.infrastructure import InfrastructureProfile, InfrastructureDescription
 from .models.document import InfrastructureReferenceDocument, ReferenceDocument
 from .models.data_standard import DataStandard
@@ -35,6 +35,8 @@ admin.site.register(Application)
 admin.site.register(ReferenceDocument)
 admin.site.register(InfrastructureReferenceDocument)
 admin.site.register(DataStandard)
+admin.site.register(TechnicalInterfaceBindingProfile)
+admin.site.register(TechnicalInterfaceBindingDescription)
 
 class TechnicalInterfaceBindingProfileInline(admin.TabularInline):
     model = TechnicalInterfaceBindingProfile

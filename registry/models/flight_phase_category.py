@@ -19,7 +19,7 @@ class FlightPhaseCategory(models.Model):
         (ARRIVAL, _('Arrival')),
     )
 
-    name = models.CharField(max_length=50, choices=CHOICES, unique=True)
+    name = models.CharField(max_length=50, choices=CHOICES, unique=True, verbose_name=_('name'))
 
 
     class Meta:
