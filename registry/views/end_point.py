@@ -4,6 +4,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.views.generic.detail import DetailView
 from registry.models.end_point import EndPoint
+from registry.models.technical_interface import TechnicalInterface
 from registry.forms.end_point import EndPointFormSet
 
 

@@ -70,6 +70,9 @@
 
             <ol class="breadcrumb">
               <li>
+                  <a href="{% url 'community:profile' %}">{% trans "Edit your Profile" %}</a>
+              </li>
+              <li>
                   <a href="{% url 'registry:participant_service_list' %}" role="button">{% trans "View Services" %}</a>
               </li>
             </ol>
@@ -77,6 +80,9 @@
             <div class="row">
               <div class="col-md-3">
                 <div class="form-group">
+                    {% if form.instance.image %}
+                        <img src="{{ form.instance.image.url }}" alt="">
+                    {% endif %}
                     {{ form.image }}
                 </div>
               </div>

@@ -2,6 +2,14 @@ from django import forms
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
 from registry.models.service import Service
+from registry.models.version_category import VersionCategory
+from registry.models.implementation import ImplementationMaturityCategory, ImplementationStatusCategory
+from registry.models.registration_status_category import RegistrationStatusCategory
+from registry.models.data_category import DataCategory
+from registry.models.activity_category import ActivityCategory
+from registry.models.stakeholder_category import StakeholderCategory
+from registry.models.flight_phase_category import FlightPhaseCategory
+from registry.models.region_category import RegionCategory
 
 
 class ServiceForm(forms.ModelForm):
@@ -36,4 +44,19 @@ class ServiceForm(forms.ModelForm):
 
     # reviewed = models.BooleanField(default=False)
     # workflow = models.OneToOneField('registry.Workflow', related_name='service')
+
+
+class ServiceSearchForm(forms.Form):
+    name = forms.CharField(label=_('Service Name'), max_length=255, required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    description = forms.CharField(label=_('Description'), max_length=255, required=False,
+                                  widget=forms.TextInput(attrs={'class': 'form-control'}))
+    version_category = forms.MultipleChoiceField(label=_('Version Category'), required=False, choices=VersionCategory.CHOICES, widget=forms.widgets.SelectMultiple(attrs={'class': 'form-control'}))
+    implementation_status = forms.MultipleChoiceField(label=_('Implementation Status'), required=False, choices=ImplementationStatusCategory.CHOICES, widget=forms.widgets.SelectMultiple(attrs={'class': 'form-control'}))
+    implementation_maturity = forms.MultipleChoiceField(label=_('Implementation Maturity'), required=False, choices=ImplementationMaturityCategory.CHOICES, widget=forms.widgets.SelectMultiple(attrs={'class': 'form-control'}))
+    registration_status = forms.MultipleChoiceField(label=_('Registration Status'), required=False, choices=RegistrationStatusCategory.CHOICES, widget=forms.widgets.SelectMultiple(attrs={'class': 'form-control'}))
+    data_categories = forms.MultipleChoiceField(label=_('Data Category'), required=False, choices=DataCategory.CHOICES, widget=forms.widgets.SelectMultiple(attrs={'class': 'form-control'}))
+    activity_categories = forms.MultipleChoiceField(label=_('Activity Category'), required=False, choices=ActivityCategory.CHOICES, widget=forms.widgets.SelectMultiple(attrs={'class': 'form-control'}))
+    stakeholders = forms.MultipleChoiceField(label=_('Stakeholder'), required=False, choices=StakeholderCategory.CHOICES, widget=forms.widgets.SelectMultiple(attrs={'class': 'form-control'}))
+    regions = forms.MultipleChoiceField(label=_('Region'), required=False, choices=RegionCategory.CHOICES, widget=forms.widgets.SelectMultiple(attrs={'class': 'form-control'}))
+    flight_phases = forms.MultipleChoiceField(label=_('Flight Phase'), required=False, choices=FlightPhaseCategory.CHOICES, widget=forms.widgets.SelectMultiple(attrs={'class': 'form-control'}))
 

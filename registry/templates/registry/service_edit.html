@@ -78,7 +78,7 @@
               <div class="col-md-3">
                 <div class="form-group">
                   {% if form_service.instance %}
-                      <img src="{{form_service.instance.image.url}}">
+                      <img src="{{ form_service.instance.image.url }}">
                   {% endif %}
                   {{ form_service.image }}
                 </div>
@@ -132,6 +132,8 @@
                   <label for="flight_phases_id">{{ form_service.flight_phases.label }}</label>
                   {{ form_service.flight_phases }}
                 </div>
+
+                <hr>
 
                 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                   <div class="panel panel-default">

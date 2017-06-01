@@ -41,9 +41,18 @@
             </div>
 
             <ol class="breadcrumb">
-              <li>
-                <a href="{% url 'community:organization_new' %}" role="button">{% trans "Create your organization" %}</a>
-              </li>
+              {% if form.instance.organization %}
+                  <li>
+                     <a href="{% url 'community:participant_edit' %}" role="button">{% trans "Edit your organization" %}</a>
+                  </li>
+                  <li>
+                      <a href="{% url 'registry:participant_service_list' %}">{% trans "View Services" %}</a>
+                  </li>
+              {% else %}
+                  <li>
+                    <a href="{% url 'community:participant_new' %}" role="button">{% trans "Create your organization" %}</a>
+                  </li>
+              {% endif %}
             </ol>
 
             <div class="row">

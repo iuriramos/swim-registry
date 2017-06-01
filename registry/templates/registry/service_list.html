@@ -1,29 +1,58 @@
 {% extends 'registry/base.html' %}
 {% load i18n %}
+{% load crispy_forms_tags %}
 
 {% block container %}
     <div class="container">
       <div class="row">
+        <div class="col-md-10 col-md-offset-1">
 
-        <div class="col-lg-12">
-            <h1 class="page-header">{% trans "Services" %}</h1>
-        </div>
+            <div class="page-header">
+              <h1>{% trans "Services" %}</h1>
+            </div>
 
-        {% for service in services %}
-          <div class="col-sm-6 col-md-4">
-            <div class="thumbnail">
-              <a  href="{% url 'registry:service_detail' service.pk %}">
-                <img class="img-responsive" src="{{service.image.url}}" width="150" alt="">
-              </a>
-              <div class="caption">
-                <h3>{{service.name}}</h3>
-                <p>{{service.description|truncatechars:144}}</p>
+            <div class="row">
+              <div class="col-md-4">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h3 class="panel-title">{% trans "Filter" %}</h3>
+                  </div>
+                  <div class="panel-body">
+                    <form method="GET">
+                      {{ form | crispy }}
+                      <button class="btn btn-default pull-right" name="submit" type="submit">{% trans "Filter" %}</button>
+                    </form>
+                  </div>
+                </div>
+
+              </div>
+              <div class="col-md-8">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h3 class="panel-title">{% trans "Services" %}</h3>
+                  </div>
+                  <div class="panel-body">
+                    {% for service in services %}
+                      <div class="col-md-6">
+                        <div class="thumbnail">
+                          <a  href="{% url 'registry:service_detail' service.pk %}">
+                            <img class="img-responsive" src="{{service.image.url}}" width="150" alt="">
+                          </a>
+                          <div class="caption">
+                            <h3>{{service.name}}</h3>
+                            <p>{{service.description|truncatechars:144}}</p>
+                          </div>
+                        </div>
+                      </div>
+                    {% endfor %}
+                  </div>
+                </div>
+
               </div>
             </div>
-          </div>
-        {% endfor %}
 
+          </div>
+        </div>
       </div>
-    </div>
 
 {% endblock %}

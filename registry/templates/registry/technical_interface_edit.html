@@ -77,36 +77,47 @@
                 {% endif %}
               </ol>
 
-              <div>
-                {{ form_technical_interface | crispy }}
+              <div class="row">
+                <div class="col-md-12">
+                  {{ form_technical_interface | crispy }}
+                </div>
               </div>
 
-              <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                  <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="headingOne">
-                      <h4 class="panel-title">
-                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                          {% trans "Technical Interface Documents" %}
-                        </a>
-                      </h4>
-                    </div>
-                    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-                      <div class="panel-body">
-                        {{ formset_documents.management_form }}
-                        <div id="formset_documents">
-                            {% for form in formset_documents.forms %}
-                                {{ form | crispy }}
-                                <hr>
-                            {% endfor %}
+              <hr>
+
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                      <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingOne">
+                          <h4 class="panel-title">
+                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                              {% trans "Technical Interface Documents" %}
+                            </a>
+                          </h4>
                         </div>
-                        <div id="empty_formset_documents" style="display:none">
-                              {{ formset_documents.empty_form | crispy }}
+                        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                          <div class="panel-body">
+                            {{ formset_documents.management_form }}
+                            <div id="formset_documents">
+                                {% for form in formset_documents.forms %}
+                                    {{ form | crispy }}
+                                    <hr>
+                                {% endfor %}
+                            </div>
+                            <div id="empty_formset_documents" style="display:none">
+                                  {{ formset_documents.empty_form | crispy }}
+                            </div>
+                            <a class="btn btn-default pull-right"  id="btn_formset_documents">{% trans "Add Document" %}</a>
+                          </div>
                         </div>
-                        <a class="btn btn-default pull-right"  id="btn_formset_documents">{% trans "Add Document" %}</a>
                       </div>
-                    </div>
                   </div>
+
+                </div>
               </div>
+
+
               <button class="btn btn-default pull-right" name="submit" type="submit">{% trans "Save" %}</button>
           </form>
 

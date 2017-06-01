@@ -5,3 +5,11 @@
 .navbar-registry {
   background-color: #eee;
 }
+
+.panel-body {
+    padding: 15px 30px;
+}
+
+.breadcrumb {
+  font-size: 15px;
+}

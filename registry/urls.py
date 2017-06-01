@@ -14,7 +14,8 @@ urlpatterns = [
 
     # Service
     url(r'^organization/services/list/$', service.organization_service_list, name='participant_service_list'),
-    url(r'^services/$', login_required(service.ServiceListView.as_view()), name='service_list'),
+    # url(r'^services/$', login_required(service.ServiceListView.as_view()), name='service_list'),
+    url(r'^services/$', service.service_list, name='service_list'),
     url(r'^services/new/$', service.service_new, name='service_new'),
     url(r'^services/(?P<pk>\d+)/detail/$', login_required(service.ServiceDetailView.as_view()), name='service_detail'),
     url(r'^services/(?P<pk>\d+)/edit/$', service.service_edit, name='service_edit'),
