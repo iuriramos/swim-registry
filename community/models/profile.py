@@ -20,6 +20,7 @@ class Profile(TimeStampedModel):
     user = models.OneToOneField(User, related_name='profile', verbose_name=_('user'))
     organization = models.OneToOneField('community.Participant', related_name='profile', null=True, verbose_name=_('organization'))
     following_organizations = models.ManyToManyField('community.Participant', related_name='followers', verbose_name=_('following organizations'))
+    following_services = models.ManyToManyField('registry.Service', related_name='followers', verbose_name=_('following services'))
     notification_frequency = models.CharField(max_length=10, choices=FREQ_CHOICES, default=NEVER, verbose_name=_('notification frequency'))
     subscriptions_content_type = models.ManyToManyField('registry.SubscriptionContentType', related_name='profiles', verbose_name=_('content type subscriptions'))
     subscriptions_region = models.ManyToManyField('registry.RegionCategory', related_name='profiles', verbose_name=_('region subscriptions'))

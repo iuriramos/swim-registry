@@ -27,9 +27,7 @@ class ServiceDetailView(DetailView):
         service = context['service']
         context['workflow_history'] = get_workflow_history(service)
         profile = self.request.user.profile
-        organization = service.organization
-        print(profile.following_organizations)
-        if profile.following_organizations.filter(pk=organization.pk).exists():
+        if profile.following_services.filter(pk=service.pk).exists():
             context['subscribed'] = True
         else:
             context['subscribed'] = False
@@ -41,12 +39,10 @@ def service_toggle_subscription(request, pk):
     if request.method == 'POST':
         profile = request.user.profile
         service = get_object_or_404(Service, pk=pk)
-        organization = service.organization
-        if profile.following_organizations.filter(pk=organization.pk).exists():
-            profile.following_organizations.remove(organization)
+        if profile.following_services.filter(pk=service.pk).exists():
+            profile.following_services.remove(service)
         else:
-            profile.following_organizations.add(organization)
-        print(profile.following_organizations.all())
+            profile.following_services.add(service)
         profile.save()
         return http.HttpResponse()
 

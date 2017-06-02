@@ -1,3 +1,4 @@
+from django import http
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.utils.translation import ugettext_lazy as _
@@ -153,4 +154,26 @@ class ParticipantDetailView(DetailView):
     context_object_name = 'participant'
     template_name = 'community/participant_detail.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        participant = context['participant']
+        profile = self.request.user.profile
+        if profile.following_organizations.filter(pk=participant.pk).exists():
+            context['subscribed'] = True
+        else:
+            context['subscribed'] = False
+        return context
+
+
+@login_required
+def participant_toggle_subscription(request, pk):
+    if request.method == 'POST':
+        profile = request.user.profile
+        participant = get_object_or_404(Participant, pk=pk)
+        if profile.following_organizations.filter(pk=participant.pk).exists():
+            profile.following_organizations.remove(participant)
+        else:
+            profile.following_organizations.add(participant)
+        profile.save()
+        return http.HttpResponse()
 

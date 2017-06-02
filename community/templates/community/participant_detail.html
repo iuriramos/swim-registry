@@ -12,15 +12,28 @@
 
           <div class="row">
             <div class="col-md-3">
-              <img src="{{participant.image.url}}" width="150" alt="participant logo">
+              <div>
+                <img src="{{participant.image.url}}" width="150" alt="participant logo">
+              </div>
+              {% if subscribed %}
+                <button type="button" class="btn btn-default btn-lg toggleSubscription">
+                  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                  {% trans "Subscribe" %}
+                </button>
+              {% else %}
+                <button type="button" class="btn btn-default btn-lg toggleSubscription">
+                  <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                  {% trans "Subscribe" %}
+                </button>
+              {% endif %}
             </div>
             <div class="col-md-9">
               <p>
                 <b>{% trans "Category" %}: </b>
-                {{participant.category}}
+                {{ participant.category.get_name_display }}
               </p>
               <p>
-                {{participant.description}}
+                {{ participant.description }}
               </p>
             </div>
           </div>
