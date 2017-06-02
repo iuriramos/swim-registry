@@ -5,6 +5,10 @@ from .registration_status_category import RegistrationStatusCategory
 
 
 class Service(TimeStampedModel):
+    def get_default_registration_status():
+        draft = RegistrationStatusCategory.objects.get(name=RegistrationStatusCategory.DRAFT)
+        return draft.pk
+
     name = models.CharField(max_length=255, unique=True, verbose_name=_('name'))
     organization = models.ForeignKey('community.Participant', related_name='services', verbose_name=_('organization'))
     description = models.TextField(blank=True, verbose_name=_('description'))
@@ -14,7 +18,7 @@ class Service(TimeStampedModel):
     version_category = models.ForeignKey('registry.VersionCategory', related_name='services', verbose_name=_('version category'))
     implementation_status = models.ForeignKey('registry.ImplementationStatusCategory', related_name='services', verbose_name=_('implementation status'))
     implementation_maturity = models.ForeignKey('registry.ImplementationMaturityCategory', related_name='services', verbose_name=_('implementation maturity'))
-    registration_status = models.ForeignKey('registry.RegistrationStatusCategory', related_name='services', verbose_name=_('registration status'))
+    registration_status = models.ForeignKey('registry.RegistrationStatusCategory', default=get_default_registration_status, related_name='services', verbose_name=_('registration status'))
 
     data_categories = models.ManyToManyField('registry.DataCategory', related_name='services', verbose_name=_('ATM data categories'))
     activity_categories = models.ManyToManyField('registry.ActivityCategory', related_name='services', verbose_name=_('ATM activity categories'))

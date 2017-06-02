@@ -4,12 +4,12 @@ from swim_registry.models import TimeStampedModel
 
 
 class Workflow(TimeStampedModel):
-    author = models.ForeignKey('community.Profile', related_name='workflows', verbose_name=_('author'))
+    author = models.ForeignKey('community.Profile', related_name='workflows', verbose_name=_('author'), null=True)
     description = models.TextField(blank=True, verbose_name=_('description'))
     old_state = models.ForeignKey('registry.RegistrationStatusCategory', related_name='workflows_from', null=True, verbose_name=_('old state'))
     new_state = models.ForeignKey('registry.RegistrationStatusCategory', related_name='workflows_to', verbose_name=_('new state'))
     previous_node = models.ForeignKey('self', null=True, verbose_name=_('previous node'))
-    reviewed = models.BooleanField(default=False)
+    reviewed = models.BooleanField(default=False, verbose_name=_('reviewed'))
 
     class Meta:
         verbose_name = _('workflow')

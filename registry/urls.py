@@ -64,6 +64,10 @@ urlpatterns = [
     # Review Request
     url(r'^services/(?P<pk>\d+)/edit/request-review/$', service.review_request, name='review_request'),
 
+    # Subscriptions
+    url(r'^services/(?P<pk>\d+)/detail/toggle-subscription/$', service.service_toggle_subscription, name='service_toggle_subscription'),
+
+
     # url(r'^about/$', views.about, name='about'),
 ]
 

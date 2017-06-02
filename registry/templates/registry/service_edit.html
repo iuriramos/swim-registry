@@ -78,7 +78,7 @@
           <div class="row">
             <div class="col-md-12">
               <!-- Button trigger modal -->
-              {% if form_service.instance %}
+              {% if form_service.instance.pk %}
                 {% if not form_service.instance.workflow or form_service.instance.workflow.reviewed %}
                   <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModal">
                     {% trans "Request Service Review" %}

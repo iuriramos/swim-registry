@@ -5,6 +5,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.views.generic.detail import DetailView
 from django.contrib.auth.decorators import login_required
+from community.models.participant import Participant
 from registry.models.service import Service
 from registry.models.workflow import Workflow
 from registry.models.review_request import ReviewRequestService
@@ -23,8 +24,31 @@ class ServiceDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['workflow_history'] = get_workflow_history(context['service'])
+        service = context['service']
+        context['workflow_history'] = get_workflow_history(service)
+        profile = self.request.user.profile
+        organization = service.organization
+        print(profile.following_organizations)
+        if profile.following_organizations.filter(pk=organization.pk).exists():
+            context['subscribed'] = True
+        else:
+            context['subscribed'] = False
         return context
+
+
+@login_required
+def service_toggle_subscription(request, pk):
+    if request.method == 'POST':
+        profile = request.user.profile
+        service = get_object_or_404(Service, pk=pk)
+        organization = service.organization
+        if profile.following_organizations.filter(pk=organization.pk).exists():
+            profile.following_organizations.remove(organization)
+        else:
+            profile.following_organizations.add(organization)
+        print(profile.following_organizations.all())
+        profile.save()
+        return http.HttpResponse()
 
 
 @login_required
@@ -83,7 +107,7 @@ def service_new(request):
         formset_documents = ServiceDocumentFormSet(request.POST, request.FILES)
         formset_contact_points = ContactPointServiceFormSet(request.POST, request.FILES)
         if form_service.is_valid() and formset_documents.is_valid() and formset_contact_points.is_valid():
-            service = form_service.save(commit=False)
+            service = form_service.save(commit=True)
             form_service.save_m2m()
             formset_documents.save()
             formset_contact_points.save()

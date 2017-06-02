@@ -6,7 +6,6 @@ from registry.models.workflow import Workflow
 from community.models.profile import Profile
 
 
-
 class ReviewRequestService(TimeStampedModel):
     service = models.ForeignKey('registry.Service', related_name='review_requests', verbose_name=_('service'))
     workflow = models.ForeignKey('registry.Workflow', related_name='review_requests', verbose_name=_('workflow'))
@@ -16,27 +15,28 @@ class ReviewRequestService(TimeStampedModel):
     class Meta:
         verbose_name=_('service review request')
 
-    def approve(self):
+    def approve(self, review):
         # self.approved = True
         # self.save()
         self.workflow.description = self.description
         self.workflow.reviewed = True
         self.workflow.save()
         new_state = RegistrationStatusCategory.objects.get(name=RegistrationStatusCategory.REGISTERED)
-        self.save_workflow(new_state)
+        self.save_workflow(new_state, review)
 
-    def disapprove(self):
+    def disapprove(self, review):
         self.workflow.description = self.description
         self.workflow.reviewed = True
         self.workflow.save()
         new_state = RegistrationStatusCategory.objects.get(name=RegistrationStatusCategory.DRAFT)
-        self.save_workflow()
+        self.save_workflow(new_state, review)
 
-    def save_workflow(self, new_state):
+    def save_workflow(self, new_state, review):
         # TODO: get logged author
-        author = self.workflow.author
+        # author = self.workflow.author
         workflow = Workflow.objects.create(
-                               author=author,
+                               #author=author,
+                               description=review,
                                old_state=self.workflow.new_state,
                                new_state=new_state,
                                previous_node=self.workflow,
