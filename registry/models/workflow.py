@@ -8,8 +8,8 @@ class Workflow(TimeStampedModel):
     description = models.TextField(blank=True, verbose_name=_('description'))
     old_state = models.ForeignKey('registry.RegistrationStatusCategory', related_name='workflows_from', null=True, verbose_name=_('old state'))
     new_state = models.ForeignKey('registry.RegistrationStatusCategory', related_name='workflows_to', verbose_name=_('new state'))
-    previous_node = models.ForeignKey('self', verbose_name=_('previous node'))
-    approved = models.BooleanField(default=False, verbose_name=_('approved'))
+    previous_node = models.ForeignKey('self', null=True, verbose_name=_('previous node'))
+    reviewed = models.BooleanField(default=False)
 
     class Meta:
         verbose_name = _('workflow')

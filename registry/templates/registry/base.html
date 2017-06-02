@@ -20,8 +20,10 @@
                     <li><a href="{% url 'registry:index' %}">{% trans "About" %}</a></li>
                     <li><a href="{% url 'community:participant_list' %}">{% trans "Organizations" %}</a></li>
                     <li><a href="{% url 'registry:service_list' %}">{% trans "Services" %}</a></li>
-                    <li><a href="#">{% trans "Applications" %}</a></li>
-                    <li><a href="#">{% trans "Reference Documents" %}</a></li>
+                    {% comment %}
+                      <li><a href="#">{% trans "Applications" %}</a></li>
+                    {% endcomment %}
+                    <li><a href="{% url 'registry:reference_document_list' %}">{% trans "Reference Documents" %}</a></li>
                     <li><a href="#">{% trans "Support" %}</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
@@ -30,7 +32,6 @@
                     <ul class="dropdown-menu">
                       <li class="dropdown-header">{% trans "Settings" %}</li>
                       <li><a href="{% url 'community:profile' %}">{% trans "Profile" %}</a></li>
-                      {#<li><a href="{% url 'community:organization' %}">Organization</a></li>#}
                       {% if not user.profile.organizaion %}
                           <li><a href="{% url 'community:participant_edit' %}">{% trans "Organization" %}</a></li>
                       {% endif %}

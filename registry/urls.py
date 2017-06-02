@@ -31,7 +31,9 @@ urlpatterns = [
     url(r'^technical-interface/(?P<pk>\d+)/infrastructure-description/edit/$', infrastructure.infrastructure_description_edit, name='infrastructure_description_edit'),
 
     # Documents
+    url(r'^reference-documents/$', document.reference_document_list, name='reference_document_list'),
     url(r'^service-documents/(?P<pk>\d+)/detail/$', login_required(document.ServiceDocumentDetailView.as_view()), name='service_document_detail'),
+    url(r'^participant-documents/(?P<pk>\d+)/detail/$', login_required(document.ParticipantDocumentDetailView.as_view()), name='participant_document_detail'),
     url(r'^infrastructure-reference-documents/(?P<pk>\d+)/detail/$', login_required(document.InfrastructureReferenceDocumentDetailView.as_view()), name='infrastructure_reference_document_detail'),
     url(r'^infrastructure-description-documents/(?P<pk>\d+)/detail/$', login_required(document.InfrastructureDescriptionDocumentDetailView.as_view()), name='infrastructure_description_document_detail'),
     url(r'^service-data-exchange-format-documents/(?P<pk>\d+)/detail/$', login_required(document.DataExchangeFormatServiceDocumentDetailView.as_view()), name='data_exchange_format_service_document_detail'),
@@ -39,6 +41,7 @@ urlpatterns = [
 
     # Contact Points
     url(r'^service-contact-points/(?P<pk>\d+)/detail/$', login_required(contact_point.ServiceContactPointDetailView.as_view()), name='service_contact_point_detail'),
+    url(r'^participant-contact-points/(?P<pk>\d+)/detail/$', login_required(contact_point.ParticipantContactPointDetailView.as_view()), name='participant_contact_point_detail'),
 
     # End Points
     url(r'^technical-interface/(?P<pk>\d+)/end-points/edit/$', end_point.end_points_edit, name='end_points_edit'),
@@ -57,6 +60,9 @@ urlpatterns = [
     # Technical Interface Binding
     url(r'^infrastructure-profile/technical-interface-binding/(?P<pk>\d+)/detail/$', login_required(technical_interface_binding.TechnicalInterfaceBindingProfileDetailView.as_view()), name='profile_technical_interface_binding_detail'),
     url(r'^infrastructure-description/technical-interface-binding/(?P<pk>\d+)/detail/$', login_required(technical_interface_binding.TechnicalInterfaceBindingDescriptionDetailView.as_view()), name='description_technical_interface_binding_detail'),
+
+    # Review Request
+    url(r'^services/(?P<pk>\d+)/edit/request-review/$', service.review_request, name='review_request'),
 
     # url(r'^about/$', views.about, name='about'),
 ]

@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from swim_registry.models import TimeStampedModel
+from .registration_status_category import RegistrationStatusCategory
 
 
 class Service(TimeStampedModel):
@@ -23,8 +24,8 @@ class Service(TimeStampedModel):
 
     technical_interface = models.OneToOneField('registry.TechnicalInterface', related_name='service', null=True, verbose_name=_('technical interface'))
 
-    reviewed = models.BooleanField(default=False, verbose_name=_('reviewed'))
     workflow = models.OneToOneField('registry.Workflow', related_name='service', null=True, verbose_name=_('workflow'))
+    reviewed = models.BooleanField(default=False, verbose_name=_('reviewed'))
 
     # documents = models.ManyToManyField(ServiceDocument, related_name='services')
     # contact_points = models.ManyToManyField(ContactPoint, related_name='services')
@@ -32,12 +33,18 @@ class Service(TimeStampedModel):
     ##  quality_service_conditions = models.OneToOneField(TechnicalInterface, related_name='services')
 
 
+    class Meta:
+        verbose_name=_('service')
+
+    def save(self, *args, **kwargs):
+        # reviewed is True if organization is safe
+        if self.organization and self.organization.reviewed:
+            self.reviewed = True
+        super().save(*args, **kwargs)
+
     @property
     def organization_name(self):
         return self.organization.name
-
-    class Meta:
-        verbose_name=_('service')
 
     def __str__(self):
         return self.name

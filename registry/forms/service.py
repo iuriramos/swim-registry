@@ -24,7 +24,7 @@ class ServiceForm(forms.ModelForm):
             'version_category': forms.widgets.Select(attrs={'id': 'version_category_id', 'class': 'form-control'}),
             'implementation_status': forms.widgets.Select(attrs={'id': 'implementation_status_id', 'class': 'form-control'}),
             'implementation_maturity': forms.widgets.Select(attrs={'id': 'implementation_maturity_id', 'class': 'form-control'}),
-            'registration_status': forms.widgets.Select(attrs={'id': 'registration_status_id', 'class': 'form-control'}),
+            'registration_status': forms.widgets.Select(attrs={'id': 'registration_status_id', 'class': 'form-control', 'readonly': 'readonly'}),
             'data_categories': forms.widgets.SelectMultiple(attrs={'id': 'data_categories_id', 'class': 'form-control'}),
             'activity_categories': forms.widgets.SelectMultiple(attrs={'id': 'activity_categories_id', 'class': 'form-control'}),
             'stakeholders': forms.widgets.SelectMultiple(attrs={'id': 'stakeholders_id', 'class': 'form-control'}),

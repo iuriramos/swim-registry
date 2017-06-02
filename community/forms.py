@@ -10,7 +10,7 @@ from .models.registration_request import RegistrationRequest
 
 class RegistrationRequestForm(forms.ModelForm):
     approved = forms.TypedChoiceField(required=False, coerce=lambda x: x =='True',
-                                   choices=((False, 'No'), (True, 'Yes')), label=_('approved'))
+                                   choices=((False, _('No')), (True, _('Yes'))), label=_('approved'))
 
     class Meta:
         model = RegistrationRequest
@@ -59,8 +59,7 @@ class ParticipantForm(forms.ModelForm):
 
     class Meta:
         model = Participant
-        # exclude = ['displayable']
-        exclude = ['displayable', 'contact_points', 'documents']
+        exclude = ['reviewed', 'contact_points', 'documents']
         widgets = {
             'name': widgets.TextInput(attrs={'id': 'name_id', 'class': 'form-control', 'placeholder': _('Name')}),
             'description': widgets.Textarea(attrs={'id': 'description_id', 'class': 'form-control', 'placeholder': _('Description')}),

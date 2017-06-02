@@ -34,18 +34,24 @@
                 <!-- <div class="panel-body"></div> <ul class="information-panel"></ul>-->
                 <div class="list-group">
                   {% for service in participant.services.all %}
-                      <li class="list-group-item">
-                        <a href="{% url 'registry:service_detail' pk=service.pk %}">
-                          <img src="{{ service.image.url }}" alt="logo">
-                          {{ service.name }}: {{ service.description }}
-                        </a>
-                      </li>
+                      {% if service.reviewed %}
+                        <li class="list-group-item">
+                          <p>
+                            <img src="{{ service.image.url }}" alt="logo">
+                            <a href="{% url 'registry:service_detail' pk=service.pk %}">
+                              {{ service.name }}
+                            </a>
+                            {{ service.description|truncatechars:90 }}
+                          </p>
+                        </li>
+                      {% endif %}
                   {% endfor %}
                 </div>
               </div>
             </div>
           </div>
 
+          {% comment %}
           <div class="row">
             <div class="col-md-12">
               <div class="panel panel-default">
@@ -62,6 +68,7 @@
               </div>
             </div>
           </div>
+          {% endcomment %}
 
           <div class="row">
             <div class="col-md-12">
@@ -72,7 +79,8 @@
                 <div class="list-group">
                   {% for document in participant.documents.all %}
                       <li class="list-group-item">
-                        <img src="{{document.image.url}}" alt="logo">
+                        <img src="{{ document.image.url }}" alt="logo">
+                        <a href="{% url 'registry:participant_document_detail' pk=document.pk %}"> {{ document.name }}</a>
                       </li>
                   {% endfor %}
                 </div>
@@ -91,6 +99,7 @@
                   {% for contact_point in participant.contact_points.all %}
                       <li class="list-group-item">
                         <img src="{{contact_point.image.url}}" alt="logo">
+                        <a href="{% url 'registry:participant_contact_point_detail' pk=contact_point.pk %}">{{ contact_point.name }}</a>
                       </li>
                   {% endfor %}
                 </div>

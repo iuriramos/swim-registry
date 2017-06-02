@@ -130,7 +130,6 @@ def participant_edit(request):
         formset_documents = ParticipantDocumentFormSet(request.POST, request.FILES, instance=participant)
         if form.is_valid() and formset_contact_points.is_valid() and formset_documents.is_valid():
             participant = form.save()
-            print (participant.image)
             formset_contact_points.save()
             formset_documents.save()
             messages.add_message(request, messages.INFO, _('Organization settings updated successfully'))

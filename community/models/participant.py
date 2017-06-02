@@ -17,5 +17,13 @@ class Participant(TimeStampedModel):
     class Meta:
         verbose_name=_('participant')
 
+    def save(self, *args, **kwargs):
+        # all services are safe if organization is safe
+        if self.reviewed:
+            for service in self.services:
+                service.reviewed = True
+                service.save()
+        super().save(*args, **kwargs)
+
     def __str__(self):
         return self.name

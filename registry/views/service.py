@@ -1,10 +1,16 @@
+from django import http
 from django.utils.translation import ugettext_lazy as _
+from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.views.generic.detail import DetailView
 from django.contrib.auth.decorators import login_required
 from registry.models.service import Service
+from registry.models.workflow import Workflow
+from registry.models.review_request import ReviewRequestService
+from registry.models.registration_status_category import RegistrationStatusCategory
 from registry.forms.service import ServiceForm, ServiceSearchForm
+from registry.forms.review_request import ReviewRequestServiceForm
 from registry.forms.document import ServiceDocumentFormSet
 from registry.forms.contact_point import ContactPointServiceFormSet
 from .base import get_organization
@@ -14,6 +20,11 @@ class ServiceDetailView(DetailView):
     model = Service
     context_object_name = 'service'
     template_name = 'registry/service_detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['workflow_history'] = get_workflow_history(context['service'])
+        return context
 
 
 @login_required
@@ -65,12 +76,6 @@ def organization_service_list(request):
 
 
 @login_required
-def service_show(request, pk):
-    service = get_object_or_404(Service, pk=pk)
-    return render(request, 'registry/service_show.html', {'service': service})
-
-
-@login_required
 def service_new(request):
     organization = get_organization(request)
     if request.method == 'POST':
@@ -84,7 +89,7 @@ def service_new(request):
             formset_contact_points.save()
             service.organization = organization
             service.save()
-            messages.add_message(request, messages.INFO, _('Service created successfully. You can now edit servce technical interface.'))
+            messages.add_message(request, messages.INFO, _('Service created successfully. You can now edit the service technical interface.'))
             return redirect('registry:service_edit', pk=service.pk)
     else:
         form_service = ServiceForm()
@@ -110,15 +115,61 @@ def service_edit(request, pk):
             formset_documents.save()
             formset_contact_points.save()
             service.organization = organization
+            # # service needs to be reviewed again
+            # service.reviewed = False
             service.save()
-            messages.add_message(request, messages.INFO, _('Service updated successfully.'))
+            messages.add_message(request, messages.INFO, _('Service updated successfully. Submit a Service Review Request if you want to update your service registration status.'))
             return redirect('registry:service_edit', pk=service.pk)
     else:
         form_service = ServiceForm(instance=service)
         formset_documents = ServiceDocumentFormSet(instance=service)
         formset_contact_points = ContactPointServiceFormSet(instance=service)
+        form_review = ReviewRequestServiceForm()
     return render(request, 'registry/service_edit.html',
                   {'form_service': form_service,
                     'formset_documents': formset_documents,
-                    'formset_contact_points': formset_contact_points})
+                    'formset_contact_points': formset_contact_points,
+                    'form_review': form_review})
+
+
+def review_request(request, pk):
+    if request.method == 'POST':
+        form = ReviewRequestServiceForm(request.POST)
+        if form.is_valid():
+            service = get_object_or_404(Service, pk=pk)
+            review_request = form.save(commit=False)
+            review_request.service = service
+            save_workflow(request, service)
+            review_request.workflow = service.workflow
+            review_request.save()
+            messages.add_message(request, messages.INFO, _('Service review request submited successfully.'))
+            return redirect('registry:service_edit', pk=pk)
+        # TODO: display error message using messages module
+        return redirect('registry:service_edit', pk=pk)
+
+
+def save_workflow(request, service):
+    author = request.user.profile
+    old_state = service.registration_status
+    new_state = RegistrationStatusCategory.objects.get(name=RegistrationStatusCategory.VALIDATION)
+    previous_node = service.workflow
+    workflow = Workflow.objects.create(
+                           author=author,
+                           old_state=old_state,
+                           new_state=new_state,
+                           previous_node=previous_node)
+    workflow.save()
+    service.workflow = workflow
+    service.registration_status = new_state
+    service.save()
+
+
+def get_workflow_history(service):
+    entries = []
+    workflow = service.workflow
+    while workflow:
+        if workflow.reviewed:
+            entries.append(workflow)
+        workflow = workflow.previous_node
+    return entries
 
