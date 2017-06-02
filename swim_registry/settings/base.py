@@ -152,3 +152,11 @@ LOGIN_URL='/login/'
 LOGOUT_URL='/logout/'
 
 LOGIN_REDIRECT_URL='/registry'
+
+
+# Fixtures
+
+FIXTURE_DIRS = (
+   BASE_DIR.child('registry').child('fixtures'),
+   BASE_DIR.child('community').child('fixtures'),
+)
