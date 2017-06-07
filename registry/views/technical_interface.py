@@ -24,6 +24,7 @@ def technical_interface_new(request, pk):
             technical_interface = form_technical_interface.save()
             service.technical_interface = technical_interface
             service.save()
+            formset_documents.instance = technical_interface
             formset_documents.save()
             messages.add_message(request, messages.INFO, _('Technical Interface created successfully. You can now edit other technical interface parameters such as infrastructure description, data exchange formats and end points.'))
             return redirect('registry:technical_interface_edit', pk=service.pk)

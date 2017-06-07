@@ -111,7 +111,7 @@ def participant_new(request):
         form = ParticipantForm(request.POST)
         if form.is_valid():
             profile = get_profile(request)
-            profile.participant_service_list = form.save()
+            profile.organization = form.save()
             profile.save()
             messages.add_message(request, messages.INFO, _('Organization created successfully'))
             return redirect('community:profile')
@@ -127,10 +127,10 @@ def participant_edit(request):
     participant = profile.organization
     if request.method == 'POST':
         form = ParticipantForm(request.POST, request.FILES, instance=participant)
+        participant = form.save(commit=True)
         formset_contact_points = ContactPointParticipantFormSet(request.POST, request.FILES, instance=participant)
         formset_documents = ParticipantDocumentFormSet(request.POST, request.FILES, instance=participant)
         if form.is_valid() and formset_contact_points.is_valid() and formset_documents.is_valid():
-            participant = form.save()
             formset_contact_points.save()
             formset_documents.save()
             messages.add_message(request, messages.INFO, _('Organization settings updated successfully'))

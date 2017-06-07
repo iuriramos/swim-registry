@@ -41,7 +41,7 @@
             </div>
 
             <ol class="breadcrumb">
-              {% if form.instance.organization %}
+              {% if form.instance.organization.pk %}
                   <li>
                      <a href="{% url 'community:participant_edit' %}" role="button">{% trans "Edit your organization" %}</a>
                   </li>

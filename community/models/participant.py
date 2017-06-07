@@ -19,11 +19,11 @@ class Participant(TimeStampedModel):
 
     def save(self, *args, **kwargs):
         # all services are safe if organization is safe
+        super().save(*args, **kwargs)
         if self.reviewed:
-            for service in self.services:
+            for service in self.services.all():
                 service.reviewed = True
                 service.save()
-        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.name

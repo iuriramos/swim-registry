@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-02 00:33-0300\n"
+"POT-Creation-Date: 2017-06-04 11:52-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,15 +20,41 @@ msgstr ""
 
 #: community/forms.py:13
 msgid "No"
-msgstr ""
+msgstr "Não"
 
 #: community/forms.py:13
 msgid "Yes"
-msgstr ""
+msgstr "Sim"
 
 #: community/forms.py:13 registry/models/review_request.py:13
 msgid "approved"
-msgstr ""
+msgstr "aprovado"
+
+#: community/forms.py:19
+#| msgid "First name"
+msgid "First Name"
+msgstr "Nome"
+
+#: community/forms.py:20
+#| msgid "Last name"
+msgid "Last Name"
+msgstr "Sobrenome"
+
+#: community/forms.py:21
+#: registry/templates/registry/contact_point_detail.html:32
+msgid "E-mail"
+msgstr "E-mail"
+
+#: community/forms.py:22 registry/templates/registry/base.html:37
+#: registry/templates/registry/service_detail.html:38
+#| msgid "Organizations"
+msgid "Organization"
+msgstr "Organização"
+
+#: community/forms.py:23
+#| msgid "institutional role"
+msgid "Institutional Role"
+msgstr "Papel Institucional"
 
 #: community/forms.py:24
 msgid "Describe how you intend to use the SWIM Registry."
@@ -39,13 +65,11 @@ msgid "Email already registered"
 msgstr "Email já registrado"
 
 #: community/forms.py:46 community/models/registration_request.py:10
-#, fuzzy
 #| msgid "First name"
 msgid "first name"
 msgstr "Nome"
 
 #: community/forms.py:47 community/models/registration_request.py:11
-#, fuzzy
 #| msgid "Last name"
 msgid "last name"
 msgstr "Sobrenome"
@@ -89,10 +113,9 @@ msgstr "Descrição"
 #: registry/models/subscription_content_type.py:52
 #: registry/models/technical_interface_binding.py:7
 #: registry/models/version_category.py:18 swim_registry/models.py:23
-#, fuzzy
 #| msgid "Last name"
 msgid "name"
-msgstr "Sobrenome"
+msgstr "nome"
 
 #: community/models/participant.py:8 registry/models/contact_point.py:10
 #: registry/models/data_exchange_format.py:8 registry/models/data_standard.py:8
@@ -101,10 +124,9 @@ msgstr "Sobrenome"
 #: registry/models/service.py:14 registry/models/technical_interface.py:7
 #: registry/models/technical_interface_binding.py:8
 #: registry/models/workflow.py:8 swim_registry/models.py:24
-#, fuzzy
 #| msgid "Description"
 msgid "description"
-msgstr "Descrição"
+msgstr "descrição"
 
 #: community/models/participant.py:9
 msgid "website"
@@ -113,7 +135,7 @@ msgstr ""
 #: community/models/participant.py:10
 #: community/models/participant_category.py:27
 msgid "participant category"
-msgstr ""
+msgstr "categoria do participante"
 
 #: community/models/participant.py:11 registry/models/application.py:10
 #: registry/models/contact_point.py:19 registry/models/contact_point.py:27
@@ -129,72 +151,72 @@ msgstr ""
 #: registry/models/technical_interface.py:9
 #: registry/models/technical_interface_binding.py:9
 msgid "image"
-msgstr ""
+msgstr "imagem"
 
 #: community/models/participant.py:12 registry/models/application.py:28
 #: registry/models/service.py:32 registry/models/workflow.py:12
 msgid "reviewed"
-msgstr ""
+msgstr "revisado"
 
 #: community/models/participant.py:18 registry/models/contact_point.py:36
 #: registry/models/document.py:60
 msgid "participant"
-msgstr ""
+msgstr "participante"
 
 #: community/models/participant_category.py:15
 msgid "Airspace company"
-msgstr ""
+msgstr "Companhia aérea"
 
 #: community/models/participant_category.py:16
 #, fuzzy
 #| msgid "Organizations"
 msgid "Research Organization"
-msgstr "Organizações"
+msgstr ""
 
 #: community/models/participant_category.py:17
 msgid "Airport"
-msgstr ""
+msgstr "Aeroporto"
 
 #: community/models/participant_category.py:18
 msgid "Aerodrome"
-msgstr ""
+msgstr "Aeródromo"
 
 #: community/models/participant_category.py:19
 msgid "Research Institution"
-msgstr ""
+msgstr "Instituição de pesquisa"
 
 #: community/models/participant_category.py:20
 msgid "Public Agency"
-msgstr ""
+msgstr "Agência Pública"
 
 #: community/models/participant_category.py:21
 #: registry/models/data_category.py:19
 msgid "Other"
-msgstr ""
+msgstr "Outro"
 
 #: community/models/participant_category.py:28
 msgid "participant categories"
-msgstr ""
+msgstr "categorias dos participantes"
 
 #: community/models/profile.py:14
 msgid "Never"
-msgstr ""
+msgstr "Nunca"
 
 #: community/models/profile.py:15
 msgid "Immediate"
-msgstr ""
+msgstr "Imediato"
 
 #: community/models/profile.py:16
 msgid "Daily"
-msgstr ""
+msgstr "Diariamente"
 
 #: community/models/profile.py:17
 msgid "Weekly"
-msgstr ""
+msgstr "Semanalmente"
 
 #: community/models/profile.py:20
 msgid "user"
-msgstr ""
+msgstr "usuário"
 
 #: community/models/profile.py:21 community/models/registration_request.py:13
 #: registry/models/application.py:8 registry/models/service.py:13
@@ -210,60 +232,73 @@ msgid "following organizations"
 msgstr "Organizações"
 
 #: community/models/profile.py:23
-msgid "notification frequency"
-msgstr ""
+#, fuzzy
+#| msgid "Organizations"
+msgid "following services"
+msgstr "Organizações"
 
 #: community/models/profile.py:24
-msgid "content type subscriptions"
-msgstr ""
+msgid "notification frequency"
+msgstr "frequência de notificação"
 
 #: community/models/profile.py:25
+msgid "content type subscriptions"
+msgstr "inscrições de tipo de conteúdo"
+
+#: community/models/profile.py:26
 #, fuzzy
 #| msgid "Description"
 msgid "region subscriptions"
-msgstr "Descrição"
-
-#: community/models/profile.py:26
-msgid "stakeholder subscriptions"
-msgstr ""
+msgstr "inscrições de regiões"
 
 #: community/models/profile.py:27
-msgid "ATM data subscriptions"
-msgstr ""
+msgid "stakeholder subscriptions"
+msgstr "inscrições de stakeholders"
 
 #: community/models/profile.py:28
-msgid "ATM activity subscriptions"
-msgstr ""
+msgid "ATM data subscriptions"
+msgstr "Inscrições de dados ATM"
 
 #: community/models/profile.py:29
+msgid "ATM activity subscriptions"
+msgstr "Inscrições de atividades ATM"
+
+#: community/models/profile.py:30
 #, fuzzy
 #| msgid "Flight trajectory"
 msgid "flight phases subscriptions"
 msgstr "Trajetória de voo"
 
-#: community/models/profile.py:32
+#: community/models/profile.py:33
 msgid "profile"
-msgstr ""
+msgstr "perfil"
 
 #: community/models/registration_request.py:14
 msgid "institutional role"
-msgstr ""
+msgstr "papel institucional"
 
 #: community/models/registration_request.py:15
 msgid "note"
-msgstr ""
+msgstr "comentário"
 
 #: community/models/registration_request.py:35
 #, fuzzy
 #| msgid "Organizations"
 msgid "registration request"
-msgstr "Organizações"
+msgstr "requisição de registro"
 
-#: community/templates/community/participant_detail.html:19
-msgid "Category"
+#: community/templates/community/participant_detail.html:21
+#: community/templates/community/participant_detail.html:26
+#: registry/templates/registry/service_detail.html:21
+#: registry/templates/registry/service_detail.html:26
+msgid "Subscribe"
 msgstr ""
 
 #: community/templates/community/participant_detail.html:32
+msgid "Category"
+msgstr ""
+
+#: community/templates/community/participant_detail.html:45
 #: registry/templates/registry/base.html:22
 #: registry/templates/registry/organization_service_list.html:19
 #: registry/templates/registry/service_list.html:11
@@ -272,14 +307,14 @@ msgstr ""
 msgid "Services"
 msgstr "Serviços"
 
-#: community/templates/community/participant_detail.html:78
+#: community/templates/community/participant_detail.html:91
 #: registry/templates/registry/data_exchange_format_detail.html:35
 #: registry/templates/registry/data_standard_detail.html:35
 #: registry/templates/registry/service_detail.html:192
 msgid "Documentation"
 msgstr ""
 
-#: community/templates/community/participant_detail.html:97
+#: community/templates/community/participant_detail.html:110
 #: community/templates/community/participant_edit.html:132
 #: registry/templates/registry/service_detail.html:210
 #: registry/templates/registry/service_edit.html:218
@@ -325,7 +360,7 @@ msgid "Add Contact Point"
 msgstr ""
 
 #: community/templates/community/participant_edit.html:156
-#: community/templates/community/profile.html:86
+#: community/templates/community/profile.html:135
 #: community/templates/community/subscriptions.html:134
 #: registry/templates/registry/data_exchange_formats_edit.html:61
 #: registry/templates/registry/end_points_edit.html:60
@@ -365,11 +400,23 @@ msgstr "Nome"
 msgid "Last name"
 msgstr "Sobrenome"
 
+#: community/templates/community/profile.html:91
+#, fuzzy
+#| msgid "Organizations"
+msgid "Following Organizations"
+msgstr "Organizações"
+
+#: community/templates/community/profile.html:115
+#, fuzzy
+#| msgid "Services"
+msgid "Following Services"
+msgstr "Serviços"
+
 #: community/templates/community/register.html:34
 #: community/templates/community/register.html:43
 #: registry/templates/registry/login.html:28 website/templates/index.html:165
 msgid "Register"
-msgstr ""
+msgstr "Registre-se"
 
 #: community/templates/community/subscriptions.html:9
 msgid "Subscriptions settings"
@@ -414,15 +461,15 @@ msgstr ""
 msgid "SWIM Registry Brazil - Confirmation request"
 msgstr "Área Administrativa"
 
-#: community/views.py:59
+#: community/views.py:60
 msgid "Profile settings updated successfully"
 msgstr ""
 
-#: community/views.py:115
+#: community/views.py:116
 msgid "Organization created successfully"
 msgstr ""
 
-#: community/views.py:135
+#: community/views.py:136
 msgid "Organization settings updated successfully"
 msgstr ""
 
@@ -1205,40 +1252,28 @@ msgid "About"
 msgstr "Sobre"
 
 #: registry/templates/registry/base.html:27
-#: registry/templates/registry/reference_document_list.html:19
 msgid "Reference Documents"
-msgstr ""
+msgstr "Documentos de Referência"
 
 #: registry/templates/registry/base.html:28
 msgid "Support"
-msgstr ""
+msgstr "Suporte"
 
 #: registry/templates/registry/base.html:34
 msgid "Settings"
-msgstr ""
+msgstr "Configurações"
 
 #: registry/templates/registry/base.html:35
 msgid "Profile"
-msgstr ""
-
-#: registry/templates/registry/base.html:37
-#: registry/templates/registry/service_detail.html:38
-#, fuzzy
-#| msgid "Organizations"
-msgid "Organization"
-msgstr "Organizações"
+msgstr "Perfil"
 
 #: registry/templates/registry/base.html:39
 msgid "Subscriptions"
-msgstr ""
+msgstr "Inscrições"
 
 #: registry/templates/registry/base.html:41
 msgid "Log out"
-msgstr ""
-
-#: registry/templates/registry/contact_point_detail.html:32
-msgid "E-mail"
-msgstr ""
+msgstr "Sair"
 
 #: registry/templates/registry/data_exchange_format_detail.html:10
 msgid "Data Exchange Format"
@@ -1333,15 +1368,15 @@ msgstr ""
 
 #: registry/templates/registry/login.html:14
 msgid "Please, check out your email and password."
-msgstr ""
+msgstr "Por favor, verifique seu email e senha."
 
 #: registry/templates/registry/login.html:18
 msgid "Please sign in"
-msgstr ""
+msgstr "Faça seu login"
 
 #: registry/templates/registry/login.html:26
 msgid "Sign in"
-msgstr ""
+msgstr "Login"
 
 #: registry/templates/registry/organization_service_list.html:26
 #, fuzzy
@@ -1367,17 +1402,12 @@ msgstr "Serviços"
 msgid "Reference"
 msgstr "Serviços"
 
-#: registry/templates/registry/reference_document_list.html:33
+#: registry/templates/registry/reference_document_list.html:38
 #: registry/templates/registry/technical_interface_detail.html:41
 #, fuzzy
 #| msgid "Services"
 msgid "Infrastructure Reference Documents"
 msgstr "Serviços"
-
-#: registry/templates/registry/service_detail.html:21
-#: registry/templates/registry/service_detail.html:26
-msgid "Subscribe"
-msgstr ""
 
 #: registry/templates/registry/service_detail.html:42
 msgid "Implementation status"
@@ -1564,19 +1594,19 @@ msgstr ""
 msgid "Infrastructure Description updated successfully."
 msgstr ""
 
-#: registry/views/service.py:116
+#: registry/views/service.py:112
 msgid ""
 "Service created successfully. You can now edit the service technical "
 "interface."
 msgstr ""
 
-#: registry/views/service.py:145
+#: registry/views/service.py:141
 msgid ""
 "Service updated successfully. Submit a Service Review Request if you want to "
 "update your service registration status."
 msgstr ""
 
-#: registry/views/service.py:169
+#: registry/views/service.py:165
 msgid "Service review request submited successfully."
 msgstr ""
 
@@ -1632,6 +1662,10 @@ msgid ""
 "information and its exchange between qualified parties via interoperable "
 "services."
 msgstr ""
+"System-Wide Information Management (SWIM) representa a reunião de padrões, "
+"infraestrutura e governança necessárias à gestão e ao intercâmbio de "
+"informações relacionadas ao ATM entre as partes interessadas, por meio de "
+"serviços interoperáveis. "
 
 #: website/templates/index.html:83
 msgid ""
@@ -1639,6 +1673,9 @@ msgid ""
 "services in Brazil. Here you will find out all the information necessary to "
 "discover and access the list of services available in SWIM Brazil."
 msgstr ""
+"SWIM Registry Brasil servirá como repositório geral para os serviços SWIM  "
+"no Brasil. Aqui você encontrará todas as informações necessárias para "
+"encontrar e acessar a lista de serviços SWIM disponíveis na plataforma."
 
 #: website/templates/index.html:103
 msgid "Aeronautical"
@@ -1646,7 +1683,7 @@ msgstr "Aeronáutica"
 
 #: website/templates/index.html:104
 msgid "Aeronautical information assembled, analyzed and formatted."
-msgstr ""
+msgstr "Informações aeronáuticas organizadas, analisadas e formatadas."
 
 #: website/templates/index.html:110
 msgid "Flight trajectory"
@@ -1657,6 +1694,8 @@ msgid ""
 "The detailed route of the aircraft defined in four dimensions 4D (with the "
 "time component included)."
 msgstr ""
+"A rota detalhada da aeronave definida em quatro dimensões 4D (com a "
+"componente de tempo incluída)."
 
 #: website/templates/index.html:117
 msgid "Meteorological"
@@ -1665,6 +1704,8 @@ msgstr "Meteorologia"
 #: website/templates/index.html:118
 msgid "Information on the state of earth's atmosphere for air traffic control."
 msgstr ""
+"Informações do estado da atmosfera terrestre para o controle do tráfego "
+"aéreo."
 
 #: website/templates/index.html:124
 msgid "Other services"
@@ -1675,6 +1716,8 @@ msgid ""
 "Aerodrome operations, Surveillance, Environment, and other aspects related "
 "to air traffic management."
 msgstr ""
+"Operações em aeródromos, Vigilância, Ambiente e outros aspectos relacionados "
+"ao controle do tráfego aéreo."
 
 #: website/templates/index.html:137
 msgid ""
@@ -1684,27 +1727,32 @@ msgid ""
 "TransLab is to incorporate technology into society, especially, air "
 "transportation and informatics application."
 msgstr ""
+"Translab é um centro de excelência na pesquisa e desenvolvimento de modelos "
+"computacionais aplicados no trasporte aéreo localizado no Departamento de "
+"Ciência da Computação da Universidade de Brasília (UnB). A missão do "
+"Translab é incorporar tecnologia na sociedade, especialmente, no trasporte "
+"aéreo e em aplicações computacionais."
 
 #: website/templates/index.html:164
 msgid "Register to have access to the available services"
-msgstr ""
+msgstr "Registre-se para ter acesso aos serviços disponíveis"
 
 #: website/templates/index.html:173
 msgid "Contact us"
-msgstr ""
+msgstr "Entre em contato"
 
 #: website/templates/index.html:175
 msgid ""
 "Suggestions? Give us a call or send us an email and we will get back to you "
 "as soon as possible."
-msgstr ""
+msgstr "Sugestões? Envie-nos um email!"
 
 #: website/templates/index.html:179
 msgid "+55 61-3107-3679"
 msgstr ""
 
 #: website/templates/index.html:183
-msgid "contact@translab.unb.br"
+msgid "translab@unb.br"
 msgstr ""
 
 #~ msgid "Role"

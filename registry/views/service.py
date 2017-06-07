@@ -103,12 +103,15 @@ def service_new(request):
         formset_documents = ServiceDocumentFormSet(request.POST, request.FILES)
         formset_contact_points = ContactPointServiceFormSet(request.POST, request.FILES)
         if form_service.is_valid() and formset_documents.is_valid() and formset_contact_points.is_valid():
-            service = form_service.save(commit=True)
-            form_service.save_m2m()
-            formset_documents.save()
-            formset_contact_points.save()
+            service = form_service.save(commit=False)
+            # form_service.save_m2m()
             service.organization = organization
             service.save()
+            form_service.save_m2m()
+            formset_documents.instance = service
+            formset_documents.save()
+            formset_contact_points.instance = service
+            formset_contact_points.save()
             messages.add_message(request, messages.INFO, _('Service created successfully. You can now edit the service technical interface.'))
             return redirect('registry:service_edit', pk=service.pk)
     else:

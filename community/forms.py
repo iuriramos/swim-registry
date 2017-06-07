@@ -16,11 +16,11 @@ class RegistrationRequestForm(forms.ModelForm):
         model = RegistrationRequest
         fields = '__all__'
         widgets = {
-            'first_name': widgets.TextInput(attrs={'id': 'first_name_id', 'class': 'form-control', 'autofocus': True}),
-            'last_name': widgets.TextInput(attrs={'id': 'last_name_id', 'class': 'form-control'}),
-            'email': widgets.TextInput(attrs={'id': 'email_id', 'class': 'form-control'}),
-            'organization': widgets.TextInput(attrs={'id': 'organization_id', 'class': 'form-control'}),
-            'role': widgets.TextInput(attrs={'id': 'role_id', 'class': 'form-control'}),
+            'first_name': widgets.TextInput(attrs={'id': 'first_name_id', 'class': 'form-control', 'autofocus': True, 'placeholder': _('First Name')}),
+            'last_name': widgets.TextInput(attrs={'id': 'last_name_id', 'class': 'form-control', 'placeholder': _('Last Name')}),
+            'email': widgets.TextInput(attrs={'id': 'email_id', 'class': 'form-control', 'placeholder': _('E-mail')}),
+            'organization': widgets.TextInput(attrs={'id': 'organization_id', 'class': 'form-control', 'placeholder': _('Organization')}),
+            'role': widgets.TextInput(attrs={'id': 'role_id', 'class': 'form-control', 'placeholder': _('Institutional Role')}),
             'note': widgets.Textarea(attrs={'id': 'note_id', 'class': 'form-control', 'placeholder': _('Describe how you intend to use the SWIM Registry.')}),
             'approved': widgets.Select(),
          }
