@@ -175,21 +175,27 @@ def save_workflow(request, service):
     author = request.user.profile
     old_state = service.registration_status
     new_state = RegistrationStatusCategory.objects.get(name=RegistrationStatusCategory.VALIDATION)
-    previous_node = service.workflow
+    if not hasattr(service, 'workflow'):
+        previous_node = None
+    else:
+        previous_node = service.workflow
     workflow = Workflow.objects.create(
                            author=author,
                            old_state=old_state,
                            new_state=new_state,
-                           previous_node=previous_node)
+                           previous_node=previous_node,
+                           service=service)
     workflow.save()
-    service.workflow = workflow
     service.registration_status = new_state
     service.save()
 
 
 def get_workflow_history(service):
     entries = []
-    workflow = service.workflow
+    if not hasattr(service, 'workflow'):
+        workflow = None
+    else:
+        workflow = service.workflow
     while workflow:
         if workflow.reviewed:
             entries.append(workflow)

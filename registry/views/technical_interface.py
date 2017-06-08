@@ -21,9 +21,10 @@ def technical_interface_new(request, pk):
         form_technical_interface = TechnicalInterfaceForm(request.POST, request.FILES)
         formset_documents = TechnicalInterfaceDocumentFormSet(request.POST, request.FILES)
         if form_technical_interface.is_valid() and formset_documents.is_valid():
-            technical_interface = form_technical_interface.save()
-            service.technical_interface = technical_interface
-            service.save()
+            technical_interface = form_technical_interface.save(commit=False)
+            technical_interface.service = service
+            technical_interface.save()
+            form_technical_interface.save_m2m()
             formset_documents.instance = technical_interface
             formset_documents.save()
             messages.add_message(request, messages.INFO, _('Technical Interface created successfully. You can now edit other technical interface parameters such as infrastructure description, data exchange formats and end points.'))
@@ -45,8 +46,10 @@ def technical_interface_edit(request, pk):
         form_technical_interface = TechnicalInterfaceForm(request.POST, request.FILES, instance=technical_interface)
         formset_documents = TechnicalInterfaceDocumentFormSet(request.POST, request.FILES, instance=technical_interface)
         if form_technical_interface.is_valid() and formset_documents.is_valid():
-            technical_interface = form_technical_interface.save()
-            service.save()
+            technical_interface = form_technical_interface.save(commit=False)
+            technical_interface.service = service
+            technical_interface.save()
+            form_technical_interface.save_m2m()
             formset_documents.save()
             messages.add_message(request, messages.INFO, _('Technical Interface updated successfully.'))
             return redirect('registry:technical_interface_edit', pk=service.pk)

@@ -34,15 +34,17 @@ class ReviewRequestService(TimeStampedModel):
     def save_workflow(self, new_state, review):
         # TODO: get logged author
         # author = self.workflow.author
+        self.workflow.service = None
+        self.workflow.save()
         workflow = Workflow.objects.create(
                                #author=author,
                                description=review,
                                old_state=self.workflow.new_state,
                                new_state=new_state,
                                previous_node=self.workflow,
-                               reviewed=True)
+                               reviewed=True,
+                               service=self.service)
         workflow.save()
-        self.service.workflow = workflow
         self.service.registration_status = new_state
         self.service.save()
 

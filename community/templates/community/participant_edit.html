@@ -72,9 +72,11 @@
               <li>
                   <a href="{% url 'community:profile' %}">{% trans "Edit your Profile" %}</a>
               </li>
-              <li>
-                  <a href="{% url 'registry:participant_service_list' %}" role="button">{% trans "View Services" %}</a>
-              </li>
+              {% if form.instance.pk %}
+                <li>
+                    <a href="{% url 'registry:participant_service_list' %}" role="button">{% trans "View Services" %}</a>
+                </li>
+              {% endif %}
             </ol>
 
             <div class="row">

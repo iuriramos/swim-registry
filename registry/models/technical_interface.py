@@ -13,7 +13,7 @@ class TechnicalInterface(TimeStampedModel):
 
     infrastructure_profile = models.ForeignKey('registry.InfrastructureProfile', related_name='technical_interfaces', null=True, blank=True, verbose_name=_('infrastructure profile'))
 
-    infrastructure_description = models.OneToOneField('registry.InfrastructureDescription', related_name='technical_interface', null=True, blank=True, verbose_name=_('infrastructure description'))
+    service = models.OneToOneField('registry.Service', related_name='technical_interface', verbose_name=_('service'))
 
     # documents = models.ManyToMany(ServiceDocument, related_name='technical_interfaces')
     # data_exchange_formats = models.ManyToManyField(DataExchangeFormat, related_name='technical_interfaces')

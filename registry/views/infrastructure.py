@@ -31,9 +31,12 @@ def infrastructure_description_new(request, pk):
         formset_documents = InfrastructureDescriptionDocumentFormSet(request.POST, request.FILES)
         formset_bindings = TechnicalInterfaceBindingDescriptionFormSet(request.POST, request.FILES)
         if form_infrastructure_description.is_valid() and formset_documents.is_valid() and formset_bindings.is_valid():
-            infrastructure_description = form_infrastructure_description.save()
-            technical_interface.infrastructure_description = infrastructure_description
-            technical_interface.save()
+            infrastructure_description = form_infrastructure_description.save(commit=False)
+            infrastructure_description.technical_interface = technical_interface
+            infrastructure_description.save()
+            form_infrastructure_description.save_m2m()
+            formset_documents.instance = infrastructure_description
+            formset_bindings.instance = infrastructure_description
             formset_documents.save()
             formset_bindings.save()
             messages.add_message(request, messages.INFO, _('Infrastructure Description created successfully.'))
@@ -58,9 +61,10 @@ def infrastructure_description_edit(request, pk):
         formset_documents = InfrastructureDescriptionDocumentFormSet(request.POST, request.FILES, instance=infrastructure_description)
         formset_bindings = TechnicalInterfaceBindingDescriptionFormSet(request.POST, request.FILES, instance=infrastructure_description)
         if form_infrastructure_description.is_valid() and formset_documents.is_valid() and formset_bindings.is_valid():
-            infrastructure_description = form_infrastructure_description.save()
-            technical_interface.infrastructure_description = infrastructure_description
-            technical_interface.save()
+            infrastructure_description = form_infrastructure_description.save(commit=False)
+            infrastructure_description.technical_interface = technical_interface
+            infrastructure_description.save()
+            form_infrastructure_description.save_m2m()
             formset_documents.save()
             formset_bindings.save()
             messages.add_message(request, messages.INFO, _('Infrastructure Description updated successfully.'))

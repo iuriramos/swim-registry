@@ -8,7 +8,7 @@ class InfrastructureDescriptionForm(forms.ModelForm):
 
     class Meta:
         model = InfrastructureDescription
-        fields = '__all__'
+        exclude = ['technical_interface']
         widgets = {
             'description': forms.widgets.Textarea(attrs={'id': 'infrastructure_description__description_id', 'class': 'form-control', 'placeholder': _('Infrastructure Description')}),
             'version': forms.widgets.TextInput(attrs={'id': 'infrastructure_description__version_id', 'class': 'form-control', 'placeholder': _('Version')}),

@@ -32,7 +32,7 @@
                     <ul class="dropdown-menu">
                       <li class="dropdown-header">{% trans "Settings" %}</li>
                       <li><a href="{% url 'community:profile' %}">{% trans "Profile" %}</a></li>
-                      {% if not user.profile.organizaion %}
+                      {% if user.profile.organization.pk %}
                           <li><a href="{% url 'community:participant_edit' %}">{% trans "Organization" %}</a></li>
                       {% endif %}
                       <li><a href="{% url 'community:subscriptions' %}">{% trans "Subscriptions" %}</a></li>

@@ -27,6 +27,8 @@ class InfrastructureDescription(TimeStampedModel):
 
     infrastructure_reference_documents = models.ManyToManyField('registry.InfrastructureReferenceDocument', related_name='infrastructure_description', blank=True, verbose_name=_('infrastructure reference documents'))
 
+    technical_interface = models.OneToOneField('registry.TechnicalInterface', related_name='infrastructure_description', verbose_name=_('technical interface'))
+
     # infrastructure_documents = models.ManyToManyField(InfrastructureDocument, related_name='infrastructure_description')
     # technical_interface_bindings = models.ManyToManyField(TechnicalInterfaceBinding, related_name='infrastructure_description')
 

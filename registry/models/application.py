@@ -26,7 +26,9 @@ class Application(TimeStampedModel):
     consumed_services = models.ManyToManyField('registry.Service', related_name='applications', verbose_name=_('consumed services'))
 
     reviewed = models.BooleanField(default=False, verbose_name=_('reviewed'))
-    workflow = models.OneToOneField('registry.Workflow', related_name='application', verbose_name=_('workflow'))
+    # workflow = models.OneToOneField('registry.Workflow', related_name='application', verbose_name=_('workflow'))
+
+
     # files = models.ManyToManyField(ApplicationFile, related_name='applications')
 
     # data_exchange_formats = models.ManyToManyField(DataExchangeFormat, related_name='applications')

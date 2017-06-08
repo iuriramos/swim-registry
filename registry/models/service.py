@@ -26,9 +26,6 @@ class Service(TimeStampedModel):
     regions = models.ManyToManyField('registry.RegionCategory', related_name='services', verbose_name=_('regions'))
     flight_phases = models.ManyToManyField('registry.FlightPhaseCategory', related_name='services', verbose_name=_('flight phases'))
 
-    technical_interface = models.OneToOneField('registry.TechnicalInterface', related_name='service', null=True, verbose_name=_('technical interface'))
-
-    workflow = models.OneToOneField('registry.Workflow', related_name='service', null=True, verbose_name=_('workflow'))
     reviewed = models.BooleanField(default=False, verbose_name=_('reviewed'))
 
     # documents = models.ManyToManyField(ServiceDocument, related_name='services')
