@@ -161,15 +161,17 @@
                       <h3 class="panel-title">{% trans "Infrastructure Description" %} ({% trans "Implementation Specific" %})</h3>
                     </div>
                     <div class="list-group">
-                      <li class="list-group-item">
-                        <p>
-                          <img src="{{ service.technical_interface.infrastructure_description.image.url }}" alt="logo" width="50">
-                          <a href="{% url 'registry:infrastructure_description_detail' pk=service.technical_interface.infrastructure_description.pk %}">Infrastructure Description</a>
-                        </p>
-                        <p>
-                          {{ service.technical_interface.infrastructure_description.description | truncatechars:100 }}
-                        </p>
-                      </li>
+                      {% if service.technical_interface.infrastructure_description %}
+                        <li class="list-group-item">
+                          <p>
+                            <img src="{{ service.technical_interface.infrastructure_description.image.url }}" alt="logo" width="50">
+                            <a href="{% url 'registry:infrastructure_description_detail' pk=service.technical_interface.infrastructure_description.pk %}">Infrastructure Description</a>
+                          </p>
+                          <p>
+                            {{ service.technical_interface.infrastructure_description.description | truncatechars:100 }}
+                          </p>
+                        </li>
+                      {% endif %}
                     </div>
                   </div>
                   <div class="panel panel-default">
