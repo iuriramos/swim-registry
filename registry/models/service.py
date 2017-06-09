@@ -39,9 +39,9 @@ class Service(TimeStampedModel):
 
     def save(self, *args, **kwargs):
         # reviewed is True if organization is safe
-        super().save(*args, **kwargs)
         if self.organization and self.organization.reviewed:
             self.reviewed = True
+        super().save(*args, **kwargs)
 
     @property
     def organization_name(self):
