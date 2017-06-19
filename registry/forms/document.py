@@ -42,7 +42,7 @@ ServiceDocumentFormSet = inlineformset_factory(
         'name': forms.widgets.TextInput(attrs={'class': 'form-control', 'placeholder': _('Name')}),
         'description': forms.widgets.Textarea(attrs={'class': 'form-control', 'placeholder': _('Description')}),
         'version': forms.widgets.TextInput(attrs={'class': 'form-control', 'placeholder': _('Version')}),
-        'external_link': forms.widgets.TextInput(attrs={'class': 'form-control', 'placeholder': _('External Link')}),
+        'external_link': forms.widgets.TextInput(attrs={'class': 'form-control', 'placeholder': _('http://')}),
         },extra=0, fields='__all__')
 
 
@@ -52,6 +52,6 @@ TechnicalInterfaceDocumentFormSet = inlineformset_factory(
         'name': forms.widgets.TextInput(attrs={'class': 'form-control', 'placeholder': _('Name')}),
         'description': forms.widgets.Textarea(attrs={'class': 'form-control', 'placeholder': _('Description')}),
         'version': forms.widgets.TextInput(attrs={'class': 'form-control', 'placeholder': _('Version')}),
-        'external_link': forms.widgets.TextInput(attrs={'class': 'form-control', 'placeholder': _('External Link')}),
+        'external_link': forms.widgets.TextInput(attrs={'class': 'form-control', 'placeholder': _('http://')}),
         }, extra=0, fields='__all__')
 

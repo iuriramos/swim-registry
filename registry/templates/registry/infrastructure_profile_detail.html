@@ -39,7 +39,7 @@
                   {% for each in infrastructure_profile.technical_interface_bindings.all %}
                       <li class="list-group-item">
                         <img src="{{ each.image.url }}" alt="logo" width="50">
-                        <a href="{% url 'registry:description_technical_interface_binding_detail' pk=each.pk %}"> {{ each.name }}</a>
+                        <a href="{% url 'registry:profile_technical_interface_binding_detail' pk=each.pk %}"> {{ each.name }}</a>
                       </li>
                   {% endfor %}
                 </div>

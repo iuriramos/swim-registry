@@ -40,7 +40,7 @@
                     {% for document in infrastructure_reference_documents %}
                         <li class="list-group-item">
                           <img src="{{ document.image.url }}" alt="logo" width="50">
-                          <a href="{% url 'registry:service_document_detail' pk=document.pk %}"> {{ document.name }}</a>
+                          <a href="{% url 'registry:infrastructure_reference_document_detail' pk=document.pk %}"> {{ document.name }}</a>
                         </li>
                     {% endfor %}
                   </div>

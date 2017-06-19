@@ -10,6 +10,6 @@ EndPointFormSet = inlineformset_factory(
     widgets = {
         'name': forms.widgets.TextInput(attrs={'class': 'form-control', 'placeholder': _('Name')}),
         'description': forms.widgets.Textarea(attrs={'class': 'form-control', 'placeholder': _('Description')}),
-        'address': forms.widgets.TextInput(attrs={'class': 'form-control', 'placeholder': _('Email')}),
+        'address': forms.widgets.TextInput(attrs={'class': 'form-control', 'placeholder': _('http://')}),
     }, extra=0, fields='__all__')
 
