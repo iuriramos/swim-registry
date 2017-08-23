@@ -11,7 +11,6 @@ SWIM Registry's documentation
    :caption: Contents:
 
    modules/registry.models
-   .. automodule:: community
 
 
 Indices and tables

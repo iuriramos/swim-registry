@@ -54,7 +54,7 @@
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
 <dl class="attribute">
 <dt id="community.migrations.0001_initial.Migration.dependencies">
-<code class="descname">dependencies</code><em class="property"> = [('registry', '0001_initial'), ('auth', '__first__')]</em><a class="headerlink" href="#community.migrations.0001_initial.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<code class="descname">dependencies</code><em class="property"> = [('auth', '__first__'), ('registry', '0001_initial')]</em><a class="headerlink" href="#community.migrations.0001_initial.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -64,49 +64,17 @@
 
 <dl class="attribute">
 <dt id="community.migrations.0001_initial.Migration.operations">
-<code class="descname">operations</code><em class="property"> = [&lt;CreateModel  fields=[('id', &lt;django.db.models.fields.AutoField&gt;), ('created', &lt;django.db.models.fields.DateTimeField&gt;), ('modified', &lt;django.db.models.fields.DateTimeField&gt;), ('name', &lt;django.db.models.fields.CharField&gt;), ('email', &lt;django.db.models.fields.EmailField&gt;), ('description', &lt;django.db.models.fields.TextField&gt;)], options={'abstract': False}, name='Participant'&gt;, &lt;CreateModel  fields=[('id', &lt;django.db.models.fields.AutoField&gt;), ('created', &lt;django.db.models.fields.DateTimeField&gt;), ('modified', &lt;django.db.models.fields.DateTimeField&gt;), ('notification_frequency', &lt;django.db.models.fields.CharField&gt;), ('following_organizations', &lt;django.db.models.fields.related.ManyToManyField&gt;), ('subscriptions_activity', &lt;django.db.models.fields.related.ManyToManyField&gt;), ('subscriptions_content_type', &lt;django.db.models.fields.related.ManyToManyField&gt;), ('subscriptions_data', &lt;django.db.models.fields.related.ManyToManyField&gt;), ('subscriptions_flight_phase', &lt;django.db.models.fields.related.ManyToManyField&gt;), ('subscriptions_region', &lt;django.db.models.fields.related.ManyToManyField&gt;), ('subscriptions_stakeholder', &lt;django.db.models.fields.related.ManyToManyField&gt;), ('user', &lt;django.db.models.fields.related.OneToOneField&gt;)], options={'abstract': False}, name='Profile'&gt;, &lt;CreateModel  fields=[('id', &lt;django.db.models.fields.AutoField&gt;), ('created', &lt;django.db.models.fields.DateTimeField&gt;), ('modified', &lt;django.db.models.fields.DateTimeField&gt;), ('first_name', &lt;django.db.models.fields.CharField&gt;), ('last_name', &lt;django.db.models.fields.CharField&gt;), ('email', &lt;django.db.models.fields.EmailField&gt;), ('organization', &lt;django.db.models.fields.CharField&gt;), ('role', &lt;django.db.models.fields.CharField&gt;)], options={'abstract': False}, name='RegistrationRequest'&gt;]</em><a class="headerlink" href="#community.migrations.0001_initial.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<code class="descname">operations</code><em class="property"> = [&lt;CreateModel  fields=[('id', &lt;django.db.models.fields.AutoField&gt;), ('created', &lt;django.db.models.fields.DateTimeField&gt;), ('modified', &lt;django.db.models.fields.DateTimeField&gt;), ('name', &lt;django.db.models.fields.CharField&gt;), ('description', &lt;django.db.models.fields.TextField&gt;), ('image', &lt;django.db.models.fields.files.ImageField&gt;)], name='Participant', options={'abstract': False}&gt;, &lt;CreateModel  fields=[('id', &lt;django.db.models.fields.AutoField&gt;), ('name', &lt;django.db.models.fields.CharField&gt;)], name='ParticipantCategory', options={'verbose_name': 'participant category', 'verbose_name_plural': 'participant categories'}&gt;, &lt;CreateModel  fields=[('id', &lt;django.db.models.fields.AutoField&gt;), ('created', &lt;django.db.models.fields.DateTimeField&gt;), ('modified', &lt;django.db.models.fields.DateTimeField&gt;), ('notification_frequency', &lt;django.db.models.fields.CharField&gt;), ('following_organizations', &lt;django.db.models.fields.related.ManyToManyField&gt;), ('subscriptions_activity', &lt;django.db.models.fields.related.ManyToManyField&gt;), ('subscriptions_content_type', &lt;django.db.models.fields.related.ManyToManyField&gt;), ('subscriptions_data', &lt;django.db.models.fields.related.ManyToManyField&gt;), ('subscriptions_flight_phase', &lt;django.db.models.fields.related.ManyToManyField&gt;), ('subscriptions_region', &lt;django.db.models.fields.related.ManyToManyField&gt;), ('subscriptions_stakeholder', &lt;django.db.models.fields.related.ManyToManyField&gt;), ('user', &lt;django.db.models.fields.related.OneToOneField&gt;)], name='Profile', options={'abstract': False}&gt;, &lt;CreateModel  fields=[('id', &lt;django.db.models.fields.AutoField&gt;), ('created', &lt;django.db.models.fields.DateTimeField&gt;), ('modified', &lt;django.db.models.fields.DateTimeField&gt;), ('first_name', &lt;django.db.models.fields.CharField&gt;), ('last_name', &lt;django.db.models.fields.CharField&gt;), ('email', &lt;django.db.models.fields.EmailField&gt;), ('organization', &lt;django.db.models.fields.CharField&gt;), ('role', &lt;django.db.models.fields.CharField&gt;)], name='RegistrationRequest', options={'abstract': False}&gt;, &lt;AddField  field=&lt;django.db.models.fields.related.ForeignKey&gt;, name='category', model_name='participant'&gt;]</em><a class="headerlink" href="#community.migrations.0001_initial.Migration.operations" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 </div>
-<div class="section" id="module-community.migrations.0002_auto_20170514_1250">
-<span id="community-migrations-0002-auto-20170514-1250-module"></span><h2>community.migrations.0002_auto_20170514_1250 module<a class="headerlink" href="#module-community.migrations.0002_auto_20170514_1250" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="community.migrations.0002_auto_20170514_1250.Migration">
-<em class="property">class </em><code class="descclassname">community.migrations.0002_auto_20170514_1250.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="headerlink" href="#community.migrations.0002_auto_20170514_1250.Migration" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
-<dl class="attribute">
-<dt id="community.migrations.0002_auto_20170514_1250.Migration.dependencies">
-<code class="descname">dependencies</code><em class="property"> = [('community', '0001_initial')]</em><a class="headerlink" href="#community.migrations.0002_auto_20170514_1250.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="community.migrations.0002_auto_20170514_1250.Migration.operations">
-<code class="descname">operations</code><em class="property"> = [&lt;RemoveField  model_name='participant', name='email'&gt;, &lt;AddField  field=&lt;django.db.models.fields.CharField&gt;, model_name='participant', name='category'&gt;, &lt;AddField  field=&lt;django.db.models.fields.files.ImageField&gt;, model_name='participant', name='picture'&gt;]</em><a class="headerlink" href="#community.migrations.0002_auto_20170514_1250.Migration.operations" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
+<div class="section" id="community-migrations-0002-auto-20170514-1250-module">
+<h2>community.migrations.0002_auto_20170514_1250 module<a class="headerlink" href="#community-migrations-0002-auto-20170514-1250-module" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="module-community.migrations.0003_auto_20170514_1300">
-<span id="community-migrations-0003-auto-20170514-1300-module"></span><h2>community.migrations.0003_auto_20170514_1300 module<a class="headerlink" href="#module-community.migrations.0003_auto_20170514_1300" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="community.migrations.0003_auto_20170514_1300.Migration">
-<em class="property">class </em><code class="descclassname">community.migrations.0003_auto_20170514_1300.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="headerlink" href="#community.migrations.0003_auto_20170514_1300.Migration" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
-<dl class="attribute">
-<dt id="community.migrations.0003_auto_20170514_1300.Migration.dependencies">
-<code class="descname">dependencies</code><em class="property"> = [('community', '0002_auto_20170514_1250')]</em><a class="headerlink" href="#community.migrations.0003_auto_20170514_1300.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="community.migrations.0003_auto_20170514_1300.Migration.operations">
-<code class="descname">operations</code><em class="property"> = [&lt;AlterField  field=&lt;django.db.models.fields.files.ImageField&gt;, model_name='participant', name='picture'&gt;]</em><a class="headerlink" href="#community.migrations.0003_auto_20170514_1300.Migration.operations" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
+<div class="section" id="community-migrations-0003-auto-20170514-1300-module">
+<h2>community.migrations.0003_auto_20170514_1300 module<a class="headerlink" href="#community-migrations-0003-auto-20170514-1300-module" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="module-community.migrations">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-community.migrations" title="Permalink to this headline">¶</a></h2>
@@ -124,8 +92,8 @@
 <li><a class="reference internal" href="#">community.migrations package</a><ul>
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
 <li><a class="reference internal" href="#module-community.migrations.0001_initial">community.migrations.0001_initial module</a></li>
-<li><a class="reference internal" href="#module-community.migrations.0002_auto_20170514_1250">community.migrations.0002_auto_20170514_1250 module</a></li>
-<li><a class="reference internal" href="#module-community.migrations.0003_auto_20170514_1300">community.migrations.0003_auto_20170514_1300 module</a></li>
+<li><a class="reference internal" href="#community-migrations-0002-auto-20170514-1250-module">community.migrations.0002_auto_20170514_1250 module</a></li>
+<li><a class="reference internal" href="#community-migrations-0003-auto-20170514-1300-module">community.migrations.0003_auto_20170514_1300 module</a></li>
 <li><a class="reference internal" href="#module-community.migrations">Module contents</a></li>
 </ul>
 </li>
