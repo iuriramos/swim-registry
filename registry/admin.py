@@ -1,4 +1,6 @@
 from django.contrib import admin
+from django.utils.translation import ugettext_lazy as _
+from django.core.exceptions import ObjectDoesNotExist
 from .models.subscription_content_type import SubscriptionContentType
 from .models.region_category import RegionCategory
 from .models.data_category import DataCategory
@@ -10,7 +12,6 @@ from .models.version_category import VersionCategory
 from .models.implementation import ImplementationStatusCategory, ImplementationMaturityCategory
 from .models.service import Service
 from .models.application import Application
-from .models.workflow import Workflow
 from .models.technical_interface import TechnicalInterface
 from .models.technical_interface_binding import TechnicalInterfaceBindingProfile, TechnicalInterfaceBindingDescription
 from .models.infrastructure import InfrastructureProfile, InfrastructureDescription
@@ -18,8 +19,6 @@ from .models.document import InfrastructureReferenceDocument, ReferenceDocument
 from .models.data_standard import DataStandard
 from .models.data_exchange_format import DataExchangeFormatService, DataExchangeFormatApplication
 from .models.contact_point import ContactPointService, ContactPointParticipant
-from .models.review_request import ReviewRequestService
-from .forms.review_request import ReviewRequestServiceForm, ReviewRequestServiceAdminForm
 
 
 admin.site.register(RegionCategory)
@@ -38,7 +37,6 @@ admin.site.register(Application)
 admin.site.register(ReferenceDocument)
 admin.site.register(InfrastructureReferenceDocument)
 admin.site.register(DataStandard)
-admin.site.register(Workflow)
 
 
 class TechnicalInterfaceBindingProfileInline(admin.TabularInline):
@@ -49,9 +47,4 @@ class InfrastructureProfileAdmin(admin.ModelAdmin):
         TechnicalInterfaceBindingProfileInline,
     ]
 admin.site.register(InfrastructureProfile, InfrastructureProfileAdmin)
-
-
-class ReviewRequestServiceAdmin(admin.ModelAdmin):
-    form = ReviewRequestServiceAdminForm
-admin.site.register(ReviewRequestService, ReviewRequestServiceAdmin)
 

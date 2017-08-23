@@ -99,54 +99,6 @@
             </div>
           </div>
 
-          <div class="row">
-            <div class="col-md-12">
-              <!-- Button trigger modal -->
-              <button type="button" class="btn btn-primary center-block" data-toggle="modal" data-target="#myModal">
-                {% trans "Workflow" %}
-              </button>
-
-              <!-- Modal -->
-              <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                <div class="modal-dialog modal-lg" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                      <h4 class="modal-title" id="myModalLabel">{% trans "Workflow History" %}</h4>
-                    </div>
-                    <div class="modal-body">
-                    <table class="table table-striped">
-                      <tr>
-                        <th>{% trans "Date" %}</th>
-                        <th>{% trans "Old State" %}</th>
-                        <th>{% trans "New State" %}</th>
-                        {% comment %}
-                        <th>{% trans "Author" %}</th>
-                        {% endcomment %}
-                        <th>{% trans "Comment" %}</th>
-                      </tr>
-                      {% for workflow in workflow_history %}
-                          <tr>
-                            <td>{{ workflow.modified }}</td>
-                            <td>{{ workflow.old_state.get_name_display }}</td>
-                            <td>{{ workflow.new_state.get_name_display }}</td>
-                            {% comment %}
-                            <td>{{ workflow.author.full_name }}</td>
-                            {% endcomment %}
-                            <td>{{ workflow.description }}</td>
-                          </tr>
-                      {% endfor %}
-                    </table>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-default" data-dismiss="modal">{% trans "Close" %}</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
           <hr>
 
           <div class="row">

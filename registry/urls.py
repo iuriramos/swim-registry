@@ -61,9 +61,6 @@ urlpatterns = [
     url(r'^infrastructure-profile/technical-interface-binding/(?P<pk>\d+)/detail/$', login_required(technical_interface_binding.TechnicalInterfaceBindingProfileDetailView.as_view()), name='profile_technical_interface_binding_detail'),
     url(r'^infrastructure-description/technical-interface-binding/(?P<pk>\d+)/detail/$', login_required(technical_interface_binding.TechnicalInterfaceBindingDescriptionDetailView.as_view()), name='description_technical_interface_binding_detail'),
 
-    # Review Request
-    url(r'^services/(?P<pk>\d+)/edit/request-review/$', service.review_request, name='review_request'),
-
     # Subscriptions
     url(r'^services/(?P<pk>\d+)/detail/toggle-subscription/$', service.service_toggle_subscription, name='service_toggle_subscription'),
 

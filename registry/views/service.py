@@ -7,11 +7,8 @@ from django.views.generic.detail import DetailView
 from django.contrib.auth.decorators import login_required
 from community.models.participant import Participant
 from registry.models.service import Service
-from registry.models.workflow import Workflow
-from registry.models.review_request import ReviewRequestService
 from registry.models.registration_status_category import RegistrationStatusCategory
 from registry.forms.service import ServiceForm, ServiceSearchForm
-from registry.forms.review_request import ReviewRequestServiceForm
 from registry.forms.document import ServiceDocumentFormSet
 from registry.forms.contact_point import ContactPointServiceFormSet
 from .base import get_organization
@@ -25,12 +22,8 @@ class ServiceDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         service = context['service']
-        context['workflow_history'] = get_workflow_history(service)
         profile = self.request.user.profile
-        if profile.following_services.filter(pk=service.pk).exists():
-            context['subscribed'] = True
-        else:
-            context['subscribed'] = False
+        context['subscribed'] = profile.following_services.filter(pk=service.pk).exists()
         return context
 
 
@@ -147,58 +140,8 @@ def service_edit(request, pk):
         form_service = ServiceForm(instance=service)
         formset_documents = ServiceDocumentFormSet(instance=service)
         formset_contact_points = ContactPointServiceFormSet(instance=service)
-        form_review = ReviewRequestServiceForm()
     return render(request, 'registry/service_edit.html',
                   {'form_service': form_service,
                     'formset_documents': formset_documents,
-                    'formset_contact_points': formset_contact_points,
-                    'form_review': form_review})
-
-
-def review_request(request, pk):
-    if request.method == 'POST':
-        form = ReviewRequestServiceForm(request.POST)
-        if form.is_valid():
-            service = get_object_or_404(Service, pk=pk)
-            review_request = form.save(commit=False)
-            review_request.service = service
-            save_workflow(request, service)
-            review_request.workflow = service.workflow
-            review_request.save()
-            messages.add_message(request, messages.INFO, _('Service review request submited successfully.'))
-            return redirect('registry:service_edit', pk=pk)
-        # TODO: display error message using messages module
-        return redirect('registry:service_edit', pk=pk)
-
-
-def save_workflow(request, service):
-    author = request.user.profile
-    old_state = service.registration_status
-    new_state = RegistrationStatusCategory.objects.get(name=RegistrationStatusCategory.VALIDATION)
-    if not hasattr(service, 'workflow'):
-        previous_node = None
-    else:
-        previous_node = service.workflow
-    workflow = Workflow.objects.create(
-                           author=author,
-                           old_state=old_state,
-                           new_state=new_state,
-                           previous_node=previous_node,
-                           service=service)
-    workflow.save()
-    service.registration_status = new_state
-    service.save()
-
-
-def get_workflow_history(service):
-    entries = []
-    if not hasattr(service, 'workflow'):
-        workflow = None
-    else:
-        workflow = service.workflow
-    while workflow:
-        if workflow.reviewed:
-            entries.append(workflow)
-        workflow = workflow.previous_node
-    return entries
+                    'formset_contact_points': formset_contact_points})
 

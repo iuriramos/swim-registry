@@ -77,49 +77,6 @@
 
           <div class="row">
             <div class="col-md-12">
-              <!-- Button trigger modal -->
-              {% if form_service.instance.pk %}
-                {% if not form_service.instance.workflow or form_service.instance.workflow.reviewed %}
-                  <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModal">
-                    {% trans "Request Service Review" %}
-                  </button>
-                {% else %}
-                  <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModal" disabled>
-                    {% trans "Request Service Review" %}
-                  </button>
-                {% endif %}
-              {% endif %}
-
-              <!-- Modal -->
-              <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                      <h4 class="modal-title" id="myModalLabel">{% trans "Request Service Review" %}</h4>
-                    </div>
-                    <div class="modal-body">
-                      <form action="request-review/" method='POST'>
-                        {% csrf_token %}
-                        {% comment %}
-                          {{ form_review | crispy }}
-                        {% endcomment %}
-                        <div class="form-group">
-                          <label for="description_id">{{ form_review.description.label }}</label>
-                          {{ form_review.description }}
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-default" data-dismiss="modal">{% trans "Close" %}</button>
-                          <button type="submit" class="btn btn-primary" name="submit">{% trans "Submit" %}</button>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </div>
 
            <form enctype="multipart/form-data" method="POST" class="post-form">
             {% csrf_token %}

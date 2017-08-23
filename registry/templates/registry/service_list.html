@@ -33,6 +33,9 @@
                   </div>
                   <div class="panel-body">
                     {% for service in services %}
+                      {% if forloop.counter0|divisibleby:2 %}
+                        <div class="row">
+                      {% endif %}
                       <div class="col-md-6">
                         <div class="thumbnail">
                           <a  href="{% url 'registry:service_detail' service.pk %}">
@@ -44,6 +47,9 @@
                           </div>
                         </div>
                       </div>
+                      {% if forloop.counter|divisibleby:2 %}
+                        </div>
+                      {% endif %}
                     {% endfor %}
                   </div>
                 </div>

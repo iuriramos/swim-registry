@@ -29,9 +29,6 @@ $(function() {
         $('#id_data_exchange_formats-TOTAL_FORMS').val(parseInt(form_idx) + 1);
     });
 
-    $("#registration_status_id option:not(:selected)").attr("disabled", true);
-
-
     $.ajaxSetup({
          beforeSend: function(xhr, settings) {
              function getCookie(name) {
