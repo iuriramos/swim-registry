@@ -48,3 +48,11 @@ class InfrastructureProfileAdmin(admin.ModelAdmin):
     ]
 admin.site.register(InfrastructureProfile, InfrastructureProfileAdmin)
 
+class TechnicalInterfaceBindingDescriptionInline(admin.TabularInline):
+    model = TechnicalInterfaceBindingDescription
+
+class InfrastructureDescriptionAdmin(admin.ModelAdmin):
+    inlines = [
+        TechnicalInterfaceBindingDescriptionInline,
+    ]
+admin.site.register(InfrastructureDescription, InfrastructureDescriptionAdmin)
