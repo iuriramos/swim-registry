@@ -18,7 +18,7 @@ class Service(TimeStampedModel):
     version_category = models.ForeignKey('registry.VersionCategory', related_name='services', verbose_name=_('version category'), null=True, blank=True)
     implementation_status = models.ForeignKey('registry.ImplementationStatusCategory', related_name='services', verbose_name=_('implementation status'), null=True, blank=True)
     implementation_maturity = models.ForeignKey('registry.ImplementationMaturityCategory', related_name='services', verbose_name=_('implementation maturity'), null=True, blank=True)
-    registration_status = models.ForeignKey('registry.RegistrationStatusCategory', default=get_default_registration_status, related_name='services', verbose_name=_('registration status'))
+    registration_status = models.ForeignKey('registry.RegistrationStatusCategory', default=get_default_registration_status, related_name='services', verbose_name=_('registration status'), null=True, blank=True)
 
     data_categories = models.ManyToManyField('registry.DataCategory', related_name='services', verbose_name=_('ATM data categories'), blank=True)
     activity_categories = models.ManyToManyField('registry.ActivityCategory', related_name='services', verbose_name=_('ATM activity categories'), blank=True)
