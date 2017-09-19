@@ -1,13 +1,44 @@
+from django.conf.urls import include
 from django.contrib.auth.views import login, logout_then_login
 from django.contrib.auth.decorators import login_required
 from django.conf.urls import url
 from .views import (index, service, document, end_point, data_standard, data_exchange_format,
                     infrastructure, technical_interface, technical_interface_binding, contact_point)
 
+from .serializers.user import UserViewSet
+from .serializers.service import ServiceViewSet
+from .serializers.version_category import VersionCategoryViewSet
+from .serializers.implementation import ImplementationStatusCategoryViewSet
+from .serializers.implementation import ImplementationMaturityCategoryViewSet
+from .serializers.registration_status_category import RegistrationStatusCategoryViewSet
+from .serializers.data_category import DataCategoryViewSet
+from .serializers.activity_category import ActivityCategoryViewSet
+from .serializers.stakeholder_category import StakeholderCategoryViewSet
+from .serializers.region_category import RegionCategoryViewSet
+from .serializers.flight_phase_category import FlightPhaseCategoryViewSet
+from rest_framework import routers
+
+
+# Routers provide an easy way of automatically determining the URL conf.
+router = routers.DefaultRouter()
+router.register('users', UserViewSet)
+router.register('services', ServiceViewSet)
+router.register('version-categories', VersionCategoryViewSet)
+router.register('implementation-status-categories', ImplementationStatusCategoryViewSet)
+router.register('implementation-maturity-categories', ImplementationMaturityCategoryViewSet)
+router.register('registration-status-categories', RegistrationStatusCategoryViewSet)
+router.register('data-categories', DataCategoryViewSet)
+router.register('activity-categories', ActivityCategoryViewSet)
+router.register('stakeholder-categories', StakeholderCategoryViewSet)
+router.register('region-categories', RegionCategoryViewSet)
+router.register('flight-phases-categories', FlightPhaseCategoryViewSet)
+
 
 app_name='registry'
 
 urlpatterns = [
+    url(r'^api/', include(router.urls)),
+    
     url(r'^login/$', login, {'template_name':'registry/login.html'}, name='login'),
     url(r'^logout/$', logout_then_login, {'login_url':'/login/'}, name='logout'),
     url(r'^registry/$', index.index_view, name='index'),
