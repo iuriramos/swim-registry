@@ -133,7 +133,7 @@ MEDIA_URL = '/media/'
 
 # Mail settings
 
-EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST = 'smtp.unb.br'
 
 EMAIL_HOST_PASSWORD =get_env_variable('EMAIL_HOST_PASSWORD')
 
