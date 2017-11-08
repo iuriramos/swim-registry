@@ -16,6 +16,7 @@ from .serializers.activity_category import ActivityCategoryViewSet
 from .serializers.stakeholder_category import StakeholderCategoryViewSet
 from .serializers.region_category import RegionCategoryViewSet
 from .serializers.flight_phase_category import FlightPhaseCategoryViewSet
+from .serializers.technical_interface import TechnicalInterfaceViewSet
 from rest_framework import routers
 
 
@@ -32,6 +33,7 @@ router.register('activity-categories', ActivityCategoryViewSet)
 router.register('stakeholder-categories', StakeholderCategoryViewSet)
 router.register('region-categories', RegionCategoryViewSet)
 router.register('flight-phases-categories', FlightPhaseCategoryViewSet)
+router.register('technical-interfaces', TechnicalInterfaceViewSet)
 
 
 app_name='registry'
