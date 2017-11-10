@@ -9,6 +9,7 @@ from registry.models.stakeholder_category import StakeholderCategory
 from registry.models.region_category import RegionCategory
 from registry.models.flight_phase_category import FlightPhaseCategory
 from rest_framework import serializers, viewsets
+from .participant import ParticipantSerializer
 from .version_category import VersionCategorySerializer
 from .technical_interface import TechnicalInterfaceSerializer
 from .implementation import ImplementationStatusCategorySerializer
@@ -21,9 +22,10 @@ from .region_category import RegionCategorySerializer
 from .flight_phase_category import FlightPhaseCategorySerializer
 
 
-# Serializers define the API representation.
 class ServiceSerializer(WritableNestedModelSerializer):
+    # image = ....
     url = serializers.HyperlinkedIdentityField(view_name="registry:service-detail")
+    organization = ParticipantSerializer()
     version_category = serializers.PrimaryKeyRelatedField(queryset=VersionCategory.objects.all())
     implementation_status = serializers.PrimaryKeyRelatedField(queryset=ImplementationStatusCategory.objects.all())
     implementation_maturity = serializers.PrimaryKeyRelatedField(queryset=ImplementationMaturityCategory.objects.all())
@@ -37,11 +39,9 @@ class ServiceSerializer(WritableNestedModelSerializer):
 
     class Meta:
         model = Service
-        exclude = ('image', 'organization',)
-        # fields = ('version_category', )
+        exclude = ('image', 'reviewed', )
         
 
-# ViewSets define the view behavior.
 class ServiceViewSet(viewsets.ModelViewSet):
     queryset = Service.objects.all()
     serializer_class = ServiceSerializer

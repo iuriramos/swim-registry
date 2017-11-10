@@ -1,3 +1,4 @@
+from rest_framework import routers
 from django.conf.urls import include
 from django.contrib.auth.views import login, logout_then_login
 from django.contrib.auth.decorators import login_required
@@ -6,6 +7,8 @@ from .views import (index, service, document, end_point, data_standard, data_exc
                     infrastructure, technical_interface, technical_interface_binding, contact_point)
 
 from .serializers.user import UserViewSet
+from .serializers.participant import ParticipantViewSet
+from .serializers.participant_category import ParticipantCategoryViewSet
 from .serializers.service import ServiceViewSet
 from .serializers.version_category import VersionCategoryViewSet
 from .serializers.implementation import ImplementationStatusCategoryViewSet
@@ -17,12 +20,18 @@ from .serializers.stakeholder_category import StakeholderCategoryViewSet
 from .serializers.region_category import RegionCategoryViewSet
 from .serializers.flight_phase_category import FlightPhaseCategoryViewSet
 from .serializers.technical_interface import TechnicalInterfaceViewSet
-from rest_framework import routers
+from .serializers.technical_interface_binding import TechnicalInterfaceBindingProfileViewSet
+from .serializers.infrastructure import InfrastructureProfileViewSet
+from .serializers.data_standard import DataStandardViewSet
+# from .serializers.data_exchange_format import DataExchangeFormatServiceViewSet
+# from .serializers.end_point import EndPointViewSet
 
 
 # Routers provide an easy way of automatically determining the URL conf.
 router = routers.DefaultRouter()
 router.register('users', UserViewSet)
+router.register('participants', ParticipantViewSet)
+router.register('participant-categories', ParticipantCategoryViewSet)
 router.register('services', ServiceViewSet)
 router.register('version-categories', VersionCategoryViewSet)
 router.register('implementation-status-categories', ImplementationStatusCategoryViewSet)
@@ -32,8 +41,11 @@ router.register('data-categories', DataCategoryViewSet)
 router.register('activity-categories', ActivityCategoryViewSet)
 router.register('stakeholder-categories', StakeholderCategoryViewSet)
 router.register('region-categories', RegionCategoryViewSet)
-router.register('flight-phases-categories', FlightPhaseCategoryViewSet)
+router.register('flight-phase-categories', FlightPhaseCategoryViewSet)
 router.register('technical-interfaces', TechnicalInterfaceViewSet)
+router.register('data-standards', DataStandardViewSet)
+router.register('infrastructure-profiles', InfrastructureProfileViewSet)
+router.register('profile-technical-interface-bindings', TechnicalInterfaceBindingProfileViewSet)
 
 
 app_name='registry'
