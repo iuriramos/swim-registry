@@ -9,7 +9,7 @@ class Participant(TimeStampedModel):
     website = models.URLField(blank=True, verbose_name=_('website'))
     category = models.ForeignKey('community.ParticipantCategory', related_name='participants', verbose_name=_('participant category'))
     image = models.ImageField(upload_to = 'participants/profiles/images/', default = 'participants/profiles/images/none/default.svg', verbose_name=_('image'))
-    reviewed = models.BooleanField(default=False, verbose_name=_('reviewed'))
+    reviewed = models.BooleanField(default=True, verbose_name=_('reviewed'))
 
     # documents = models.ManyToManyField(ParticipantDocument, related_name='participants')
     # contact_points = models.ManyToManyField(ContactPoint, related_name='participants')
