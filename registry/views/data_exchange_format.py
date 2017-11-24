@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from registry.models.technical_interface import TechnicalInterface
 from registry.models.data_exchange_format import DataExchangeFormatService
 from registry.forms.data_exchange_format import DataExchangeFormatServiceFormSet
+from .base import get_organization
 
 
 class DataExchangeFormatServiceDetailView(DetailView):
@@ -16,7 +17,8 @@ class DataExchangeFormatServiceDetailView(DetailView):
 
 @login_required
 def data_exchange_formats_edit(request, pk):
-    technical_interface = get_object_or_404(TechnicalInterface, pk=pk)
+    organization = get_organization(request)
+    technical_interface = get_object_or_404(TechnicalInterface, pk=pk, service__organization=organization)
     service = technical_interface.service
     if request.method == 'POST':
         formset_data_exchange_formats = DataExchangeFormatServiceFormSet(request.POST, request.FILES, instance=technical_interface)

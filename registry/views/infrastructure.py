@@ -8,6 +8,7 @@ from registry.models.infrastructure import InfrastructureDescription, Infrastruc
 from registry.forms.infrastructure import InfrastructureDescriptionForm
 from registry.forms.document import InfrastructureDescriptionDocumentFormSet
 from registry.forms.technical_interface_binding import TechnicalInterfaceBindingDescriptionFormSet
+from .base import get_organization
 
 
 class InfrastructureDescriptionDetailView(DetailView):
@@ -24,7 +25,8 @@ class InfrastructureProfileDetailView(DetailView):
 
 @login_required
 def infrastructure_description_new(request, pk):
-    technical_interface = get_object_or_404(TechnicalInterface, pk=pk)
+    organization = get_organization(request)
+    technical_interface = get_object_or_404(TechnicalInterface, pk=pk, service__organization=organization)
     service = technical_interface.service
     if request.method == 'POST':
         form_infrastructure_description = InfrastructureDescriptionForm(request.POST, request.FILES)
@@ -53,7 +55,8 @@ def infrastructure_description_new(request, pk):
 
 @login_required
 def infrastructure_description_edit(request, pk):
-    technical_interface = get_object_or_404(TechnicalInterface, pk=pk)
+    organization = get_organization(request)
+    technical_interface = get_object_or_404(TechnicalInterface, pk=pk, service__organization=organization)
     service = technical_interface.service
     infrastructure_description = technical_interface.infrastructure_description
     if request.method == 'POST':

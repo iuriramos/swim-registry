@@ -6,6 +6,7 @@ from django.views.generic.detail import DetailView
 from registry.models.end_point import EndPoint
 from registry.models.technical_interface import TechnicalInterface
 from registry.forms.end_point import EndPointFormSet
+from .base import get_organization
 
 
 class EndPointDetailView(DetailView):
@@ -16,7 +17,8 @@ class EndPointDetailView(DetailView):
 
 @login_required
 def end_points_edit(request, pk):
-    technical_interface = get_object_or_404(TechnicalInterface, pk=pk)
+    organization = get_organization(request)
+    technical_interface = get_object_or_404(TechnicalInterface, pk=pk, service__organization=organization)
     service = technical_interface.service
     if request.method == 'POST':
         formset_end_points = EndPointFormSet(request.POST, request.FILES, instance=technical_interface)

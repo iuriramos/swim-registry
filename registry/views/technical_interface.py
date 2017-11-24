@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from registry.models.service import Service
 from registry.forms.technical_interface import TechnicalInterfaceForm
 from registry.forms.document import TechnicalInterfaceDocumentFormSet
+from .base import get_organization
 
 
 class TechnicalInterfaceDetailView(DetailView):
@@ -16,7 +17,8 @@ class TechnicalInterfaceDetailView(DetailView):
 
 @login_required
 def technical_interface_new(request, pk):
-    service = get_object_or_404(Service, pk=pk)
+    organization = get_organization(request)
+    service = get_object_or_404(Service, pk=pk, organization=organization)
     if request.method == 'POST':
         form_technical_interface = TechnicalInterfaceForm(request.POST, request.FILES)
         formset_documents = TechnicalInterfaceDocumentFormSet(request.POST, request.FILES)
@@ -40,7 +42,8 @@ def technical_interface_new(request, pk):
 
 @login_required
 def technical_interface_edit(request, pk):
-    service = get_object_or_404(Service, pk=pk)
+    organization = get_organization(request)
+    service = get_object_or_404(Service, pk=pk, organization=organization)
     technical_interface = service.technical_interface
     if request.method == 'POST':
         form_technical_interface = TechnicalInterfaceForm(request.POST, request.FILES, instance=technical_interface)

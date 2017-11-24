@@ -26,7 +26,6 @@ class ServiceDetailView(DetailView):
         context['subscribed'] = profile.following_services.filter(pk=service.pk).exists()
         return context
 
-
 @login_required
 def service_toggle_subscription(request, pk):
     if request.method == 'POST':
@@ -120,7 +119,7 @@ def service_new(request):
 @login_required
 def service_edit(request, pk):
     organization = get_organization(request)
-    service = get_object_or_404(Service, pk=pk)
+    service = get_object_or_404(Service, pk=pk, organization=organization)
     if request.method == 'POST':
         form_service = ServiceForm(request.POST, request.FILES, instance=service)
         formset_documents = ServiceDocumentFormSet(request.POST, request.FILES, instance=service)
