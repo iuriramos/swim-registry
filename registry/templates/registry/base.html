@@ -32,10 +32,14 @@
                     <ul class="dropdown-menu">
                       <li class="dropdown-header">{% trans "Settings" %}</li>
                       <li><a href="{% url 'community:profile' %}">{% trans "Profile" %}</a></li>
-                      {% if user.profile.organization.pk %}
-                          <li><a href="{% url 'community:participant_edit' %}">{% trans "Organization" %}</a></li>
-                      {% endif %}
                       <li><a href="{% url 'community:subscriptions' %}">{% trans "Subscriptions" %}</a></li>
+                      
+                      {% if user.profile.organization.pk %}
+                        <li role="separator" class="divider"></li>
+                        <li><a href="{% url 'community:participant_edit' %}">{% trans "Organization" %}</a></li>
+                        <li><a href="{% url 'registry:participant_service_list' %}">{% trans "Services" %}</a></li>
+                      {% endif %}
+
                       <li role="separator" class="divider"></li>
                       <li><a href="{% url 'registry:logout' %}">{% trans "Log out" %}</a></li>
                     </ul>

@@ -6,16 +6,12 @@
       <div class="row">
         <div class="col-md-10 col-md-offset-1">
 
-           <h1>{% trans "Subscriptions settings" %}</h1>
+          <div class="page-header">
+            <h1>{% trans "Subscriptions settings" %}</h1>
+          </div>
 
           <form method="POST" class="post-form">
             {% csrf_token %}
-
-              <ol class="breadcrumb">
-                <li>
-                   <a href="{% url 'community:participant_edit' %}" role="button">{% trans "Back to Organization" %}</a>
-                </li>
-              </ol>
 
               <div class="row">
                   <div class="col-md-6">

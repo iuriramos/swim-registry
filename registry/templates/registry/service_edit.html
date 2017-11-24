@@ -60,19 +60,19 @@
 
             <ol class="breadcrumb">
               <li>
-                  <a href="{% url 'registry:participant_service_list' %}" role="button">{% trans "Back to Services" %}</a>
+                  <a href="{% url 'registry:participant_service_list' %}" role="button"><span aria-hidden="true">&laquo;</span> {% trans "Back to Services" %}</a>
               </li>
-              <li>
-                  {% if form_service.instance.pk %}
+                {% if form_service.instance.pk %}
+                  <li>
                       {% if form_service.instance.technical_interface.pk %}
-                          <a href="{% url 'registry:technical_interface_edit' pk=form_service.instance.pk %}" role="button">{% trans "Edit Technical Interface" %}</a>
+                          <a href="{% url 'registry:technical_interface_edit' pk=form_service.instance.pk %}" role="button">{% trans "Edit Technical Interface" %} <span aria-hidden="true">&raquo;</span></a>
 
                       {% else %}
-                          <a href="{% url 'registry:technical_interface_new' pk=form_service.instance.pk %}" role="button">{% trans "Edit Technical Interface" %}</a>
+                          <a href="{% url 'registry:technical_interface_new' pk=form_service.instance.pk %}" role="button">{% trans "Create Technical Interface" %} <span aria-hidden="true">&raquo;</span></a>
 
                       {% endif %}
-                  {% endif %}
-              </li>
+                  </li>
+                {% endif %}
             </ol>
 
           <div class="row">

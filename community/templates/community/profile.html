@@ -41,11 +41,9 @@
             </div>
 
             {% if not form.instance.organization.pk %}
-                <ol class="breadcrumb">
-                  <li>
-                    <a href="{% url 'community:participant_new' %}" role="button">{% trans "Create your organization" %} <span aria-hidden="true">&raquo;</span></a>
-                  </li>
-                </ol>
+              <div class="row">
+                <a class="btn btn-primary pull-right" role="button" href="{% url 'community:participant_new' %}" role="button">{% trans "Create your organization" %} <span aria-hidden="true">&raquo;</span></a>
+              </div>
             {% endif %}
   
             <div class="row">

@@ -55,26 +55,26 @@
 
               <ol class="breadcrumb">
                 <li>
-                  <a href="{% url 'registry:service_edit' pk=service_pk %}" role="button">{% trans "Back to Service" %}</a>
+                  <a href="{% url 'registry:service_edit' pk=service_pk %}" role="button"><span aria-hidden="true">&laquo;</span> {% trans "Back to Service" %}</a>
                 </li>
-                {% if form_technical_interface.instance.pk %}
+                  {% if form_technical_interface.instance.pk %}
                     <li>
                        {% if form_technical_interface.instance.infrastructure_description.pk %}
-                            <a href="{% url 'registry:infrastructure_description_edit' pk=form_technical_interface.instance.pk %}" role="button">{% trans "Edit Infrastructure Description" %}</a>
+                            <a href="{% url 'registry:infrastructure_description_edit' pk=form_technical_interface.instance.pk %}" role="button">{% trans "Edit Infrastructure Description" %}  <span aria-hidden="true">&raquo;</span></a>
 
                         {% else %}
-                            <a href="{% url 'registry:infrastructure_description_new' pk=form_technical_interface.instance.pk %}" role="button">{% trans "Edit Infrastructure Description" %}</a>
+                            <a href="{% url 'registry:infrastructure_description_new' pk=form_technical_interface.instance.pk %}" role="button">{% trans "Edit Infrastructure Description" %}  <span aria-hidden="true">&raquo;</span></a>
 
                         {% endif %}
                     </li>
 
                     <li>
-                        <a href="{% url 'registry:data_exchange_formats_edit' pk=form_technical_interface.instance.pk %}" role="button">{% trans "Edit Data Exchange Formats" %}</a>
+                        <a href="{% url 'registry:data_exchange_formats_edit' pk=form_technical_interface.instance.pk %}" role="button">{% trans "Edit Data Exchange Formats" %} <span aria-hidden="true">&raquo;</span></a>
                     </li>
                     <li>
-                        <a href="{% url 'registry:end_points_edit' pk=form_technical_interface.instance.pk %}" role="button">{% trans "Edit End Points" %}</a>
+                        <a href="{% url 'registry:end_points_edit' pk=form_technical_interface.instance.pk %}" role="button">{% trans "Edit End Points" %} <span aria-hidden="true">&raquo;</span></a>
                     </li>
-                {% endif %}
+                  {% endif %}
               </ol>
 
               <div class="row">
