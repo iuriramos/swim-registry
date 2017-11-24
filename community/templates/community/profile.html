@@ -40,21 +40,14 @@
               <h2>{{ user.first_name }} {{ user.last_name }}</h2>
             </div>
 
-            <ol class="breadcrumb">
-              {% if form.instance.organization.pk %}
+            {% if not form.instance.organization.pk %}
+                <ol class="breadcrumb">
                   <li>
-                     <a href="{% url 'community:participant_edit' %}" role="button">{% trans "Edit your organization" %}</a>
+                    <a href="{% url 'community:participant_new' %}" role="button">{% trans "Create your organization" %} <span aria-hidden="true">&raquo;</span></a>
                   </li>
-                  <li>
-                      <a href="{% url 'registry:participant_service_list' %}">{% trans "View Services" %}</a>
-                  </li>
-              {% else %}
-                  <li>
-                    <a href="{% url 'community:participant_new' %}" role="button">{% trans "Create your organization" %}</a>
-                  </li>
-              {% endif %}
-            </ol>
-
+                </ol>
+            {% endif %}
+  
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
