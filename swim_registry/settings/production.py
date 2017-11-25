@@ -23,9 +23,9 @@ STATICFILES_DIRS = (
     BASE_DIR.child('registry').child('static'),
 )
 
-ALLOWED_HOSTS = ['164.41.76.94', '127.0.0.1', 'localhost', ]
+ALLOWED_HOSTS = ['164.41.76.94', '127.0.0.1', 'localhost', 'swim-registry.cic.unb.br', ]
 
-DEBUG = True
+DEBUG = False
 
 # SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
