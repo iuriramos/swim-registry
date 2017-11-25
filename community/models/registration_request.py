@@ -28,9 +28,8 @@ class RegistrationRequest(TimeStampedModel):
                             # TODO
                         )
         profile.save()
-        # send_confirmartion_mail(self.email, password)
-        # self.delete()
-
+        send_confirmartion_mail(profile.full_name, self.email, password)
+        
     class Meta:
         verbose_name=_('registration request')
 

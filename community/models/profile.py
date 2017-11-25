@@ -42,7 +42,8 @@ class Profile(TimeStampedModel):
 
     @property
     def full_name(self):
-        return self.user.last_name + ', ' + self.first_name
+        # return self.user.last_name + ', ' + self.first_name
+        return self.user.first_name + ' ' + self.last_name
 
     @property
     def email(self):
