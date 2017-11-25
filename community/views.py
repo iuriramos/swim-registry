@@ -107,22 +107,32 @@ def subscriptions(request):
 
 @login_required
 def participant_new(request):
+    profile = get_profile(request)
+    if profile.organization: # if there is a registered organization, redirect to edit
+        return redirect('community:participant_edit')
     if request.method == 'POST':
         form = ParticipantForm(request.POST)
-        if form.is_valid():
-            profile = get_profile(request)
-            profile.organization = form.save()
+        formset_contact_points = ContactPointParticipantFormSet(request.POST, request.FILES)
+        formset_documents = ParticipantDocumentFormSet(request.POST, request.FILES)
+        if form.is_valid() and formset_contact_points.is_valid() and formset_documents.is_valid():
+            participant = form.save()
+            profile.organization = participant
             profile.save()
+            formset_contact_points.instance = participant
+            formset_contact_points.save()
+            formset_documents.instance = participant
+            formset_documents.save()
             messages.add_message(request, messages.INFO, _('Organization created successfully'))
-            return redirect('community:profile')
+            return redirect('community:participant_edit')
     else:
         form = ParticipantForm()
-    return render(request, 'community/participant_edit.html', {'form': form})
+        formset_contact_points = ContactPointParticipantFormSet()
+        formset_documents = ParticipantDocumentFormSet()
+    return render(request, 'community/participant_edit.html', {'form': form, 'formset_contact_points': formset_contact_points, 'formset_documents': formset_documents})
 
 
 @login_required
 def participant_edit(request):
-    user = request.user
     profile = get_profile(request)
     participant = profile.organization
     if request.method == 'POST':

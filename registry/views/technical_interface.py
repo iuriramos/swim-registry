@@ -1,6 +1,7 @@
 from django.utils.translation import ugettext_lazy as _
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
+from django.core.exceptions import ObjectDoesNotExist
 from django.views.generic.detail import DetailView
 from django.contrib.auth.decorators import login_required
 from registry.models.service import Service
@@ -19,6 +20,11 @@ class TechnicalInterfaceDetailView(DetailView):
 def technical_interface_new(request, pk):
     organization = get_organization(request)
     service = get_object_or_404(Service, pk=pk, organization=organization)
+    try: # if there is a registered tech interface, redirect to edit
+        service.technical_interface
+        return redirect('registry:technical_interface_edit', pk=pk)
+    except ObjectDoesNotExist: 
+        pass
     if request.method == 'POST':
         form_technical_interface = TechnicalInterfaceForm(request.POST, request.FILES)
         formset_documents = TechnicalInterfaceDocumentFormSet(request.POST, request.FILES)
