@@ -27,7 +27,7 @@ class ImplementationStatusCategory(models.Model):
     UNDER_DEVELOPMENT = 'UNDER DEVELOPMENT'
 
     CHOICES = (
-        (CURRENT_AND_SUPPORTED, _('Read for consumption')),
+        (CURRENT_AND_SUPPORTED, _('Ready for consumption')),
         (TERMINATED, _('Terminated')),
         (UNDER_DEVELOPMENT, _('Under development')),
     )
