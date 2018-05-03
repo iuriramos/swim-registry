@@ -16,6 +16,11 @@ Instale as dependências do projeto:
 ## Postgres Setup
 
 ```
+sudo apt-get update
+sudo apt-get install postgresql postgresql-contrib
+```
+
+```
 $ su -u postgres psql 
 CREATE DATABASE swim_registry; 
 CREATE USER adimn WITH PASSWORD 'admin_password';
